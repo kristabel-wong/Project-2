@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "@firebase/firestore";
+import {getStorage} from "firebase/storage"; // for uploading images
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -44,3 +45,7 @@ export const signInWithGoogle = () => {
 			console.log(error);
 		});
 };
+const analytics = getAnalytics(app);
+export const storage = getStorage(app); // for uploading images
+
+

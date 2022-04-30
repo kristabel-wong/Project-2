@@ -51,6 +51,13 @@ function NavBar() {
 			) : (
 				""
 			)}
+			{!userLogged ? (
+     			<NavLink to={"/newpet"}>
+     				<button className="nav-btn btn">New pet</button>
+     			</NavLink>
+		    ) : (		 
+			    ""
+			)}
 		</div>
 	);
 }
