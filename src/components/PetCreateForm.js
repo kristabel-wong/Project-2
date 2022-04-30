@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import {db,storage} from "../firebase-config";
 import {addDoc, collection, getDocs} from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {v4} from "uuid";
 
 
@@ -22,15 +22,17 @@ function PetCreateForm() {
 
     // you can upload a image right now
     // every time choose a file, run this function
-    let uniqUrl = null;
+    
     const onFileChange = async ( ) =>{
         if(newUrl == null) return;
         const uniqImageName = v4()+newUrl.name;
         const imageRef = ref(storage, `images/${uniqImageName}`)
-        uploadBytes(imageRef, newUrl).then(()=>{
+        await uploadBytes(imageRef, newUrl).then(()=>{
            alert("upload");
            console.log(uniqImageName)
         })
+    getDownloadURL(imageRef).then((url)=> {setNewUrl(url)})
+
     }
     
     const createPet = async () => {   
@@ -38,7 +40,7 @@ function PetCreateForm() {
                 name: newName,
                 age: newAge,
                 dob: newDOB,
-                imageUrl : uniqUrl
+                imageUrl : newUrl
             })  
     }
 
