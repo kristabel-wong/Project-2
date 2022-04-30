@@ -53,7 +53,7 @@ function NavBar() {
 			)}
 			{!userLogged ? (
      			<NavLink to={"/newpet"}>
-     				<button className="nav-btn btn">New pet</button>
+     				<Button classnames="nav-btn btn" content='New pet' />
      			</NavLink>
 		    ) : (		 
 			    ""
