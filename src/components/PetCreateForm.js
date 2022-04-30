@@ -1,7 +1,9 @@
 import {useState, useEffect} from "react";
-import {db} from "../firebase-config";
+import {db,storage} from "../firebase-config";
 import {addDoc, collection, getDocs} from "firebase/firestore";
+import { ref, uploadBytes } from "firebase/storage";
 import {v4} from "uuid";
+
 
 function PetCreateForm() {
     // store all pets info as state
@@ -15,29 +17,34 @@ function PetCreateForm() {
 
 
     const petsCollectionRef = collection(db, "pets");
-    const onFileChange = async (e) =>{
-        const file = e.target.files[0]
-        const storageRef = app.storage().ref()
-        const fileRef = storageRef.child(file.name)
-        await fileRef.put(file)
-        setNewUrl(await fileRef.getDownloadURL())
-    }
 
-    const createPet = async () => {
-        
+
+
+    // you can upload a image right now, for the images path, you need to add user_id and 
+    // every time choose a file, run this function
+    let uniqUrl = null;
+    const onFileChange = async ( ) =>{
+        if(newUrl == null) return;
+        const uniqUrl = v4()+newUrl.name;
+        const imageRef = ref(storage, `images/${uniqUrl}`)
+        uploadBytes(imageRef, newUrl).then(()=>{
+           alert("upload");
+           console.log(uniqUrl)
+        })
+    }
+    
+    const createPet = async () => {   
           await addDoc(petsCollectionRef, {
                 name: newName,
                 age: newAge,
                 dob: newDOB,
-                imageUrl : newUrl
-            })
-        
-        
-        
+                imageUrl : uniqUrl
+            })  
     }
 
     useEffect(()=>{
          // get all pets info from firebase
+
         const getPets = async () =>{
            const data = await getDocs(petsCollectionRef);
            setPets(data.docs.map((pet)=> ({...pet.data(), id: pet.id}) ))
@@ -54,10 +61,12 @@ function PetCreateForm() {
                 <label>Age:</label>
                 <input type="number" required onChange={(event)=>{setNewAge(event.target.value)}}/>
                 <label>Photos:</label>
-                <input type="file" onChange={onFileChange}/>
+                <input type="file" onChange={(event) =>{setNewUrl(event.target.files[0])}}/>
+                <input type="submit" onClick={onFileChange} value="Upload" />
                 <input type="submit" value="Submit" onClick={createPet}/>
 
                 {pets.map((pet)=> {
+
                     return <div>
                                <h4>Name:{pet.name}</h4>
                                <h4>Age:{pet.age}</h4>
