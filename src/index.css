@@ -35,3 +35,6 @@ code {
 .active {
 	color: grey;
 }
+.btn:hover {
+	cursor: pointer;
+}
