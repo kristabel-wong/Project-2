@@ -138,3 +138,4 @@ function ChatMessage(props) {
 }
   
 export default Chat;
+//  this is also where all your favourites could be kept

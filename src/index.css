@@ -30,7 +30,10 @@ code {
 	justify-content: center;
 }
 .btn {
-	padding: 10px 5px;
+	padding: 5px 10px;
+	margin: 5px;
+	border: 2px solid black;
+	border-radius: 8px;
 }
 .active {
 	color: grey;
@@ -193,4 +196,7 @@ img {
     height: 40px;
     border-radius: 50%;
     margin: 2px 5px;
+}
+.btn:hover {
+	cursor: pointer;
 }
