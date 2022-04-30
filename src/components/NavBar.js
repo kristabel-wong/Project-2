@@ -23,9 +23,9 @@ function NavBar() {
 			<NavLink to={"/"}>
 				<Button classnames="nav-btn btn" content="Home" />
 			</NavLink>
-            <NavLink to={"/message"}>
-                <button className="nav-btn btn">Messages</button>
-            </NavLink>
+			<NavLink to={"/message"}>
+				<button className="nav-btn btn">Messages</button>
+			</NavLink>
 			{!userLogged ? (
 				<NavLink to={"/"}>
 					<Button
@@ -52,11 +52,11 @@ function NavBar() {
 				""
 			)}
 			{!userLogged ? (
-     			<NavLink to={"/newpet"}>
-     				<Button classnames="nav-btn btn" content='New pet' />
-     			</NavLink>
-		    ) : (		 
-			    ""
+				<NavLink to={"/newpet"}>
+					<Button classnames="nav-btn btn" content="New pet" />
+				</NavLink>
+			) : (
+				""
 			)}
 		</div>
 	);

@@ -1,57 +1,49 @@
 import {
-	getFirestore,
 	collection,
 	query,
-	where,
-	getDocs,
 	onSnapshot,
 	setDoc,
 	doc,
 	serverTimestamp,
-	updateDoc,
+	orderBy,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase-config";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ChatMessage from "./ChatMessage";
 import React, { useEffect, useRef, useState } from "react";
+import { v4 } from "uuid";
 
 function ChatBox() {
 	const [messages, setMessages] = useState([]);
+	const [user] = useAuthState(auth);
+	const [formValue, setFormValue] = useState("");
+	const dummy = useRef();
+
 	const getMessages = async function () {
-		const q = query(
+		query(
 			onSnapshot(
 				collection(db, "favourites", "usertwo_pettwo", "messages"),
+				orderBy("createdAt", "DESCENDING"),
 				(snapshot) => {
-					setMessages(snapshot.docs.map((doc) => doc.data()));
+					setMessages(
+						snapshot.docs.reverse().map((doc) => doc.data())
+					);
 				}
 			)
 		);
 	};
 
-	const [user] = useAuthState(auth);
-	const [formValue, setFormValue] = useState("");
-	const dummy = useRef();
-	// const messagesRef = firestore
-	// 	.collection("favourites")
-	// 	.doc("usertwo_pettwo")
-	// 	.collection("messages"); // this references collection name (so we can try userOne_petOne)
-	// const query = messagesRef.orderBy("createdAt").limit(25); // get messaged by createdAt and show max 25 messages
-	// const [messages] = useCollectionData(query, { idField: "id" }); // making a query for that data
-
+	const messageId = v4();
 	const sendMessage = async (e) => {
 		e.preventDefault();
 		const { uid, photoURL } = auth.currentUser;
-		// const updateTimestamp = await updateDoc(docRef, {
-		// 	timestamp: serverTimestamp(),
-		// });
-
 		const docRef = doc(
 			db,
 			"favourites",
 			"usertwo_pettwo",
 			"messages",
-			"message1"
+			messageId
 		);
 		const payload = {
 			text: formValue,
@@ -70,10 +62,9 @@ function ChatBox() {
 	return (
 		<>
 			<main>
-				{messages &&
-					messages.map((msg) => (
-						<ChatMessage key={msg.id} message={msg} />
-					))}
+				{messages.map((msg) => (
+					<ChatMessage key={msg.id} message={msg} />
+				))}
 				<span ref={dummy}></span> {/* scroll to bottom feature */}
 			</main>
 
