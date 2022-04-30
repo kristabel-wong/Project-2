@@ -9,6 +9,8 @@ import { auth } from "../../firebase-config";
 import { db } from "../../firebase-config";
 import { collection, getDocs, addDoc, doc } from "firebase/firestore";
 
+import Button from "../Button";
+
 function SignUp() {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -50,6 +52,39 @@ function SignUp() {
           <button onClick={register}> Create user </button>
         </NavLink>
       </form>
+    </div>
+  );
+  const register = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword
+      );
+      console.log(user);
+    } catch (error) {
+      // need to add alert or message when failed signup
+      console.log(error.message);
+    }
+  };
+  return (
+    <div>
+      <h3>Register User</h3>
+      <input
+        placeholder="Email..."
+        onChange={(event) => {
+          setRegisterEmail(event.target.value);
+        }}
+      />
+      <input
+        placeholder="Password..."
+        onChange={(event) => {
+          setRegisterPassword(event.target.value);
+        }}
+      />
+      <NavLink to={"/"}>
+        <Button onClick={register} classnames="btn" content="Register" />
+      </NavLink>
     </div>
   );
 }

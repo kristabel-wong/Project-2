@@ -4,6 +4,7 @@ import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import UserShow from "./user pages/UserShow";
+import Message from "./message pages/Message";
 
 function Pages() {
 	const location = useLocation();
@@ -13,6 +14,7 @@ function Pages() {
 			<Route path="/login" element={<Login />} />
 			<Route path="/signup" element={<SignUp />} />
 			<Route path="/user/:type" element={<UserShow />} />
+            <Route path="/message" element={<Message />} />
 		</Routes>
 	);
 }
