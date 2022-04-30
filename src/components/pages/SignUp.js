@@ -6,10 +6,16 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
+import { db } from "../../firebase-config";
+import { collection, getDocs, addDoc, doc } from "firebase/firestore";
 
 function SignUp() {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+
+  //   const [users, setUsers] = useState([]);
+  //   const usersCollectionsRef = collection(db, "users");
+  //   console.log(usersCollectionsRef);
 
   const register = async () => {
     try {
@@ -20,12 +26,12 @@ function SignUp() {
       );
       console.log(user);
     } catch (error) {
-      console.log(error.message);
+      <div>{error.message}</div>;
     }
   };
   return (
     <div>
-      <div>
+      <form>
         <h3>Register User</h3>
         <input
           placeholder="Email..."
@@ -35,6 +41,7 @@ function SignUp() {
         />
         <input
           placeholder="Password..."
+          type="password"
           onChange={(event) => {
             setRegisterPassword(event.target.value);
           }}
@@ -42,7 +49,7 @@ function SignUp() {
         <NavLink to={"/"}>
           <button onClick={register}> Create user </button>
         </NavLink>
-      </div>
+      </form>
     </div>
   );
 }
