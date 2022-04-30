@@ -13,6 +13,9 @@ function NavBar() {
 			<NavLink to={"/signup"}>
 				<button className="nav-btn btn">Sign Up</button>
 			</NavLink>
+            <NavLink to={"/message"}>
+                <button className="nav-btn btn">Messages</button>
+            </NavLink>
 		</div>
 	);
 }
