@@ -20,16 +20,16 @@ function PetCreateForm() {
 
 
 
-    // you can upload a image right now, for the images path, you need to add user_id and 
+    // you can upload a image right now
     // every time choose a file, run this function
     let uniqUrl = null;
     const onFileChange = async ( ) =>{
         if(newUrl == null) return;
-        const uniqUrl = v4()+newUrl.name;
-        const imageRef = ref(storage, `images/${uniqUrl}`)
+        const uniqImageName = v4()+newUrl.name;
+        const imageRef = ref(storage, `images/${uniqImageName}`)
         uploadBytes(imageRef, newUrl).then(()=>{
            alert("upload");
-           console.log(uniqUrl)
+           console.log(uniqImageName)
         })
     }
     
