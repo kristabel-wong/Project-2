@@ -5,10 +5,10 @@ import React, { useRef, useState } from 'react';
 import firebase from 'firebase/compat/app'; // for firebase SDK
 import 'firebase/compat/firestore'; // for firebase store
 import 'firebase/compat/auth'; // for firebase authentication
-import 'firebase/compat/analytics';
+
 
 // importing hooks
-import { useAuthState } from 'react-firebase-hooks/auth';
+// import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 // find our firebase project and initialise it
@@ -28,11 +28,10 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-  
 
 function Chat() {
 
-    const [user] = useAuthState(auth); // signed in --> user is an object, sign out --> user is null
+    // const [user] = useAuthState(auth); // signed in --> user is an object, sign out --> user is null
 
     return (
         <div className="Chat">
