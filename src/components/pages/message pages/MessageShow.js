@@ -27,7 +27,7 @@ firebase.initializeApp({
   
 const auth = firebase.auth();
 const firestore = firebase.firestore();
-const analytics = firebase.analytics();
+
   
 
 function Chat() {
@@ -42,7 +42,7 @@ function Chat() {
         </header>
   
         <section>
-          {user ? <ChatRoom /> : <SignIn />}  {/* is user: show ChatRoom, else show SignIn */}
+          <ChatRoom /> {/* is user: show ChatRoom, else show SignIn */}
         </section>
   
       </div>
