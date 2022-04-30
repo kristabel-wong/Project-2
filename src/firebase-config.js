@@ -30,6 +30,8 @@ export const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
 
+export const storage = getStorage(app); // for uploading images
+
 export const signInWithGoogle = () => {
 	signInWithPopup(auth, provider)
 		.then((result) => {
@@ -45,7 +47,6 @@ export const signInWithGoogle = () => {
 			console.log(error);
 		});
 };
-const analytics = getAnalytics(app);
-export const storage = getStorage(app); // for uploading images
+
 
 
