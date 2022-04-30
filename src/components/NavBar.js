@@ -1,22 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { auth } from "../firebase-config";
+
 import Button from "./Button";
 
 function NavBar() {
+	let [userLogged, setUserLogged] = useState(false);
+	let user = auth;
+	console.log(userLogged);
+
+	if (user.currentUser != null) {
+		setUserLogged(true);
+	} else setUserLogged = false;
+
+	const logout = async () => {
+		await auth.signOut();
+	};
+
+	useEffect(() => {}, []);
 	return (
 		<div className="nav-container">
 			<NavLink to={"/"}>
 				<Button classnames="nav-btn btn" content="Home" />
 			</NavLink>
-			<NavLink to={"/login"}>
-				<Button classnames="nav-btn btn" content="Login" />
-			</NavLink>
-			<NavLink to={"/signup"}>
-				<Button classnames="nav-btn btn" content="Sign Up" />
-			</NavLink>
-			<NavLink to={"/"}>
-				<Button classnames="nav-btn btn" content="Sign Out" />
-			</NavLink>
+			{!userLogged ? (
+				<NavLink to={"/"}>
+					<Button
+						classnames="nav-btn btn"
+						onClick={logout}
+						content="Sign Out"
+					/>
+				</NavLink>
+			) : (
+				""
+			)}
+			{!userLogged ? (
+				<NavLink to={"/login"}>
+					<Button classnames="nav-btn btn" content="Login" />
+				</NavLink>
+			) : (
+				""
+			)}
+			{!userLogged ? (
+				<NavLink to={"/signup"}>
+					<Button classnames="nav-btn btn" content="Sign Up" />
+				</NavLink>
+			) : (
+				""
+			)}
 		</div>
 	);
 }
