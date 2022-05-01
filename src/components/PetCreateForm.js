@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom"; 
 import { db, storage, auth } from "../firebase-config";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {v4} from "uuid"; // generate uniq image name
 import "./PetCreateForm.css";
 import Typewriter from "typewriter-effect"; // give the typing text effect
-// import { getAuth } from "firebase/auth"; // get currently sign-in user
 
 
 function PetCreateForm() {
@@ -24,21 +24,8 @@ function PetCreateForm() {
     const [newLocation, setNewLocation] = useState("");
     const [newDescription, setNewDescription] = useState("");
     const [newUserID, setNewUserID] = useState("");
-
-    
-    // const auth = getAuth();
-    // const user = auth.currentUser;
-
-    
- 
-        
-
-
-
+  
     const petsCollectionRef = collection(db, "pets");
-    
-
-
     // you can upload a image right now
     // every time choose a file, run this function
     const onFileChange = async ( ) =>{
@@ -107,9 +94,9 @@ function PetCreateForm() {
 
                 <label className="form-label">Description:</label>
                 <textarea className="form-textarea" required rows="10" onChange={(event)=>{setNewDescription(event.target.value)}}/>
-
-                <button className="upload-button" onClick={createPet}> Submit Form </button>
-
+                <NavLink to={"/pet/index"}>
+                   <button className="upload-button" onClick={createPet}> Submit Form </button>
+                </NavLink>
                 <div className="animation-dog">
                     <div className="dog">
                         <div className="body"></div>
