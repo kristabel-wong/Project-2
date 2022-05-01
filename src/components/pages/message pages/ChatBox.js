@@ -9,7 +9,6 @@ import {
 	addDoc,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase-config";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ChatMessage from "./ChatMessage";
 import React, { useEffect, useRef, useState } from "react";
@@ -63,8 +62,8 @@ function ChatBox({ user1, user2 }) {
 	return (
 		<div>
 			<main>
-				{messages.map((msg) => (
-					<ChatMessage key={msg.id} message={msg} />
+				{messages.map((msg, index) => (
+					<ChatMessage key={index} message={msg} />
 				))}
 				<span ref={dummy}></span> {/* scroll to bottom feature */}
 			</main>

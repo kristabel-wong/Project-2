@@ -73,10 +73,10 @@ const trans = (r, s) =>
 function Deck() {
    const [gone] = useState(() => new Set());
 
-//   const [props, set] = useSprings(objs.length, i => ({
-//     ...to(i),
-//     from: from(i)
-//   }));
+  const [props, set] = useSprings(objs.length, i => ({
+    ...to(i),
+    from: from(i)
+  }));
 
   const bind = useGesture(
     ({
@@ -92,30 +92,30 @@ function Deck() {
       const dir = xDir < 0 ? -1 : 1;
 
       if (!down && trigger) gone.add(index);
-    }); // get rid of this line to include the rest
+    
 
-//       set(i => {
-//         if (index !== i) return;
-//         const isGone = gone.has(index);
+      set(i => {
+        if (index !== i) return;
+        const isGone = gone.has(index);
 
-//         const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0;
+        const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0;
 
-//         const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0);
+        const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0);
 
-//         const scale = down ? 1.1 : 1;
-//         return {
-//           x,
-//           rot,
-//           scale,
-//           delay: undefined,
-//           config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 }
-//         };
-//       });
+        const scale = down ? 1.1 : 1;
+        return {
+          x,
+          rot,
+          scale,
+          delay: undefined,
+          config: { friction: 50, tension: down ? 800 : isGone ? 200 : 500 }
+        };
+      });
 
-//       if (!down && gone.size === objs.length)
-//         setTimeout(() => gone.clear() || set(i => to(i)), 600);
-//     }
-//   );
+      if (!down && gone.size === objs.length)
+        setTimeout(() => gone.clear() || set(i => to(i)), 600);
+    }
+  );
 
   return  (
     <div className="DECK-PAGE">

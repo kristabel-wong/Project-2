@@ -50,11 +50,16 @@ code {
 	align-items: flex-start;
 	position: fixed;
 	margin: 20px;
-	width: 50%;
+	width: 30%;
 }
 .chatbox-container {
-	width: 70%;
-	padding-left: 30%;
+	position: fixed;
+	height: 79vh;
+	width: 600px;
+	right: 5%;
+	margin-bottom: 30px;
+	border-radius: 8px;
+	overflow-y: scroll;
 }
 .Chat {
 	text-align: center;
@@ -82,17 +87,20 @@ code {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	min-height: 100vh;
+	min-height: 90vh;
 	background-color: rgb(255, 255, 255);
 }
 
 main {
 	padding: 10px;
 	height: 80vh;
-	margin: 10vh 0 10vh;
+	margin: 0;
 	/* overflow-y: scroll; */
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-end;
+	width: 100%;
+	border-left: 1px solid grey;
 }
 
 main::-webkit-scrollbar {
@@ -112,10 +120,11 @@ form {
 	position: fixed;
 	bottom: 0;
 	background-color: rgb(24, 23, 23);
-	width: 80%;
-	max-width: 70%;
+	width: 600px;
 	display: flex;
 	font-size: 1.5rem;
+	border-radius: 8px;
+	margin-bottom: 5px;
 }
 
 form button {
@@ -132,6 +141,8 @@ input {
 	outline: none;
 	border: none;
 	padding: 0 10px;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
 }
 
 button {
@@ -209,6 +220,6 @@ img {
 	cursor: pointer;
 }
 
-.form-label{
-    font-size: 40px;
+.form-label {
+	font-size: 40px;
 }
