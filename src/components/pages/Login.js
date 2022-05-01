@@ -1,9 +1,14 @@
-import { async } from "@firebase/util";
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { auth, signInWithGoogle } from "../../firebase-config";
-
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "../../firebase-config";
+import { db } from "../../firebase-config";
+import { doc, setDoc } from "firebase/firestore";
 import Button from "../Button";
 
 function Login() {
@@ -22,11 +27,29 @@ function Login() {
         loginEmail,
         loginPassword
       );
-
-      console.log(user);
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  const createUser = async (result) => {
+    const user = result.user;
+    await setDoc(doc(db, "users", user.uid), {
+      firstName: user.displayName.split(" ")[0],
+      lastName: user.displayName.split(" ")[1],
+      email: user.email,
+    });
+  };
+
+  const provider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        createUser(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

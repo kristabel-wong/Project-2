@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
@@ -7,7 +6,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { db } from "../../firebase-config";
-import { collection, getDocs, addDoc, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 import Button from "../Button";
 
@@ -16,17 +15,13 @@ function SignUp() {
   const [lastName, setLastName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-  const [users, setUsers] = useState([]);
-
-  const usersCollectionsRef = collection(db, "users");
+  //   const [users, setUsers] = useState([]);
 
   const createUser = async (user) => {
-    debugger;
-    await setDoc(usersCollectionsRef, {
+    await setDoc(doc(db, "users", user.user.uid), {
       firstName: firstName,
       lastName: lastName,
       email: registerEmail,
-      uid: user.user.uid,
     });
   };
 
@@ -39,8 +34,6 @@ function SignUp() {
       ).then((user) => {
         createUser(user);
       });
-
-      console.log(user);
     } catch (error) {
       // need to add alert or message when failed signup
       console.log(error.message);
