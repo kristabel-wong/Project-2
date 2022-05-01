@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { db, storage } from "../firebase-config";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import {v4} from "uuid";
-import "./PetCreateForm.css"
+import {v4} from "uuid"; // generate uniq image name
+import "./PetCreateForm.css";
+import Typewriter from "typewriter-effect"; // give the typing text effect
 
 
 function PetCreateForm() {
@@ -110,7 +111,17 @@ function PetCreateForm() {
                         <div className="tail"></div>
                         <div className="tongue"></div>
                         <div className="shadow"></div>
-
+                        <div className="bubble">
+                            <Typewriter 
+                            onInit={(typewriter)=>{
+                                typewriter.typeString("Will you take me home? 🏡")   
+                                .pauseFor(2000)
+                                .deleteAll()
+                                .typeString("I want to be your friend! 🐶")
+                                .start()
+                            }}
+                            />
+                        </div>
                     </div>
 
                 </div>
