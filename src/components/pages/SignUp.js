@@ -7,60 +7,39 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { db } from "../../firebase-config";
-import { collection, getDocs, addDoc, doc } from "firebase/firestore";
+import { collection, getDocs, addDoc, doc, setDoc } from "firebase/firestore";
 
 import Button from "../Button";
 
 function SignUp() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [users, setUsers] = useState([]);
 
-  //   const [users, setUsers] = useState([]);
-  //   const usersCollectionsRef = collection(db, "users");
-  //   console.log(usersCollectionsRef);
+  const usersCollectionsRef = collection(db, "users");
 
-  const register = async () => {
-    try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      console.log(user);
-    } catch (error) {
-      <div>{error.message}</div>;
-    }
+  const createUser = async (user) => {
+    debugger;
+    await setDoc(usersCollectionsRef, {
+      firstName: firstName,
+      lastName: lastName,
+      email: registerEmail,
+      uid: user.user.uid,
+    });
   };
-  return (
-    <div>
-      <form>
-        <h3>Register User</h3>
-        <input
-          placeholder="Email..."
-          onChange={(event) => {
-            setRegisterEmail(event.target.value);
-          }}
-        />
-        <input
-          placeholder="Password..."
-          type="password"
-          onChange={(event) => {
-            setRegisterPassword(event.target.value);
-          }}
-        />
-        <NavLink to={"/"}>
-          <button onClick={register}> Create user </button>
-        </NavLink>
-      </form>
-    </div>
-  );
+
   const register = async () => {
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
-      );
+      ).then((user) => {
+        createUser(user);
+      });
+
       console.log(user);
     } catch (error) {
       // need to add alert or message when failed signup
@@ -71,6 +50,18 @@ function SignUp() {
     <div>
       <h3>Register User</h3>
       <input
+        placeholder="First Name..."
+        onChange={(event) => {
+          setFirstName(event.target.value);
+        }}
+      />
+      <input
+        placeholder="Last Name..."
+        onChange={(event) => {
+          setLastName(event.target.value);
+        }}
+      />
+      <input
         placeholder="Email..."
         onChange={(event) => {
           setRegisterEmail(event.target.value);
@@ -78,6 +69,7 @@ function SignUp() {
       />
       <input
         placeholder="Password..."
+        type="password"
         onChange={(event) => {
           setRegisterPassword(event.target.value);
         }}
