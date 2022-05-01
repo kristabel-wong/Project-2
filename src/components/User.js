@@ -5,7 +5,7 @@ function User({ user, selectUser }) {
 		<div className="user-wrapper" onClick={() => selectUser(user)}>
 			<div className="user-info">
 				<img src={user.avatar} alt={user.person} className="avatar" />
-				<h4>{user.person}</h4>
+				<h4>{user.name}</h4>
 				<div></div>
 			</div>
 		</div>
