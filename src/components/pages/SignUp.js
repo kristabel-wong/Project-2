@@ -18,10 +18,12 @@ function SignUp() {
   //   const [users, setUsers] = useState([]);
 
   const createUser = async (user) => {
+    const uid = user.user.uid;
     await setDoc(doc(db, "users", user.user.uid), {
       firstName: firstName,
       lastName: lastName,
       email: registerEmail,
+      uid: uid,
     });
   };
 
