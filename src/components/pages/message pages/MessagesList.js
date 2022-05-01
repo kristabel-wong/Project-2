@@ -21,8 +21,7 @@ function MessagesList() {
 	console.log(user1, user2);
 	useEffect(() => {
 		const usersRef = collection(db, "users");
-		const q = query(usersRef);
-		// const q = query(usersRef, where("uid", "not-in", [user1]));
+		const q = query(usersRef, where("uid", "not-in", [user1]));
 
 		const unsub = onSnapshot(q, (querySnapshot) => {
 			let usersArr = [];
