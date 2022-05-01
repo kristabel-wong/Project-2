@@ -33,7 +33,6 @@ function Login() {
   };
 
   const createUser = async (result) => {
-    debugger;
     const user = result.user;
     const userDocRef = doc(db, "users", user.uid);
     const userDocSnap = await getDoc(userDocRef);

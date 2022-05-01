@@ -6,44 +6,47 @@ import { AuthContext } from "../context/auth";
 import Button from "./Button";
 
 function NavBar() {
-	const { user } = useContext(AuthContext);
-	const logout = async () => {
-		await auth.signOut();
-	};
-	return (
-		<div className="nav-container">
-			<NavLink to={"/"}>
-				<Button classnames="nav-btn btn" content="Home" />
-			</NavLink>
+  const { user } = useContext(AuthContext);
+  const logout = async () => {
+    await auth.signOut();
+  };
+  return (
+    <div className="nav-container">
+      <NavLink to={"/"}>
+        <Button classnames="nav-btn btn" content="Home" />
+      </NavLink>
 
-			{user ? (
-				<>
-					<NavLink to={"/"}>
-						<Button
-							classnames="nav-btn btn"
-							onClick={logout}
-							content="Sign Out"
-						/>
-					</NavLink>
-					<NavLink to={"/newpet"}>
-						<Button classnames="nav-btn btn" content="New pet" />
-					</NavLink>
-					<NavLink to={"/message"}>
-						<button className="nav-btn btn">Messages</button>
-					</NavLink>
-				</>
-			) : (
-				<>
-					<NavLink to={"/login"}>
-						<Button classnames="nav-btn btn" content="Login" />
-					</NavLink>
-					<NavLink to={"/signup"}>
-						<Button classnames="nav-btn btn" content="Sign Up" />
-					</NavLink>
-				</>
-			)}
-		</div>
-	);
+      {user ? (
+        <>
+          <NavLink to={"/user/:type"}>
+            <Button classnames="nav-btn btn" content="User Profile" />
+          </NavLink>
+          <NavLink to={"/"}>
+            <Button
+              classnames="nav-btn btn"
+              onClick={logout}
+              content="Sign Out"
+            />
+          </NavLink>
+          <NavLink to={"/newpet"}>
+            <Button classnames="nav-btn btn" content="New pet" />
+          </NavLink>
+          <NavLink to={"/message"}>
+            <button className="nav-btn btn">Messages</button>
+          </NavLink>
+        </>
+      ) : (
+        <>
+          <NavLink to={"/login"}>
+            <Button classnames="nav-btn btn" content="Login" />
+          </NavLink>
+          <NavLink to={"/signup"}>
+            <Button classnames="nav-btn btn" content="Sign Up" />
+          </NavLink>
+        </>
+      )}
+    </div>
+  );
 }
 
 export default NavBar;
