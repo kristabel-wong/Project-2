@@ -1,18 +1,14 @@
 import React, { Component } from "react";
-import MessageShow from './MessageShow';
-import MessageIndex from './MessageIndex';
-
+import MessagesList from "./MessagesList";
 
 class Message extends Component {
-    render() {
-        return (
-            <div>
-                <h1>MESSAGE WORLD</h1>
-                <MessageIndex />
-                <MessageShow/>
-            </div>
-        )
-    }
+	render() {
+		return (
+			<div className="content-container">
+				<MessagesList />
+			</div>
+		);
+	}
 }
 
 export default Message;
