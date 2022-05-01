@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Press+Start+2P&display=swap');
+
 .container{
-    width:30%;
+    width:600px;
     margin:100px auto;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    padding-right:20px;
-    padding-left: 20px;
+    padding-right:30px;
+    padding-left: 30px;
+
+}
+
+.form-title{
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 20px;
 }
 
 .form-label{
@@ -12,16 +21,227 @@
     display:block;
     margin-top: 5px;
     margin-bottom: 5px;
+    color:#647a8d;
 }
 
 .form-field{
-    background-color: #DAE5D0;
+    background-color: #F3E9DD;
+    border-radius: 5px;;
+}
+
+.form-textarea{
+    width: 100%;
 }
 
 .upload-button{
-    background-color: #A0BCC2;
+    background-color: #B7CADB;
     border-radius: 10px;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    font-size: 20px;
 }
+
+input{
+    font-size: 20px;
+}
+
+/*   animation dog */
+
+.dog{
+    position: relative;
+    height:75px;
+    width: 120px;
+    background-color: #fdb44e;
+    border-radius: 10px 30px 0 120px;
+}
+
+.body{
+    height:90px;
+    width: 150px;
+    background-color: #fdb44e;
+    border-radius: 0 10px 10px 30px;
+    position: absolute;
+    top:80px;
+    left: 80px;
+}
+
+.neck{
+    position: absolute;
+    height: 5px;
+    width: 40px;
+    top:75px;
+    left:80px ;
+    background-color: black;
+}
+
+.leg1{
+    position: absolute;
+    background-color: #fdb44e;
+    height: 50px;
+    width: 15px;
+    border-radius: 0 0 10px 10px;
+    top: 170px;
+    left: 105px;
+}
+
+.leg2{
+    position: absolute;
+    background-color: #fdb44e;
+    height: 50px;
+    width: 15px;
+    border-radius: 0 0 10px 10px;
+    top: 170px;
+    left: 130px;
+}
+    
+
+
+.leg3{
+    position: absolute;
+    background-color: #b09670;
+    height: 50px;
+    width: 15px;
+    border-radius: 0 0 10px 10px;
+    top: 170px;
+    left: 180px;
+}
+
+.leg4{
+    position: absolute;
+    background-color: #fdb44e;
+    height: 50px;
+    width: 15px;
+    border-radius: 0 0 10px 10px;
+    top: 170px;
+    left: 205px;
+}
+
+.belly{
+    position: absolute;
+    height: 30px;
+    width: 60px;
+    border-radius: 30px 30px 0 0;
+    background-color: beige;
+    top:140px;
+    left: 145px;
+}
+
+.nose{
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 15px;
+    background-color: black;
+    top: -5px;
+    left: -5px;
+}
+
+.eye{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    background-color: white;
+    top: 10px;
+    left: 50px;
+}
+
+.eyeball{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 30px;
+    background-color: black;
+    top: 12px;
+    left: 50px;
+}
+
+.ear1{
+    position: absolute;
+    height: 30px;
+    width: 25px;
+    border-radius: 20px 20px 0 0;
+    background-color: #d58040;
+    top: -30px;
+    left: 80px;
+}
+
+.ear2{
+    position: absolute;
+    height: 40px;
+    width: 25px;
+    border-radius: 20px 20px 0 0;
+    background-color: #fdb44e;
+    top: -30px;
+    left: 90px;
+}
+
+.tail{
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 90px solid #fdb44e;
+    position: relative;
+    bottom: -10px;
+    left: 210px;
+    transform: rotate(30deg);
+    transform-origin: bottom;
+    animation: wag 1s infinite;
+}
+@keyframes wag {
+    50%{
+        transform: rotate(10deg);
+    } 
+}
+
+.tongue{
+    position: relative;
+    background-color: tomato;
+    height: 20px;
+    width: 12px;
+    top: -50px;
+    left: 13px;
+    border-radius: 10px;
+    transform: rotate(45deg);
+    z-index: -1;
+    animation: move 1s infinite;
+}
+@keyframes move {
+    50%{
+        transform:rotate(45deg) translateY(3px);
+    } 
+}
+
+.shadow{
+    position: absolute;
+    height: 50px;
+    width: 200px;
+    background-color: black;
+    opacity: 0.2;
+    border-radius: 50%;
+    z-index: -2;
+    top: 190px;
+    left: 50px;
+}
+
+.bubble{
+    font-size: 20px;
+    position: absolute;
+    top: -130px;
+    left: 40px;
+    width: 280px;
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 20px;
+    font-family: 'Pangolin', cursive;
+
+}
+
+.animation-dog{
+    position: fixed;
+    top: 400px;
+    right: 20%;
+}
+

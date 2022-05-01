@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
-import { db, storage } from "../firebase-config";
+import { db, storage, auth } from "../firebase-config";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import {v4} from "uuid";
-import "./PetCreateForm.css"
+import {v4} from "uuid"; // generate uniq image name
+import "./PetCreateForm.css";
+import Typewriter from "typewriter-effect"; // give the typing text effect
+// import { getAuth } from "firebase/auth"; // get currently sign-in user
 
 
 function PetCreateForm() {
+
+
     // store all pets info as state
     const [pets, setPets] = useState([]);
 
@@ -19,10 +23,20 @@ function PetCreateForm() {
     const [newGender, setNewGender] = useState("");
     const [newLocation, setNewLocation] = useState("");
     const [newDescription, setNewDescription] = useState("");
+    const [newUserID, setNewUserID] = useState("");
+
+    
+    // const auth = getAuth();
+    // const user = auth.currentUser;
+
+    
+ 
+        
+
 
 
     const petsCollectionRef = collection(db, "pets");
-
+    
 
 
     // you can upload a image right now
@@ -36,19 +50,23 @@ function PetCreateForm() {
         await uploadBytes(imageRef, newUrl).then(()=>{
            alert("File upload");
         });
-
-        getDownloadURL(imageRef).then((url)=> {setNewUrl(url)})
+        getDownloadURL(imageRef).then((url)=> {setNewUrl(url)});
+        
     }
     
     const createPet = async () => {   
+          const uid = auth.currentUser.uid;
+          setNewUserID(uid);
           await addDoc(petsCollectionRef, {
                 name: newName,
                 age: newAge,
                 dob: newDOB,
+                type: newType,
                 imageUrl : newUrl,
                 gender: newGender,
                 location: newLocation,
-                description: newDescription
+                description: newDescription,
+                user_uid: newUserID,
             })  
     }
 
@@ -64,7 +82,7 @@ function PetCreateForm() {
 
         return(
             <div className="container">  
-                <h1>Describe your pet</h1>           
+                <h1 className="form-title">🐕 Describe your pet 🐈 </h1>           
                 <label className="form-label" >Name:</label>
                 <input className="form-field" placeholder="Enter the name of your pet..." required onChange={(event)=>{setNewName(event.target.value)}}/>
 
@@ -88,19 +106,42 @@ function PetCreateForm() {
                 <button className="upload-button" onClick={onFileChange} value="Upload" > Upload Image </button>
 
                 <label className="form-label">Description:</label>
-                <textarea required rows="5" cols="60" onChange={(event)=>{setNewDescription(event.target.value)}}/>
+                <textarea className="form-textarea" required rows="10" onChange={(event)=>{setNewDescription(event.target.value)}}/>
 
                 <button className="upload-button" onClick={createPet}> Submit Form </button>
 
-                {pets.map((pet)=> {
+                <div className="animation-dog">
+                    <div className="dog">
+                        <div className="body"></div>
+                        <div className="neck"></div>
+                        <div className="leg1"></div>
+                        <div className="leg2"></div>
+                        <div className="leg3"></div>
+                        <div className="leg4"></div>
+                        <div className="belly"></div>
+                        <div className="nose"></div>
+                        <div className="eye"></div>
+                        <div className="eyeball"></div>
+                        <div className="ear1"></div>
+                        <div className="ear2"></div>
+                        <div className="tail"></div>
+                        <div className="tongue"></div>
+                        <div className="shadow"></div>
+                        <div className="bubble">
+                            <Typewriter 
+                            onInit={(typewriter)=>{
+                                typewriter.typeString("Will you take me home? 🏡")   
+                                .pauseFor(2000)
+                                .deleteAll()
+                                .typeString("I want to be your friend! 🐶")
+                                .start()
+                            }}
+                            />
+                        </div>
+                    </div>
 
-                    return <div>
-                               <h4>Name:{pet.name}</h4>
-                               <h4>Age:{pet.age}</h4>
-                               <h4>DOB:{pet.dob}</h4>
-                               <h4>Type:{pet.type}</h4>
-                           </div>
-                })}
+                </div>
+
             </div>
 
         )
