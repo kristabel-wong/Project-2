@@ -25,7 +25,11 @@ function PetProfileList () {
                 return  <div key={pet.id}>
                           <h2>Name:{pet.name}</h2>
                           <h4>Location:{pet.location}</h4>
-                          <h4>Location:{pet.location}</h4>
+                          <h4>Gender:{pet.gender}</h4>
+                          <h4>Age:{pet.age}</h4>
+                          <h4>DOB:{pet.dob}</h4>
+                          <h4>Description:{pet.description}</h4>
+                          <img src={pet.imageUrl} />
                         </div>      
             })}
         </div>
