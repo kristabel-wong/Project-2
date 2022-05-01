@@ -200,3 +200,7 @@ img {
 .btn:hover {
 	cursor: pointer;
 }
+
+.form-label{
+    font-size: 40px;
+}

@@ -5,7 +5,8 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import UserShow from "./user pages/UserShow";
 import Message from "./message pages/Message";
-import Petnew from "./pets pages/PetNew"
+import Petnew from "./pets pages/PetNew";
+import PetShow from "./pets pages/PetShow"
 
 function Pages() {
 	const location = useLocation();
@@ -17,6 +18,7 @@ function Pages() {
 			<Route path="/user/:type" element={<UserShow />} />
             <Route path="/message" element={<Message />} />
 			<Route path="/newpet" element={<Petnew />} />
+			<Route path="/pet/:type" element={<PetShow />} />
 		</Routes>
 	);
 }

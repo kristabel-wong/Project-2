@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
-import { db, storage } from "../firebase-config";
+import { db, storage, auth } from "../firebase-config";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {v4} from "uuid"; // generate uniq image name
 import "./PetCreateForm.css";
 import Typewriter from "typewriter-effect"; // give the typing text effect
+// import { getAuth } from "firebase/auth"; // get currently sign-in user
 
 
 function PetCreateForm() {
+
+
     // store all pets info as state
     const [pets, setPets] = useState([]);
 
@@ -20,10 +23,20 @@ function PetCreateForm() {
     const [newGender, setNewGender] = useState("");
     const [newLocation, setNewLocation] = useState("");
     const [newDescription, setNewDescription] = useState("");
+    const [newUserID, setNewUserID] = useState("");
+
+    
+    // const auth = getAuth();
+    // const user = auth.currentUser;
+
+    
+ 
+        
+
 
 
     const petsCollectionRef = collection(db, "pets");
-
+    
 
 
     // you can upload a image right now
@@ -37,11 +50,13 @@ function PetCreateForm() {
         await uploadBytes(imageRef, newUrl).then(()=>{
            alert("File upload");
         });
-
-        getDownloadURL(imageRef).then((url)=> {setNewUrl(url)})
+        getDownloadURL(imageRef).then((url)=> {setNewUrl(url)});
+        
     }
     
     const createPet = async () => {   
+          const uid = auth.currentUser.uid;
+          setNewUserID(uid);
           await addDoc(petsCollectionRef, {
                 name: newName,
                 age: newAge,
@@ -50,7 +65,8 @@ function PetCreateForm() {
                 imageUrl : newUrl,
                 gender: newGender,
                 location: newLocation,
-                description: newDescription
+                description: newDescription,
+                user_uid: newUserID,
             })  
     }
 
