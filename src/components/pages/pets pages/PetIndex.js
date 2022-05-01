@@ -1,11 +1,14 @@
 // index all favourited pets for a user
-import React, {Component} from "react";
-import PetProfile from "../../PetProfile";
+import React, {Component, useState, useEffect} from "react";
+import PetProfileList from "../../PetProfileList";
 
 function PetIndex() {
+
+    const [pets, setPets] = useState([]);
+
         return(
             <div>
-                index coming soon
+                <PetProfileList />
             </div>
         )
 }
