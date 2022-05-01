@@ -32,6 +32,7 @@ function Login() {
 		}
 	};
 
+<<<<<<< HEAD
 	const createUser = async (result) => {
 		const user = result.user;
 		const userDocRef = doc(db, "users", user.uid);
@@ -45,6 +46,23 @@ function Login() {
 			});
 		}
 	};
+=======
+  const createUser = async (result) => {
+    const user = result.user;
+    const userDocRef = doc(db, "users", user.uid);
+    const userDocSnap = await getDoc(userDocRef);
+    const uid = user.uid;
+
+    if (!userDocSnap.exists()) {
+      await setDoc(doc(db, "users", user.uid), {
+        firstName: user.displayName.split(" ")[0],
+        lastName: user.displayName.split(" ")[1],
+        email: user.email,
+        uid: uid,
+      });
+    }
+  };
+>>>>>>> 8f4bbfd5ab7b0aec1054bb160f1835e9dc72fcb5
 
 	const provider = new GoogleAuthProvider();
 	const signInWithGoogle = () => {

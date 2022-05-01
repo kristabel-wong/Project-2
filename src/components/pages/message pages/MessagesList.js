@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../../../firebase-config";
-import { collection, query, where, onSnapshot } from "firebase/firestore";
+
+import {
+	collection,
+	query,
+	where,
+	onSnapshot,
+	orderBy,
+} from "firebase/firestore";
 import ChatBox from "./ChatBox";
 import User from "../../User";
 
