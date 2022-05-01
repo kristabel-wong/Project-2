@@ -13,7 +13,7 @@ function ChatMessage(props) {
 			<div key={messageId} className={`message ${messageClass}`}>
 				<img
 					src={
-						photoURL ||
+						"" ||
 						"https://cdn-icons-png.flaticon.com/512/141/141783.png"
 					}
 				/>
