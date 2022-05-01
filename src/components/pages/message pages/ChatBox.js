@@ -24,7 +24,7 @@ function ChatBox() {
 		query(
 			onSnapshot(
 				collection(db, "favourites", "usertwo_pettwo", "messages"),
-				orderBy("createdAt", "DESCENDING"),
+				orderBy("createdAt", "desc"),
 				(snapshot) => {
 					setMessages(
 						snapshot.docs.reverse().map((doc) => doc.data())

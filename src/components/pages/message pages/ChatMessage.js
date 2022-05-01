@@ -4,7 +4,7 @@ import { v4 } from "uuid";
 
 // just assigns classes for sent or received
 function ChatMessage(props) {
-	const { text, uid, photoURL } = props.message;
+	const { text, uid, photoURL, createdAt } = props.message;
 	const messageId = v4();
 	const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
 
@@ -18,6 +18,7 @@ function ChatMessage(props) {
 					}
 				/>
 				<p>{text}</p>
+                {/* <p>{createdAt.nanoseconds}</p> */}
 			</div>
 		</>
 	);
