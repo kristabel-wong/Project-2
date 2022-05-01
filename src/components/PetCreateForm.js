@@ -45,6 +45,7 @@ function PetCreateForm() {
                 name: newName,
                 age: newAge,
                 dob: newDOB,
+                type: newType,
                 imageUrl : newUrl,
                 gender: newGender,
                 location: newLocation,
@@ -64,7 +65,7 @@ function PetCreateForm() {
 
         return(
             <div className="container">  
-                <h1>Describe your pet</h1>           
+                <h1 className="form-title">🐕 Describe your pet 🐈 </h1>           
                 <label className="form-label" >Name:</label>
                 <input className="form-field" placeholder="Enter the name of your pet..." required onChange={(event)=>{setNewName(event.target.value)}}/>
 
@@ -88,19 +89,32 @@ function PetCreateForm() {
                 <button className="upload-button" onClick={onFileChange} value="Upload" > Upload Image </button>
 
                 <label className="form-label">Description:</label>
-                <textarea required rows="5" cols="60" onChange={(event)=>{setNewDescription(event.target.value)}}/>
+                <textarea className="form-textarea" required rows="10" onChange={(event)=>{setNewDescription(event.target.value)}}/>
 
                 <button className="upload-button" onClick={createPet}> Submit Form </button>
 
-                {pets.map((pet)=> {
+                <div className="animation-dog">
+                    <div className="dog">
+                        <div className="body"></div>
+                        <div className="neck"></div>
+                        <div className="leg1"></div>
+                        <div className="leg2"></div>
+                        <div className="leg3"></div>
+                        <div className="leg4"></div>
+                        <div className="belly"></div>
+                        <div className="nose"></div>
+                        <div className="eye"></div>
+                        <div className="eyeball"></div>
+                        <div className="ear1"></div>
+                        <div className="ear2"></div>
+                        <div className="tail"></div>
+                        <div className="tongue"></div>
+                        <div className="shadow"></div>
 
-                    return <div>
-                               <h4>Name:{pet.name}</h4>
-                               <h4>Age:{pet.age}</h4>
-                               <h4>DOB:{pet.dob}</h4>
-                               <h4>Type:{pet.type}</h4>
-                           </div>
-                })}
+                    </div>
+
+                </div>
+
             </div>
 
         )
