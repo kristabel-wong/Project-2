@@ -39,6 +39,9 @@ function NavBar() {
           <NavLink to={"/message"}>
             <button className="nav-btn btn">Messages</button>
           </NavLink>
+          <NavLink to={"/petSwipe"}>
+            <button className="nav-btn btn">Pet Swipe</button>
+          </NavLink>
         </>
       ) : (
         <>
