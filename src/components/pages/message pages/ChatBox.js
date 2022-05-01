@@ -13,7 +13,6 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ChatMessage from "./ChatMessage";
 import React, { useEffect, useRef, useState } from "react";
-import { v4 } from "uuid";
 
 function ChatBox({ user1, user2 }) {
 	const [messages, setMessages] = useState([]);
@@ -22,6 +21,7 @@ function ChatBox({ user1, user2 }) {
 	const dummy = useRef();
 	const currentUserOne = user1;
 	const currentUserTwo = user2;
+
 	const getMessages = async function () {
 		const id =
 			currentUserOne > currentUserTwo
@@ -38,7 +38,6 @@ function ChatBox({ user1, user2 }) {
 		});
 	};
 
-	const messageId = v4();
 	const sendMessage = async (e) => {
 		e.preventDefault();
 		const { uid, photoURL } = auth.currentUser;
@@ -55,22 +54,6 @@ function ChatBox({ user1, user2 }) {
 			createdAt: Timestamp.fromDate(new Date()),
 		});
 		setFormValue("");
-
-		// const docRef = doc(
-		// 	db,
-		// 	"favourites",
-		// 	"usertwo_pettwo",
-		// 	"messages",
-		// 	messageId
-		// );
-		// const payload = {
-		// 	text: formValue,
-		// 	createdAt: serverTimestamp(),
-		// 	uid,
-		// 	photoURL,
-		// };
-		// // use adddoc vs setdoc
-		// await setDoc(docRef, payload);
 
 		dummy.current.scrollIntoView({ behavior: "smooth" }); // ensure we always scroll to the bottom when message appears
 	};
