@@ -9,18 +9,18 @@ import Petnew from "./pets pages/PetNew";
 import PetIndex from "./pets pages/PetIndex";
 
 function Pages() {
-	const location = useLocation();
-	return (
-		<Routes location={location} key={location.pathname}>
-			<Route path="/" element={<Home />} />
-			<Route path="/login" element={<Login />} />
-			<Route path="/signup" element={<SignUp />} />
-			<Route path="/user/:type" element={<UserShow />} />
-            <Route path="/message" element={<Message />} />
-			<Route path="/newpet" element={<Petnew />} />
-			<Route path="/pet/index" element={<PetIndex />} />
-		</Routes>
-	);
+  const location = useLocation();
+  return (
+    <Routes location={location} key={location.pathname}>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/user/:id" element={<UserShow />} />
+      <Route path="/message" element={<Message />} />
+      <Route path="/newpet" element={<Petnew />} />
+	  <Route path="/pet/index" element={<PetIndex />} />
+    </Routes>
+  );
 }
 
 export default Pages;

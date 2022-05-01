@@ -9,11 +9,7 @@ import Typewriter from "typewriter-effect"; // give the typing text effect
 
 
 function PetCreateForm() {
-
-
-    // store all pets info as state
-    const [pets, setPets] = useState([]);
-
+    
     // store all new info of a pet into seperate states
     const [newName, setNewName] = useState("");
     const [newAge, setNewAge] = useState(0);
@@ -40,11 +36,22 @@ function PetCreateForm() {
         getDownloadURL(imageRef).then((url)=> {setNewUrl(url)});
         
     }
-    
-    const createPet = async () => {   
+
+    const fetchUser = () =>{
+        if(newUserID ==""){
           const uid = auth.currentUser.uid;
           setNewUserID(uid);
-          await addDoc(petsCollectionRef, {
+        }else{
+            return
+        }
+    }
+
+    if(newUserID ==""){
+        fetchUser();
+    }
+    
+    const createPet = async () => {   
+           addDoc(petsCollectionRef, {
                 name: newName,
                 age: newAge,
                 dob: newDOB,
@@ -57,16 +64,7 @@ function PetCreateForm() {
             })  
     }
 
-    useEffect(()=>{
-         // get all pets info from firebase
-
-        const getPets = async () =>{
-           const data = await getDocs(petsCollectionRef);
-           setPets(data.docs.map((pet)=> ({...pet.data(), id: pet.id}) ))
-        };
-        getPets();
-    },[])
-
+   
         return(
             <div className="container">  
                 <h1 className="form-title">🐕 Describe your pet 🐈 </h1>           
@@ -126,11 +124,8 @@ function PetCreateForm() {
                             />
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         )
 }
 
