@@ -27,15 +27,10 @@ function PetCreateForm() {
 
     // you can upload a image right now
     // every time choose a file, run this function
-<<<<<<< HEAD
-=======
-    
->>>>>>> main
     const onFileChange = async ( ) =>{
         if(newUrl == null) return;
         const uniqImageName = v4()+newUrl.name;
         const imageRef = ref(storage, `images/${uniqImageName}`)
-<<<<<<< HEAD
 
         // you need use then() to handle promises, it NEED time to fetch the info! or use await!
         await uploadBytes(imageRef, newUrl).then(()=>{
@@ -43,14 +38,6 @@ function PetCreateForm() {
         });
 
         getDownloadURL(imageRef).then((url)=> {setNewUrl(url)})
-=======
-        await uploadBytes(imageRef, newUrl).then(()=>{
-           alert("upload");
-           console.log(uniqImageName)
-        })
-    getDownloadURL(imageRef).then((url)=> {setNewUrl(url)})
-
->>>>>>> main
     }
     
     const createPet = async () => {   
@@ -58,14 +45,10 @@ function PetCreateForm() {
                 name: newName,
                 age: newAge,
                 dob: newDOB,
-<<<<<<< HEAD
                 imageUrl : newUrl,
                 gender: newGender,
                 location: newLocation,
                 description: newDescription
-=======
-                imageUrl : newUrl
->>>>>>> main
             })  
     }
 
