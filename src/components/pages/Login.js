@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { db } from "../../firebase-config";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import Button from "../Button";
 
 function Login() {
@@ -33,12 +33,18 @@ function Login() {
   };
 
   const createUser = async (result) => {
+    debugger;
     const user = result.user;
-    await setDoc(doc(db, "users", user.uid), {
-      firstName: user.displayName.split(" ")[0],
-      lastName: user.displayName.split(" ")[1],
-      email: user.email,
-    });
+    const userDocRef = doc(db, "users", user.uid);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (!userDocSnap.exists()) {
+      await setDoc(doc(db, "users", user.uid), {
+        firstName: user.displayName.split(" ")[0],
+        lastName: user.displayName.split(" ")[1],
+        email: user.email,
+      });
+    }
   };
 
   const provider = new GoogleAuthProvider();
