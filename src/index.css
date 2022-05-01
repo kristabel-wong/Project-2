@@ -53,12 +53,13 @@ code {
 	width: 30%;
 }
 .chatbox-container {
-	max-height: 480px;
-	max-width: 900px;
-	padding-left: 25%;
+	position: fixed;
+	height: 79vh;
+	width: 600px;
+	right: 5%;
 	margin-bottom: 30px;
 	border-radius: 8px;
-	overflow-y: auto;
+	overflow-y: scroll;
 }
 .Chat {
 	text-align: center;
@@ -99,6 +100,7 @@ main {
 	flex-direction: column;
 	justify-content: flex-end;
 	width: 100%;
+	border-left: 1px solid grey;
 }
 
 main::-webkit-scrollbar {
@@ -118,8 +120,7 @@ form {
 	position: fixed;
 	bottom: 0;
 	background-color: rgb(24, 23, 23);
-	width: 80%;
-	max-width: 70%;
+	width: 600px;
 	display: flex;
 	font-size: 1.5rem;
 	border-radius: 8px;
