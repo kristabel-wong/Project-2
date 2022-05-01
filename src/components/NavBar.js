@@ -10,6 +10,11 @@ function NavBar() {
   const logout = async () => {
     await auth.signOut();
   };
+  let uid;
+  if (user !== null) {
+    uid = user.uid;
+  }
+
   return (
     <div className="nav-container">
       <NavLink to={"/"}>
@@ -18,8 +23,8 @@ function NavBar() {
 
       {user ? (
         <>
-          <NavLink to={"/user/:type"}>
-            <Button classnames="nav-btn btn" content="User Profile" />
+          <NavLink to={`/user/${uid}`}>
+            <Button classnames="nav-btn btn" content="My Profile" />
           </NavLink>
           <NavLink to={"/"}>
             <Button

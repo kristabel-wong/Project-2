@@ -15,7 +15,7 @@ function Pages() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/user/:type" element={<UserShow />} />
+      <Route path="/user/:id" element={<UserShow />} />
       <Route path="/message" element={<Message />} />
       <Route path="/newpet" element={<Petnew />} />
       <Route path="/pet/:type" element={<PetShow />} />
