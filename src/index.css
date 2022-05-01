@@ -53,10 +53,12 @@ code {
 	width: 30%;
 }
 .chatbox-container {
-	width: 70%;
-	padding-left: 40%;
+	max-height: 480px;
+	max-width: 900px;
+	padding-left: 25%;
 	margin-bottom: 30px;
 	border-radius: 8px;
+	overflow-y: auto;
 }
 .Chat {
 	text-align: center;
@@ -84,17 +86,18 @@ code {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	min-height: 100vh;
+	min-height: 90vh;
 	background-color: rgb(255, 255, 255);
 }
 
 main {
 	padding: 10px;
 	height: 80vh;
-	margin: 10vh 0 10vh;
+	margin: 0;
 	/* overflow-y: scroll; */
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-end;
 	width: 100%;
 }
 

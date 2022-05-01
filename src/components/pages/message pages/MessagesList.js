@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../../../firebase-config";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 
 import {
 	collection,
@@ -16,7 +16,6 @@ import User from "../../User";
 function MessagesList() {
 	const [users, setUsers] = useState([]);
 	const [chat, setChat] = useState("");
-
 	const user2 = chat.uid;
 
 	useEffect(() => {
@@ -45,10 +44,10 @@ function MessagesList() {
 		setChat(user);
 	};
 	return (
-		<div className="users-container">
-			<div>
-				{users.map((user) => (
-					<User key={user.uid} user={user} selectUser={selectUser} />
+		<div>
+			<div className="users-container">
+				{users.map((user, index) => (
+					<User key={index} user={user} selectUser={selectUser} />
 				))}
 			</div>
 			<div className="chatbox-container">
