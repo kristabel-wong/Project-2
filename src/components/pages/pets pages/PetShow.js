@@ -1,7 +1,7 @@
 // show page for a certain pet
-import React, {Component, useState, useEffect} from "react";
-import { db, storage, auth } from "../../../firebase-config";
-import { doc, collection, getDoc } from "firebase/firestore";
+import React, { useState, useEffect} from "react";
+import { db, auth } from "../../../firebase-config";
+import { doc, getDoc,deleteDoc } from "firebase/firestore";
 import { NavLink, useParams } from "react-router-dom"; 
 
 
@@ -19,6 +19,13 @@ function PetShow() {
             setPetInfo(data);
             console.log(data)
           };
+        
+          
+        const deletePet = async() =>{
+          const petDoc = doc(db, "pets", params.type);
+          await deleteDoc(petDoc);
+        }
+     
  
 
           useEffect(() => {
@@ -45,7 +52,9 @@ function PetShow() {
                        <NavLink to={`/pet/edit/${params.type}`} >
                           <button>Edit</button>
                        </NavLink>
-                       <button>Delete</button>
+                       <NavLink to={`/pet/index`} >
+                       <button onCilck={deletePet()}>Delete</button>
+                       </NavLink>
                     </div>
                      : ''
                    } 

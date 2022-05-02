@@ -25,6 +25,7 @@ function Pages() {
       <Route path="/pet/edit/:type" element={<PetEdit />} />
       <Route path="/pet/:type" element={<PetShow />} />
 	    <Route path="/pet/index" element={<PetIndex />} />
+      <Route path="/show" element={<App />} />
       
     </Routes>
   );

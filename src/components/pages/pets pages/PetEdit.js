@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import { db, storage, auth } from "../../../firebase-config";
-import { addDoc, collection, getDoc, updateDoc, doc } from "firebase/firestore";
+import { getDoc, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { NavLink, useParams } from "react-router-dom"; 
 import {v4} from "uuid"; // generate uniq image name
