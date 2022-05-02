@@ -1,5 +1,5 @@
 // show page for a certain pet
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { db, storage, auth } from "../../../firebase-config";
 import { doc, collection, getDoc } from "firebase/firestore";
 import { NavLink, useParams } from "react-router-dom";

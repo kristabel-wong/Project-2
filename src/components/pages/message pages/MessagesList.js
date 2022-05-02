@@ -19,6 +19,7 @@ function MessagesList() {
 	const [chat, setChat] = useState("");
 	const user2 = chat.uid;
 
+	// references the favArr in database and returns an array with all partnerships uids
 	const getFavArr = async function (user1) {
 		const arrayRef = doc(db, "users", user1);
 		const docSnap = await getDoc(arrayRef);
@@ -27,33 +28,34 @@ function MessagesList() {
 		return favArr;
 	};
 
-	useEffect(() => {
-		onAuthStateChanged(auth, async (user) => {
-			if (user) {
-				// need to refactor this to a function call
-				const user1 = user.uid;
-				const favObj = await getFavArr(user1);
-				const usersRef = collection(db, "users");
-				const q = query(usersRef, where("uid", "in", favObj));
+	const getChatLog = async function (user) {
+		const user1 = user.uid;
+		const favObj = await getFavArr(user1);
+		const usersRef = collection(db, "users");
+		const q = query(usersRef, where("uid", "in", favObj));
 
-				const unsub = onSnapshot(q, (querySnapshot) => {
-					let usersArr = [];
-					querySnapshot.forEach((doc) => {
-						usersArr.push(doc.data());
-					});
-					setUsers(usersArr);
-				});
-				return () => unsub();
-			} else {
-				// User is signed out
-			}
+		const unsub = onSnapshot(q, (querySnapshot) => {
+			let usersArr = [];
+			querySnapshot.forEach((doc) => {
+				usersArr.push(doc.data());
+			});
+			setUsers(usersArr);
 		});
-	}, []);
+		return () => unsub();
+	};
 
 	// this allows the chat to update both users
 	const selectUser = function (user) {
 		setChat(user);
 	};
+
+	useEffect(() => {
+		onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				getChatLog(user);
+			}
+		});
+	}, []);
 	return (
 		<div>
 			<div className={styles.usersContainer}>

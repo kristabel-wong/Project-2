@@ -13,8 +13,8 @@ import styles from "./message.module.css";
 
 function ChatBox({ user1, user2 }) {
 	const [messages, setMessages] = useState([]);
-
 	const [formValue, setFormValue] = useState("");
+
 	const dummy = useRef();
 	const currentUserOne = user1;
 	const currentUserTwo = user2;
@@ -54,6 +54,7 @@ function ChatBox({ user1, user2 }) {
 
 		dummy.current.scrollIntoView({ behavior: "smooth" }); // ensure we always scroll to the bottom when message appears
 	};
+
 	// useeffect here is ensuring we update messages based on who is clicked in the left
 	useEffect(() => {
 		getMessages();
