@@ -1,24 +1,35 @@
 import { link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { db } from "../../../firebase-config";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 // this is just for example for setting up routes dont use this
 function User() {
-  //   let params = useParams();
-  //   const [userInfo, setUserInfo] = useState([]);
+  let params = useParams();
 
-  //   async function getUser(uid) {
-  //     // getting data from db here
+  const [userInfo, setUserInfo] = useState({});
+ 
+console.log(userInfo)
 
-  //     setUserInfo("data");
-  //   }
+  const getUser = async (uid) => {
+    const userDocRef = doc(db, "users", uid);
+    const userDocSnap = await getDoc(userDocRef);
 
-  //   useEffect(() => {
-  //     getUser(params.id);
-  //   }, [params.id, userInfo]);
+    const data = userDocSnap._document.data.value.mapValue.fields;
 
-  return <div>User</div>;
+    setUserInfo(data);
+  
+  };
+
+  useEffect(() => {
+    getUser(params.id);
+  }, [params.id]);
+
+  return (
+    <div>
+      <div>user</div>
+    </div>
+  );
 }
 
 export default User;
