@@ -1,7 +1,7 @@
 // show page for a certain pet
 import React, { useState, useEffect } from "react";
-import { db, storage, auth } from "../../../firebase-config";
-import { doc, collection, getDoc } from "firebase/firestore";
+import { db, auth } from "../../../firebase-config";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { NavLink, useParams } from "react-router-dom";
 
 function PetShow() {
@@ -17,6 +17,11 @@ function PetShow() {
 		data = petDocSnap.data();
 		setPetInfo(data);
 		console.log(data);
+	};
+
+	const deletePet = async () => {
+		const petDoc = doc(db, "pets", params.type);
+		await deleteDoc(petDoc);
 	};
 
 	useEffect(() => {
@@ -37,7 +42,7 @@ function PetShow() {
 					<h1>Type:{petInfo.type}</h1>
 					<h1>Gender:{petInfo.gender}</h1>
 					<h1>Location:{petInfo.location}</h1>
-					<h1>Description:{petInfo.description}</h1>
+					<h1>Description:{petInfo.description}</h1>git
 					<img src={petInfo.imageUrl} />
 					{/* Only the owner of the pet can edit and delete the profile */}
 					{petInfo.user_uid === auth.currentUser.uid ? (
@@ -45,7 +50,9 @@ function PetShow() {
 							<NavLink to={`/pet/edit/${params.type}`}>
 								<button>Edit</button>
 							</NavLink>
-							<button>Delete</button>
+							<NavLink to={`/pet/index`}>
+								<button onCilck={deletePet()}>Delete</button>
+							</NavLink>
 						</div>
 					) : (
 						""

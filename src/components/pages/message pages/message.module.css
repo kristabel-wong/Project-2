@@ -11,11 +11,11 @@ button {
 }
 
 /* --------------- Chat CSS --------------------- */
-.contentContainer {
+.content {
 	width: 100%;
 }
 
-.usersContainer {
+.useContainer {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -23,7 +23,7 @@ button {
 	margin: 20px;
 	width: 30%;
 }
-.chatboxContainer {
+.chatbox {
 	position: fixed;
 	height: 79vh;
 	width: 600px;
@@ -38,13 +38,13 @@ button {
 	margin: 0 auto;
 }
 
-.Chat header {
+.header {
 	background-color: #d1d1d1;
 	height: 10vh;
 	min-height: 50px;
 	color: rgb(0, 0, 0);
 	position: fixed;
-	width: 100%;
+	width: 600px;
 	max-width: 728px;
 	top: 1; /* was 0 before */
 	display: flex;
@@ -62,7 +62,7 @@ button {
 	background-color: rgb(255, 255, 255);
 }
 
-main {
+.mainChat {
 	padding: 10px;
 	height: 80vh;
 	margin: 0;
@@ -74,19 +74,19 @@ main {
 	border-left: 1px solid grey;
 }
 
-main::-webkit-scrollbar {
+.mainChat::-webkit-scrollbar {
 	width: 0.25rem;
 }
 
-main::-webkit-scrollbar-track {
+.mainChat::-webkit-scrollbar-track {
 	background: #1e1e24;
 }
 
-main::-webkit-scrollbar-thumb {
+.mainChat::-webkit-scrollbar-thumb {
 	background: #6649b8;
 }
 
-form {
+.messageForm {
 	height: 10vh;
 	position: fixed;
 	bottom: 0;
@@ -98,12 +98,12 @@ form {
 	margin-bottom: 5px;
 }
 
-form button {
+.button {
 	width: 20%;
 	background-color: #dcf8ef;
 }
 
-input {
+.messageInput {
 	line-height: 1.5;
 	width: 100%;
 	font-size: 1.5rem;
@@ -133,6 +133,31 @@ button:disabled {
 	cursor: not-allowed;
 }
 
+/* .sign-in {
+	color: #282c34;
+	background-color: #fee2f8;
+	background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+ul,
+li {
+	text-align: left;
+	list-style: none;
+} */
+
+.text {
+	max-width: 500px;
+	margin-bottom: 12px;
+	line-height: 24px;
+	padding: 10px 20px;
+	border-radius: 25px;
+	position: relative;
+	color: white;
+	text-align: center;
+}
+
 .message {
 	display: flex;
 	align-items: center;
@@ -150,15 +175,16 @@ button:disabled {
 	/* background: #0b93f6; */
 	align-self: flex-end;
 }
+
 .received p {
 	background-color: #aee1f9;
 	background-image: linear-gradient(315deg, #aee1f9 0%, #f6ebe6 74%);
 	color: black;
 }
 
-img {
-	width: 40px;
-	height: 40px;
+.Icon {
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 	margin: 2px 5px;
 }
