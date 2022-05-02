@@ -39,6 +39,9 @@ function NavBar() {
           <NavLink to={"/message"}>
             <button className="nav-btn btn">Messages</button>
           </NavLink>
+          <NavLink to={"/show"}>
+              <button className="nav-btn btn">AppShow</button>
+          </NavLink>
         </>
       ) : (
         <>

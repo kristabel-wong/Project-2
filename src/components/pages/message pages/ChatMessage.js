@@ -18,6 +18,7 @@ function ChatMessage(props) {
 					}
 				/>
 				<p>{text}</p>
+                {/* <p>{createdAt.nanoseconds}</p> */}
 			</div>
 		</>
 	);
