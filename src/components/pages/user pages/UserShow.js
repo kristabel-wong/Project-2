@@ -9,7 +9,8 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { async } from "@firebase/util";
+// import { async } from "@firebase/util";
+import { NavLink } from "react-router-dom";
 
 // this is just for example for setting up routes dont use this
 function User() {
@@ -29,6 +30,7 @@ function User() {
     const petsRef = collection(db, "pets");
     const q = query(petsRef, where("user_uid", "==", user_uid));
     const petsData = await getDocs(q);
+    // get pet id to set the key when rendering
     setUserPets(petsData.docs.map((pet) => ({ ...pet.data(), id: pet.id })));
   };
 
@@ -61,15 +63,17 @@ function User() {
             <h2>My pets</h2>
             {userPets.map((pet) => {
               return (
-                <div key={pet.id}>
-                  <h2>Name:{pet.name}</h2>
-                  <h4>Location:{pet.location}</h4>
-                  <h4>Gender:{pet.gender}</h4>
-                  <h4>Age:{pet.age}</h4>
-                  <h4>DOB:{pet.dob}</h4>
-                  <h4>Description:{pet.description}</h4>
-                  <img src={pet.imageUrl} />
-                </div>
+                <NavLink to={`/pet/${pet.id}`} key={pet.id}>
+                  <div key={pet.id}>
+                    <h2>Name:{pet.name}</h2>
+                    <h4>Location:{pet.location}</h4>
+                    <h4>Gender:{pet.gender}</h4>
+                    <h4>Age:{pet.age}</h4>
+                    <h4>DOB:{pet.dob}</h4>
+                    <h4>Description:{pet.description}</h4>
+                    <img src={pet.imageUrl} />
+                  </div>
+                </NavLink>
               );
             })}
           </div>
