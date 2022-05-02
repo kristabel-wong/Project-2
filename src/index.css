@@ -66,7 +66,9 @@ code {
 	max-width: 728px;
 	margin: 0 auto;
 }
-
+.select-user-chatbox {
+	margin: 30px;
+}
 .Chat header {
 	background-color: #d1d1d1;
 	height: 10vh;

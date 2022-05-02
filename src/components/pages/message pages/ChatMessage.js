@@ -1,10 +1,9 @@
 import React from "react";
 import { auth } from "../../../firebase-config";
-import { v4 } from "uuid";
 
-// just assigns classes for sent or received
+// just assigns classes for sent or received messages
 function ChatMessage(props) {
-	const { text, uid, from, to, messageId } = props.message;
+	const { text, from, photoURL } = props.message;
 
 	const messageClass = from === auth.currentUser.uid ? "sent" : "received";
 
@@ -13,7 +12,7 @@ function ChatMessage(props) {
 			<div className={`message ${messageClass}`}>
 				<img
 					src={
-						"" ||
+						photoURL ||
 						"https://cdn-icons-png.flaticon.com/512/141/141783.png"
 					}
 				/>
