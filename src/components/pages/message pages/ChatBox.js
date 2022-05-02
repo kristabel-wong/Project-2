@@ -9,6 +9,7 @@ import {
 import { auth, db } from "../../../firebase-config";
 import ChatMessage from "./ChatMessage";
 import React, { useEffect, useRef, useState } from "react";
+import styles from "./message.module.css";
 
 function ChatBox({ user1, user2 }) {
 	const [messages, setMessages] = useState([]);

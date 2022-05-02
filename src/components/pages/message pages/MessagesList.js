@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import ChatBox from "./ChatBox";
 import User from "../../User";
+import styles from "./message.module.css";
 
 // displays all favourited users on the left of message box
 function MessagesList() {
@@ -29,6 +30,7 @@ function MessagesList() {
 	useEffect(() => {
 		onAuthStateChanged(auth, async (user) => {
 			if (user) {
+				// need to refactor this to a function call
 				const user1 = user.uid;
 				const favObj = await getFavArr(user1);
 				const usersRef = collection(db, "users");
@@ -54,12 +56,12 @@ function MessagesList() {
 	};
 	return (
 		<div>
-			<div className="users-container">
+			<div className={styles.usersContainer}>
 				{users.map((user, index) => (
 					<User key={index} user={user} selectUser={selectUser} />
 				))}
 			</div>
-			<div className="chatbox-container">
+			<div className="styles.chatboxContainer">
 				{chat ? (
 					<div>
 						<h3>{chat.person}</h3>
