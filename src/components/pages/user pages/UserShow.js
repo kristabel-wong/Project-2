@@ -13,7 +13,7 @@ function User() {
   const getUser = async (uid) => {
     const userDocRef = doc(db, "users", uid);
     const userDocSnap = await getDoc(userDocRef);
-    data = await userDocSnap._document.data.value.mapValue.fields;
+    data = userDocSnap.data();
 
     setUserInfo(data);
   };
@@ -27,7 +27,16 @@ function User() {
   return (
     <div>
       <div>
-        {userInfo === null ? "" : <div>{userInfo.firstName.stringValue}</div>}
+        {userInfo === null ? (
+          ""
+        ) : (
+          <div>
+            <h2>
+              Name: {userInfo.firstName} {userInfo.lastName}
+            </h2>
+            <h4> Email: {userInfo.email} </h4>
+          </div>
+        )}
       </div>
     </div>
   );
