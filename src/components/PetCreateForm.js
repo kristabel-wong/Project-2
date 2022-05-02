@@ -1,10 +1,11 @@
+import React, { Component } from "react";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom"; 
 import { db, storage, auth } from "../firebase-config";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {v4} from "uuid"; // generate uniq image name
-import "./PetCreateForm.css";
+import style from "./PetCreateForm.module.css";
 import Typewriter from "typewriter-effect"; // give the typing text effect
 
 
@@ -66,53 +67,57 @@ function PetCreateForm() {
 
    
         return(
-            <div className="container">  
-                <h1 className="form-title">🐕 Describe your pet 🐈 </h1>           
-                <label className="form-label" >Name:</label>
-                <input className="form-field" placeholder="Enter the name of your pet..." required onChange={(event)=>{setNewName(event.target.value)}}/>
+            <div className={style.container}>  
+                <h1 className={style.form_title}>🐕 Describe your pet 🐈 </h1>           
+                <label className={style.form_label} >Name:</label>
+                <input className={style.form_field} placeholder="Enter the name of your pet..." required onChange={(event)=>{setNewName(event.target.value)}}/>
 
-                <label className="form-label">Date of birth:</label>
-                <input className="form-field" type="date" required onChange={(event)=>{setNewDOB(event.target.value)}}/>
+                <label className={style.form_label}>Date of birth:</label>
+                <input className={style.form_field} type="date" required onChange={(event)=>{setNewDOB(event.target.value)}}/>
 
-                <label className="form-label">Age:</label>
-                <input className="form-field" type="number" required onChange={(event)=>{setNewAge(event.target.value)}}/>
+                <label className={style.form_label}>Age:</label>
+                <input className={style.form_field} type="number" required onChange={(event)=>{setNewAge(event.target.value)}}/>
 
-                <label className="form-label">Type:</label>
-                <input className="form-field" required onChange={(event)=>{setNewType(event.target.value)}}/>
+                <label className={style.form_label}>Type:</label>
+                <select className={style.form_field} required onChange={(event)=>{setNewType(event.target.value)}}>
+                    <option value="style.cat">Cat</option>
+                    <option value="style.dog">Dog</option>
+                    <option value="style.otherPet">Other pets</option>
+                </select>
 
-                <label className="form-label">Gender:</label>
-                <input className="form-field" required onChange={(event)=>{setNewGender(event.target.value)}}/>
+                <label className={style.form_label}>Gender:</label>
+                <input className={style.form_field} required onChange={(event)=>{setNewGender(event.target.value)}}/>
 
-                <label className="form-label">Location:</label>
-                <input className="form-field" required onChange={(event)=>{setNewLocation(event.target.value)}}/>
+                <label className={style.form_label}>Location:</label>
+                <input className={style.form_field} required onChange={(event)=>{setNewLocation(event.target.value)}}/>
     
-                <label className="form-label">Photos:</label>
-                <input className="form-field" type="file" onChange={(event) =>{setNewUrl(event.target.files[0])}}/>
-                <button className="upload-button" onClick={onFileChange} value="Upload" > Upload Image </button>
+                <label className={style.form_label}>Photos:</label>
+                <input className={style.form_field} type="file" onChange={(event) =>{setNewUrl(event.target.files[0])}}/>
+                <button className={style.upload_button} onClick={onFileChange} value="Upload" > Upload Image </button>
 
-                <label className="form-label">Description:</label>
-                <textarea className="form-textarea" required rows="10" onChange={(event)=>{setNewDescription(event.target.value)}}/>
+                <label className={style.form_label}>Description:</label>
+                <textarea className={style.form_textarea} required rows="10" onChange={(event)=>{setNewDescription(event.target.value)}}/>
                 <NavLink to={"/pet/index"}>
-                   <button className="upload-button" onClick={createPet}> Submit Form </button>
+                   <button className={style.upload_button} onClick={createPet}> Submit Form </button>
                 </NavLink>
-                <div className="animation-dog">
-                    <div className="dog">
-                        <div className="body"></div>
-                        <div className="neck"></div>
-                        <div className="leg1"></div>
-                        <div className="leg2"></div>
-                        <div className="leg3"></div>
-                        <div className="leg4"></div>
-                        <div className="belly"></div>
-                        <div className="nose"></div>
-                        <div className="eye"></div>
-                        <div className="eyeball"></div>
-                        <div className="ear1"></div>
-                        <div className="ear2"></div>
-                        <div className="tail"></div>
-                        <div className="tongue"></div>
-                        <div className="shadow"></div>
-                        <div className="bubble">
+                <div className={style.animation_dog}>
+                    <div className={style.dog}>
+                        <div className={style.body}></div>
+                        <div className={style.neck}></div>
+                        <div className={style.leg1}></div>
+                        <div className={style.leg2}></div>
+                        <div className={style.leg3}></div>
+                        <div className={style.leg4}></div>
+                        <div className={style.belly}></div>
+                        <div className={style.nose}></div>
+                        <div className={style.eye}></div>
+                        <div className={style.eyeball}></div>
+                        <div className={style.ear1}></div>
+                        <div className={style.ear2}></div>
+                        <div className={style.tail}></div>
+                        <div className={style.tongue}></div>
+                        <div className={style.shadow}></div>
+                        <div className={style.bubble}>
                             <Typewriter 
                             onInit={(typewriter)=>{
                                 typewriter.typeString("Will you take me home? 🏡")   
