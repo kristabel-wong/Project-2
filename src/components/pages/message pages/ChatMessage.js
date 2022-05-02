@@ -4,16 +4,16 @@ import { v4 } from "uuid";
 
 // just assigns classes for sent or received
 function ChatMessage(props) {
-	const { text, uid, photoURL } = props.message;
-	const messageId = v4();
-	const messageClass = uid === auth.currentUser.uid ? "sent" : "received";
+	const { text, uid, from, to, messageId } = props.message;
+
+	const messageClass = from === auth.currentUser.uid ? "sent" : "received";
 
 	return (
 		<>
-			<div key={messageId} className={`message ${messageClass}`}>
+			<div className={`message ${messageClass}`}>
 				<img
 					src={
-						photoURL ||
+						"" ||
 						"https://cdn-icons-png.flaticon.com/512/141/141783.png"
 					}
 				/>
