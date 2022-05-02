@@ -1,5 +1,5 @@
 // form components for adding new pet
-import React, {Component} from "react";
+import React from "react";
 import PetCreateForm from "../../PetCreateForm";
 
 function PetNew() {

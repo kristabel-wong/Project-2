@@ -1,0 +1,18 @@
+.container{
+    width: 80%;
+    margin: 100px auto;
+    display: flex;
+    
+ }
+
+ .pet_index_card{
+     width: 30%;
+     margin: 0 1.5%;
+     padding: 20px;
+     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+     border-radius: 10px;
+ }
+
+ .pet_index_card:hover{
+     transform: translateY(-10px);
+ }

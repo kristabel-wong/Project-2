@@ -10,13 +10,13 @@
 
 }
 
-.form-title{
+.form_title{
     text-align: center;
     padding-top: 20px;
     margin-bottom: 20px;
 }
 
-.form-label{
+.form_label{
     font-size: 20px;
     display:block;
     margin-top: 5px;
@@ -24,16 +24,16 @@
     color:#647a8d;
 }
 
-.form-field{
+.form_field{
     background-color: #F3E9DD;
     border-radius: 5px;;
 }
 
-.form-textarea{
+.form_textarea{
     width: 100%;
 }
 
-.upload-button{
+.upload_button{
     background-color: #B7CADB;
     border-radius: 10px;
     padding: 10px;
@@ -239,7 +239,7 @@ input{
 
 }
 
-.animation-dog{
+.animation_dog{
     position: fixed;
     top: 400px;
     right: 20%;
