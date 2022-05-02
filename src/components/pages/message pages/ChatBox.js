@@ -2,21 +2,18 @@ import {
 	collection,
 	query,
 	onSnapshot,
-	setDoc,
-	doc,
 	Timestamp,
 	orderBy,
 	addDoc,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase-config";
-import { useAuthState } from "react-firebase-hooks/auth";
 import ChatMessage from "./ChatMessage";
 import React, { useEffect, useRef, useState } from "react";
 import style from './message.module.css';
 
 function ChatBox({ user1, user2 }) {
 	const [messages, setMessages] = useState([]);
-	const [user] = useAuthState(auth);
+
 	const [formValue, setFormValue] = useState("");
 	const dummy = useRef();
 	const currentUserOne = user1;
@@ -57,6 +54,7 @@ function ChatBox({ user1, user2 }) {
 
 		dummy.current.scrollIntoView({ behavior: "smooth" }); // ensure we always scroll to the bottom when message appears
 	};
+	// useeffect here is ensuring we update messages based on who is clicked in the left
 	useEffect(() => {
 		getMessages();
 	}, [messages]);

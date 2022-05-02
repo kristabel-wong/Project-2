@@ -8,10 +8,12 @@ import {
 	query,
 	where,
 	onSnapshot,
-	orderBy,
+	doc,
+	getDoc,
 } from "firebase/firestore";
 import ChatBox from "./ChatBox";
 import User from "../../User";
+import styles from "./message.module.css";
 
 // displays all favourited users on the left of message box
 function MessagesList() {
@@ -19,12 +21,22 @@ function MessagesList() {
 	const [chat, setChat] = useState("");
 	const user2 = chat.uid;
 
+	const getFavArr = async function (user1) {
+		const arrayRef = doc(db, "users", user1);
+		const docSnap = await getDoc(arrayRef);
+		const data = docSnap.data();
+		const favArr = data.favArr;
+		return favArr;
+	};
+
 	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
+		onAuthStateChanged(auth, async (user) => {
 			if (user) {
+				// need to refactor this to a function call
 				const user1 = user.uid;
+				const favObj = await getFavArr(user1);
 				const usersRef = collection(db, "users");
-				const q = query(usersRef, where("uid", "not-in", [user1]));
+				const q = query(usersRef, where("uid", "in", favObj));
 
 				const unsub = onSnapshot(q, (querySnapshot) => {
 					let usersArr = [];
@@ -36,11 +48,11 @@ function MessagesList() {
 				return () => unsub();
 			} else {
 				// User is signed out
-				// ...
 			}
 		});
 	}, []);
 
+	// this allows the chat to update both users
 	const selectUser = function (user) {
 		setChat(user);
 	};
@@ -59,7 +71,7 @@ function MessagesList() {
 					</div>
 				) : (
 					<div>
-						<h3>Select a user</h3>
+						<h3 className="select-user-chatbox">Select a user</h3>
 					</div>
 				)}
 			</div>

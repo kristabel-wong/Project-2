@@ -1,6 +1,6 @@
 import React from "react";
 
-
+// this component is for the chat index page
 function User({ user, selectUser }) {
 	return (
 		<div className="user-wrapper" onClick={() => selectUser(user)}>
