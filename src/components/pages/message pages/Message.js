@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import MessagesList from "./MessagesList";
+import style from './message.module.css';
 
 class Message extends Component {
 	render() {
 		return (
-			<div className="content-container">
+			<div className={style.content}>
 				<MessagesList />
 			</div>
 		);

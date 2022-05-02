@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../../../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
+import style from './message.module.css';
 
 import {
 	collection,
@@ -45,12 +46,12 @@ function MessagesList() {
 	};
 	return (
 		<div>
-			<div className="users-container">
+			<div className={style.useContainer}>
 				{users.map((user, index) => (
 					<User key={index} user={user} selectUser={selectUser} />
 				))}
 			</div>
-			<div className="chatbox-container">
+			<div className={style.chatbox}>
 				{chat ? (
 					<div>
 						<h3>{chat.person}</h3>

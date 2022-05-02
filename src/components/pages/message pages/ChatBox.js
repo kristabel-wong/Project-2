@@ -12,6 +12,7 @@ import { auth, db } from "../../../firebase-config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ChatMessage from "./ChatMessage";
 import React, { useEffect, useRef, useState } from "react";
+import style from './message.module.css';
 
 function ChatBox({ user1, user2 }) {
 	const [messages, setMessages] = useState([]);
@@ -61,23 +62,25 @@ function ChatBox({ user1, user2 }) {
 	}, [messages]);
 	return (
 		<div>
-			<main>
+            <h1 className={style.header}> <em>Placeholder</em> </h1>
+			<main className={style.mainChat}>
 				{messages.map((msg, index) => (
 					<ChatMessage key={index} message={msg} />
 				))}
 				<span ref={dummy}></span> {/* scroll to bottom feature */}
 			</main>
 
-			<form onSubmit={sendMessage}>
+			<form className={style.messageForm} onSubmit={sendMessage}>
 				{" "}
 				{/* form to submit message - writing value to firestore */}
 				<input
 					value={formValue}
 					onChange={(e) => setFormValue(e.target.value)}
 					placeholder="Type Message ..."
+                    className={style.messageInput}
 				/>{" "}
 				{/* binding state to form input */}
-				<button type="submit" disabled={!formValue}>
+				<button type="submit" disabled={!formValue} className={style.button}>
 					🕊️
 				</button>
 			</form>
