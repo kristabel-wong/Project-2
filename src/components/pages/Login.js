@@ -44,6 +44,7 @@ function Login() {
         lastName: user.displayName.split(" ")[1],
         email: user.email,
         uid: uid,
+        favRef: [],
       });
     }
   };

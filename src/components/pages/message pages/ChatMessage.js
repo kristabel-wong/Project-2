@@ -1,24 +1,24 @@
 import React from "react";
 import { auth } from "../../../firebase-config";
-import { v4 } from "uuid";
-
-// just assigns classes for sent or received
+import styles from "./message.module.css";
+// just assigns classes for sent or received messages
 function ChatMessage(props) {
-	const { text, uid, from, to, messageId } = props.message;
+	const { text, from, photoURL } = props.message;
 
-	const messageClass = from === auth.currentUser.uid ? "sent" : "received";
+	const messageClass =
+		from === auth.currentUser.uid ? styles.sent : styles.received;
 
 	return (
 		<>
-			<div className={`message ${messageClass}`}>
+			<div className={`${styles.message} ${messageClass}`}>
 				<img
 					src={
-						"" ||
+						photoURL ||
 						"https://cdn-icons-png.flaticon.com/512/141/141783.png"
 					}
 				/>
 				<p>{text}</p>
-                {/* <p>{createdAt.nanoseconds}</p> */}
+				{/* <p>{createdAt.nanoseconds}</p> */}
 			</div>
 		</>
 	);
