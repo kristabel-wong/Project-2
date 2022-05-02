@@ -4,6 +4,7 @@ import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import UserShow from "./user pages/UserShow";
+import UserEdit from "./user pages/UserEdit";
 import Message from "./message pages/Message";
 import Petnew from "./pets pages/PetNew";
 import PetShow from "./pets pages/PetShow";
@@ -19,6 +20,7 @@ function Pages() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/user/:id" element={<UserShow />} />
+      <Route path="/user/edit/:id" element={<UserEdit />} />
       <Route path="/message" element={<Message />} />
       <Route path="/newpet" element={<Petnew />} />
       <Route path="/pet/edit/:type" element={<PetEdit />} />

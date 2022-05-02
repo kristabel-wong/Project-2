@@ -12,7 +12,6 @@ import {
 // import { async } from "@firebase/util";
 import { NavLink } from "react-router-dom";
 
-// this is just for example for setting up routes dont use this
 function User() {
   let params = useParams();
   const [userInfo, setUserInfo] = useState(null);
@@ -48,13 +47,24 @@ function User() {
           ""
         ) : (
           <div>
-            <h2>
-              Name: {userInfo.firstName} {userInfo.lastName}
-            </h2>
+            <h3>First Name: {userInfo.firstName}</h3>
+            <h3>Last Name: {userInfo.lastName}</h3>
             <h4> Email: {userInfo.email} </h4>
+            <div>
+              {params.id === auth.currentUser.uid ? (
+                <div>
+                  <NavLink to={`/user/edit/${params.id}`}>
+                    <button>Edit</button>
+                  </NavLink>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
         )}
       </div>
+
       <div>
         {userPets.length < 1 ? (
           ""
