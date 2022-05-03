@@ -38,3 +38,13 @@ code {
 .active {
 	color: grey;
 }
+
+
+.userIcon:hover {
+    transform: scale(1.2);
+}
+
+.userIcon:active {
+    transform: scale(1);
+
+}
