@@ -45,6 +45,9 @@ function Login() {
         email: user.email,
         uid: uid,
         favRef: [],
+        location: "",
+        description: "",
+        imageUrl: user.photoURL,
       });
     }
   };

@@ -50,6 +50,14 @@ function User() {
             <h3>First Name: {userInfo.firstName}</h3>
             <h3>Last Name: {userInfo.lastName}</h3>
             <h4> Email: {userInfo.email} </h4>
+            <h4> Location: {userInfo.location} </h4>
+            <h4> Description: {userInfo.description} </h4>
+            <img
+              src={
+                userInfo.imageUrl ||
+                "https://firebasestorage.googleapis.com/v0/b/project-2-5825e.appspot.com/o/user%2Fdefault_user.png?alt=media&token=ec9fe5f4-8348-41e3-8bef-abe7849e5d46"
+              }
+            />
             <div>
               {params.id === auth.currentUser.uid ? (
                 <div>

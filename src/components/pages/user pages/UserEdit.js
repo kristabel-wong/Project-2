@@ -1,7 +1,148 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { db, storage, auth } from "../../../firebase-config";
+import { addDoc, collection, getDoc, updateDoc, doc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { NavLink, useParams } from "react-router-dom";
+import { v4 } from "uuid"; // generate uniq image name
+import style from "../../PetCreateForm.module.css";
+import Typewriter from "typewriter-effect"; // give the typing text effect
 
 function UserEdit() {
-  return <div>User Edit coming soon</div>;
+  let params = useParams();
+
+  const [userInfo, setUserInfo] = useState(null);
+
+  // store all update info of a user into seperate states
+  const [updateFirstName, setNewFirstName] = useState(null);
+  const [updateLastName, setNewLastName] = useState(null);
+  //   const [updateAge, setNewAge] = useState(null);
+  const [updateUrl, setNewUrl] = useState(null);
+  //   const [updateGender, setNewGender] = useState(null);
+  const [updateLocation, setNewLocation] = useState(null);
+  const [updateDescription, setNewDescription] = useState(null);
+
+  let data;
+
+  // get the current pet data
+  const getUser = async (uid) => {
+    const userDocRef = doc(db, "users", uid);
+    const userDocSnap = await getDoc(userDocRef);
+    data = userDocSnap.data();
+    setUserInfo(data);
+  };
+
+  const onFileChange = async () => {
+    if (updateUrl == null) return;
+    const uniqImageName = v4() + updateUrl.name;
+    const imageRef = ref(storage, `user/${uniqImageName}`);
+
+    await uploadBytes(imageRef, updateUrl).then(() => {
+      alert("File upload");
+    });
+    getDownloadURL(imageRef).then((url) => {
+      setNewUrl(url);
+    });
+  };
+
+  //if nothing changed, store  existing data into the update variables
+  if (userInfo !== null) {
+    if (updateFirstName == null) {
+      setNewFirstName(userInfo.firstName);
+    }
+    if (updateLastName == null) {
+      setNewLastName(`${userInfo.lastName}`);
+    }
+    if (updateUrl == null) {
+      setNewUrl(`${userInfo.imageUrl}`);
+    }
+    if (updateLocation == null) {
+      setNewLocation(`${userInfo.location}`);
+    }
+    if (updateDescription == null) {
+      setNewDescription(`${userInfo.description}`);
+    }
+  }
+
+  // update user info
+  const updateUser = async () => {
+    const userDoc = doc(db, "users", params.id);
+    updateDoc(userDoc, {
+      firstName: updateFirstName,
+      lastName: updateLastName,
+      imageUrl: updateUrl,
+      location: updateLocation,
+      description: updateDescription,
+    });
+  };
+
+  useEffect(() => {
+    if (userInfo === null) {
+      getUser(params.id);
+    }
+  }, []);
+
+  return (
+    <div>
+      {userInfo === null ? (
+        ""
+      ) : (
+        <div>
+          <h1> Update your profile </h1>
+          <label>First Name:</label>
+          <input
+            defaultValue={userInfo.firstName}
+            onChange={(event) => {
+              setNewFirstName(event.target.value);
+            }}
+          />
+          <label>Last Name:</label>
+          <input
+            defaultValue={userInfo.lastName}
+            onChange={(event) => {
+              setNewLastName(event.target.value);
+            }}
+          />
+          <label>Location:</label>
+          <input
+            defaultValue={userInfo.location}
+            placeholder="Melbourne"
+            onChange={(event) => {
+              setNewLocation(event.target.value);
+            }}
+          />
+          <label>Image:</label>
+          <input
+            type="file"
+            onChange={(event) => {
+              setNewUrl(event.target.files[0]);
+            }}
+          />
+          <button onClick={onFileChange} value="Upload">
+            {" "}
+            Upload Image{" "}
+          </button>
+          <div>
+            <label>Description:</label>
+            <textarea
+              defaultValue={userInfo.description}
+              rows="10"
+              placeholder="Describe about yourself..."
+              onChange={(event) => {
+                setNewDescription(event.target.value);
+              }}
+            />
+          </div>
+
+          <div>
+            <NavLink to={`/user/${params.id}`}>
+              <button onClick={updateUser}> Update Profile </button>
+            </NavLink>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default UserEdit;
