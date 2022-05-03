@@ -4,6 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import styles from "./styles.module.css";
 import { Stack } from "./stack";
 import styled from "@emotion/styled";
+import { NavLink } from "react-router-dom";
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
        getPets();
    },[])
 
-   
+
 
     return (
          <div className={styles.showPage}>
@@ -53,10 +54,15 @@ function App() {
                         </div>
 
                         <div>
-                            <h3 className={styles.petName}>{pet.name}, {pet.age}</h3>
+                            <NavLink to="/message">
+                                <button>
+                                    <h3 className={styles.petName}>{pet.name}, {pet.age}</h3>
+                                </button>
+                            </NavLink>
                             <p className={styles.petDetails}>{pet.location}</p>
                             <p className={styles.petDetails}>{pet.description}</p>
                             <p className={styles.petDetails}>{auth.currentUser.uid}</p>
+                            <p className={styles.petDetails}>{pet.id}</p>
                             <p className={styles.petDetails}>{pet.user_uid}</p>
 
                         </div>      

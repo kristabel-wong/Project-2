@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Press+Start+2P&display=swap');
 
-.container{
+.container {
     width:600px;
     margin:100px auto;
     border-radius: 20px;
@@ -10,13 +10,13 @@
 
 }
 
-.form_title{
+.form_title {
     text-align: center;
     padding-top: 20px;
     margin-bottom: 20px;
 }
 
-.form_label{
+.form_label {
     font-size: 20px;
     display:block;
     margin-top: 5px;
@@ -24,16 +24,16 @@
     color:#647a8d;
 }
 
-.form_field{
+.form_field {
     background-color: #F3E9DD;
     border-radius: 5px;;
 }
 
-.form_textarea{
+.form_textarea {
     width: 100%;
 }
 
-.upload_button{
+.upload_button {
     background-color: #B7CADB;
     border-radius: 10px;
     padding: 10px;
@@ -42,13 +42,13 @@
     font-size: 20px;
 }
 
-input{
+input {
     font-size: 20px;
 }
 
 /*   animation dog */
 
-.dog{
+.dog {
     position: relative;
     height:75px;
     width: 120px;
@@ -56,7 +56,7 @@ input{
     border-radius: 10px 30px 0 120px;
 }
 
-.body{
+.body {
     height:90px;
     width: 150px;
     background-color: #fdb44e;
@@ -66,7 +66,7 @@ input{
     left: 80px;
 }
 
-.neck{
+.neck {
     position: absolute;
     height: 5px;
     width: 40px;
@@ -75,7 +75,7 @@ input{
     background-color: black;
 }
 
-.leg1{
+.leg1 {
     position: absolute;
     background-color: #fdb44e;
     height: 50px;
@@ -85,7 +85,7 @@ input{
     left: 105px;
 }
 
-.leg2{
+.leg2 {
     position: absolute;
     background-color: #fdb44e;
     height: 50px;
@@ -97,7 +97,7 @@ input{
     
 
 
-.leg3{
+.leg3 {
     position: absolute;
     background-color: #b09670;
     height: 50px;
@@ -107,7 +107,7 @@ input{
     left: 180px;
 }
 
-.leg4{
+.leg4 {
     position: absolute;
     background-color: #fdb44e;
     height: 50px;
@@ -117,7 +117,7 @@ input{
     left: 205px;
 }
 
-.belly{
+.belly {
     position: absolute;
     height: 30px;
     width: 60px;
@@ -127,7 +127,7 @@ input{
     left: 145px;
 }
 
-.nose{
+.nose {
     position: absolute;
     height: 15px;
     width: 15px;
@@ -137,7 +137,7 @@ input{
     left: -5px;
 }
 
-.eye{
+.eye {
     position: absolute;
     height: 30px;
     width: 30px;
@@ -147,7 +147,7 @@ input{
     left: 50px;
 }
 
-.eyeball{
+.eyeball {
     position: absolute;
     height: 20px;
     width: 20px;
@@ -157,7 +157,7 @@ input{
     left: 50px;
 }
 
-.ear1{
+.ear1 {
     position: absolute;
     height: 30px;
     width: 25px;
@@ -167,7 +167,7 @@ input{
     left: 80px;
 }
 
-.ear2{
+.ear2 {
     position: absolute;
     height: 40px;
     width: 25px;
@@ -177,7 +177,7 @@ input{
     left: 90px;
 }
 
-.tail{
+.tail {
     width: 0;
     height: 0;
     border-left: 10px solid transparent;
@@ -191,12 +191,12 @@ input{
     animation: wag 1s infinite;
 }
 @keyframes wag {
-    50%{
+    50% {
         transform: rotate(10deg);
     } 
 }
 
-.tongue{
+.tongue {
     position: relative;
     background-color: tomato;
     height: 20px;
@@ -209,12 +209,12 @@ input{
     animation: move 1s infinite;
 }
 @keyframes move {
-    50%{
+    50% {
         transform:rotate(45deg) translateY(3px);
     } 
 }
 
-.shadow{
+.shadow {
     position: absolute;
     height: 50px;
     width: 200px;
@@ -226,7 +226,7 @@ input{
     left: 50px;
 }
 
-.bubble{
+.bubble {
     font-size: 20px;
     position: absolute;
     top: -130px;
@@ -239,7 +239,7 @@ input{
 
 }
 
-.animation_dog{
+.animation_dog {
     position: fixed;
     top: 400px;
     right: 20%;
