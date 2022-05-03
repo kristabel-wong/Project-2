@@ -33,6 +33,31 @@
     width: 100%;
 }
 
+.drop_image_box{
+    position: relative;
+}
+
+.photo_label{
+    display: flex;
+    height: 300px;
+    border: #ccc 2px dashed;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.visually_hidden{
+    position: absolute ;
+    height:200px;
+    width:100%;
+    background-color: aqua;
+    padding: 0;
+    top:0;
+    opacity:0;
+    cursor: pointer;
+}
+
 .upload_button{
     background-color: #B7CADB;
     border-radius: 10px;
@@ -41,6 +66,8 @@
     margin-bottom: 10px;
     font-size: 20px;
 }
+
+
 
 input{
     font-size: 20px;
