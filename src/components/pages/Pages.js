@@ -6,7 +6,7 @@ import SignUp from "./SignUp";
 import UserShow from "./user pages/UserShow";
 import UserEdit from "./user pages/UserEdit";
 import Message from "./message pages/Message";
-import Petnew from "./pets pages/PetNew";
+import PetNew from "./pets pages/PetNew";
 import PetShow from "./pets pages/PetShow";
 import PetIndex from "./pets pages/PetIndex";
 import PetEdit from "./pets pages/PetEdit";

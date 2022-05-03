@@ -9,15 +9,16 @@ import {
 import { auth, db } from "../../../firebase-config";
 import ChatMessage from "./ChatMessage";
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./message.module.css";
+import style from './message.module.css';
 
 function ChatBox({ user1, user2 }) {
 	const [messages, setMessages] = useState([]);
-
 	const [formValue, setFormValue] = useState("");
+
 	const dummy = useRef();
 	const currentUserOne = user1;
 	const currentUserTwo = user2;
+
 
 	const getMessages = async function () {
 		const id =
@@ -54,29 +55,44 @@ function ChatBox({ user1, user2 }) {
 
 		dummy.current.scrollIntoView({ behavior: "smooth" }); // ensure we always scroll to the bottom when message appears
 	};
+
 	// useeffect here is ensuring we update messages based on who is clicked in the left
 	useEffect(() => {
 		getMessages();
 	}, [messages]);
+
+
+
+
 	return (
-		<div>
-			<main>
-				{messages.map((msg, index) => (
-					<ChatMessage key={index} message={msg} />
-				))}
-				<span ref={dummy}></span> {/* scroll to bottom feature */}
-			</main>
-			<form onSubmit={sendMessage}>
-				{/* form to submit message - writing value to firestore */}
-				<input
-					value={formValue}
-					onChange={(e) => setFormValue(e.target.value)}
-					placeholder="Type Message ..."
-				/>
-				<button type="submit" disabled={!formValue}>
-					🕊️
-				</button>
-			</form>
+		<div className={style.messageComponent}>
+            <div className={style.header}>
+                <h1> <em>placeholder</em> </h1>
+            </div>
+            <div>
+                <main className={style.mainChat}>
+                    {messages.map((msg, index) => (
+                        <ChatMessage key={index} message={msg} />
+                    ))}
+                    <span ref={dummy}></span> {/* scroll to bottom feature */}
+                </main>
+            </div>
+            <div>
+                <form className={style.messageForm} onSubmit={sendMessage}>
+                    {" "}
+                    {/* form to submit message - writing value to firestore */}
+                    <input
+                        value={formValue}
+                        onChange={(e) => setFormValue(e.target.value)}
+                        placeholder="Type Message ..."
+                        className={style.messageInput}
+                    />{" "}
+                    {/* binding state to form input */}
+                    <button type="submit" disabled={!formValue} className={style.button}>
+                        🕊️
+                    </button>
+                </form>
+            </div>
 		</div>
 	);
 }

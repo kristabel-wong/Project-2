@@ -11,26 +11,12 @@ button {
 }
 
 /* --------------- Chat CSS --------------------- */
-.contentContainer {
+.content {
 	width: 100%;
 }
 
-.usersContainer {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	position: fixed;
-	margin: 20px;
-	width: 30%;
-}
-.chatboxContainer {
-	position: fixed;
-	height: 79vh;
-	width: 600px;
-	right: 5%;
-	margin-bottom: 30px;
+.chatbox {
 	border-radius: 8px;
-	overflow-y: scroll;
 }
 .Chat {
 	text-align: center;
@@ -38,20 +24,15 @@ button {
 	margin: 0 auto;
 }
 
-.Chat header {
-	background-color: #d1d1d1;
+.header {
+	background-color: #e1e1e1;
 	height: 10vh;
+    line-height: 10vh;
 	min-height: 50px;
 	color: rgb(0, 0, 0);
-	position: fixed;
 	width: 100%;
-	max-width: 728px;
-	top: 1; /* was 0 before */
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 	z-index: 99;
-	padding: 10px;
+	padding-left: 20px;
 }
 
 .Chat section {
@@ -62,48 +43,45 @@ button {
 	background-color: rgb(255, 255, 255);
 }
 
-main {
+.mainChat {
 	padding: 10px;
-	height: 80vh;
 	margin: 0;
-	/* overflow-y: scroll; */
-	display: flex;
+    overflow-y: scroll;
+    height: 70vh;
 	flex-direction: column;
 	justify-content: flex-end;
 	width: 100%;
-	border-left: 1px solid grey;
+    word-break: break-all;
+    white-space: normal;
 }
 
-main::-webkit-scrollbar {
+.mainChat::-webkit-scrollbar {
 	width: 0.25rem;
 }
 
-main::-webkit-scrollbar-track {
+.mainChat::-webkit-scrollbar-track {
 	background: #1e1e24;
 }
 
-main::-webkit-scrollbar-thumb {
+.mainChat::-webkit-scrollbar-thumb {
 	background: #6649b8;
 }
 
-form {
+.messageForm {
 	height: 10vh;
-	position: fixed;
-	bottom: 0;
 	background-color: rgb(24, 23, 23);
-	width: 600px;
+	width: 100%;
 	display: flex;
 	font-size: 1.5rem;
 	border-radius: 8px;
-	margin-bottom: 5px;
 }
 
-form button {
+.button {
 	width: 20%;
 	background-color: #dcf8ef;
 }
 
-input {
+.messageInput {
 	line-height: 1.5;
 	width: 100%;
 	font-size: 1.5rem;
@@ -133,6 +111,31 @@ button:disabled {
 	cursor: not-allowed;
 }
 
+/* .sign-in {
+	color: #282c34;
+	background-color: #fee2f8;
+	background-image: linear-gradient(315deg, #fee2f8 0%, #dcf8ef 74%);
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+ul,
+li {
+	text-align: left;
+	list-style: none;
+} */
+
+.text {
+	max-width: 500px;
+	margin-bottom: 12px;
+	line-height: 24px;
+	padding: 10px 20px;
+	border-radius: 25px;
+	position: relative;
+	color: white;
+	text-align: center;
+}
+
 .message {
 	display: flex;
 	align-items: center;
@@ -150,15 +153,16 @@ button:disabled {
 	/* background: #0b93f6; */
 	align-self: flex-end;
 }
+
 .received p {
 	background-color: #aee1f9;
 	background-image: linear-gradient(315deg, #aee1f9 0%, #f6ebe6 74%);
 	color: black;
 }
 
-img {
-	width: 40px;
-	height: 40px;
+.Icon {
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 	margin: 2px 5px;
 }
@@ -168,4 +172,20 @@ img {
 
 .form-label {
 	font-size: 40px;
+}
+
+.messageListCont {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    margin: 20px auto;
+    max-width: 70vw;
+    min-width: 500px;
+}
+
+.messageComponent {
+    border: 3px solid #e1e1e1;
+    border-radius: 8px;
+    display: grid;
+    grid-template-rows: 1fr 6fr 1fr;
+    max-height: 90vh;
 }
