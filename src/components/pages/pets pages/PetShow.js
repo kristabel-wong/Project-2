@@ -30,37 +30,31 @@ function PetShow() {
 		}
 	}, []);
 
-	return (
-		<div>
-			{petInfo === null ? (
-				""
-			) : (
-				<div>
-					<h1>Name:{petInfo.name}</h1>
-					<h1>Age:{petInfo.age}</h1>
-					<h1>DOB:{petInfo.dob}</h1>
-					<h1>Type:{petInfo.type}</h1>
-					<h1>Gender:{petInfo.gender}</h1>
-					<h1>Location:{petInfo.location}</h1>
-					<h1>Description:{petInfo.description}</h1>git
-					<img src={petInfo.imageUrl} />
-					{/* Only the owner of the pet can edit and delete the profile */}
-					{petInfo.user_uid === auth.currentUser.uid ? (
-						<div>
-							<NavLink to={`/pet/edit/${params.type}`}>
-								<button>Edit</button>
-							</NavLink>
-							<NavLink to={`/pet/index`}>
-								<button onCilck={deletePet()}>Delete</button>
-							</NavLink>
-						</div>
-					) : (
-						""
-					)}
-				</div>
-			)}
-		</div>
-	);
+        return(
+            <div>
+              {petInfo === null ? '' : 
+                <div>
+                   <h1>Name:{petInfo.name}</h1>
+                   <h1>Age:{petInfo.age}</h1>
+                   <h1>DOB:{petInfo.dob}</h1>
+                   <h1>Type:{petInfo.type}</h1>
+                   <h1>Gender:{petInfo.gender}</h1>
+                   <h1>Location:{petInfo.location}</h1>
+                   <h1>Description:{petInfo.description}</h1>git 
+                   <img src={petInfo.imageUrl} />
+                   {/* Only the owner of the pet can edit and delete the profile */}
+                   {petInfo.user_uid === auth.currentUser.uid ? 
+                    <div>
+                       <NavLink to={`/pet/edit/${params.type}`} >Edit</NavLink>
+                       
+                       <NavLink to={`/pet/index`} onClick={deletePet}>Delete</NavLink>
+                       
+                    </div>
+                     : ''
+                   } 
+                </div> }
+            </div>
+        )
 }
 
 export default PetShow;

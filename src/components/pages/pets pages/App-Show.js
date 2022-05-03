@@ -80,24 +80,24 @@ function App() {
 		</div>
 	);
 
-                        <div>
-                            <NavLink to="/message">
-                                <button>
-                                    <h3 className={styles.petName}>{pet.name}, {pet.age}</h3>
-                                </button>
-                            </NavLink>
-                            <p className={styles.petDetails}>{pet.location}</p>
-                            <p className={styles.petDetails}>{pet.description}</p>
-                            <p className={styles.petDetails}>{auth.currentUser.uid}</p>
-                            <p className={styles.petDetails}>{pet.id}</p>
-                            <p className={styles.petDetails}>{pet.user_uid}</p>
+    //                     <div>
+    //                         <NavLink to="/message">
+    //                             <button>
+    //                                 <h3 className={styles.petName}>{pet.name}, {pet.age}</h3>
+    //                             </button>
+    //                         </NavLink>
+    //                         <p className={styles.petDetails}>{pet.location}</p>
+    //                         <p className={styles.petDetails}>{pet.description}</p>
+    //                         <p className={styles.petDetails}>{auth.currentUser.uid}</p>
+    //                         <p className={styles.petDetails}>{pet.id}</p>
+    //                         <p className={styles.petDetails}>{pet.user_uid}</p>
 
-	//                         <div>
-	//                             <h3 className={styles.petName}>Pits</h3>
-	//                             <p className={styles.petDetails}>Brisbane</p>
-	//                             <p className={styles.petDetails}>I'm a bit shy</p>
-	//                         </div>
-	//                     </Item>
+	// //                         <div>
+	// //                             <h3 className={styles.petName}>Pits</h3>
+	// //                             <p className={styles.petDetails}>Brisbane</p>
+	// //                             <p className={styles.petDetails}>I'm a bit shy</p>
+	// //                         </div>
+	// //                     </Item>
 	//                     <Item data-value="pancakes" whileTap={{ scale: 1.15 }}>
 	//                         <div className={styles.imageContainer} style={{ backgroundImage: `url("https://scontent.fsyd4-1.fna.fbcdn.net/v/t39.30808-6/278106878_5059554534127820_4134914145649592563_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=a26aad&_nc_ohc=tDxhsLeqIToAX8HUsSj&tn=fyRfHEuqm-0XJYUQ&_nc_ht=scontent.fsyd4-1.fna&oh=00_AT_KPRBT_MimVtD9rVVWtIaMwyNXgkF-dP2TiZ_w2KUHLw&oe=6273B7A2")`}}>
 	//                         </div>
