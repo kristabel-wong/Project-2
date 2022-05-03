@@ -4,6 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import styles from "./styles.module.css";
 import { Stack } from "./stack";
 import styled from "@emotion/styled";
+import { NavLink } from "react-router-dom";
 
 function App() {
 	const Wrapper = styled(Stack)`
@@ -79,13 +80,17 @@ function App() {
 		</div>
 	);
 
-	//     return (
-	//         <div className={styles.showPage}>
-	//             <div className={styles.deck}>
-	//                 <Wrapper onVote={(item, vote) => console.log(item.props, vote)}>
-	//                     <Item data-value="waffles" whileTap={{ scale: 1.15 }}>
-	//                         <div className={styles.imageContainer} style={{ backgroundImage: `url("https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80")`}}>
-	//                         </div>
+                        <div>
+                            <NavLink to="/message">
+                                <button>
+                                    <h3 className={styles.petName}>{pet.name}, {pet.age}</h3>
+                                </button>
+                            </NavLink>
+                            <p className={styles.petDetails}>{pet.location}</p>
+                            <p className={styles.petDetails}>{pet.description}</p>
+                            <p className={styles.petDetails}>{auth.currentUser.uid}</p>
+                            <p className={styles.petDetails}>{pet.id}</p>
+                            <p className={styles.petDetails}>{pet.user_uid}</p>
 
 	//                         <div>
 	//                             <h3 className={styles.petName}>Pits</h3>

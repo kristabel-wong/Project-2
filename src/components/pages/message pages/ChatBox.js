@@ -61,7 +61,7 @@ function ChatBox({ user1, user2 }) {
 	}, [messages]);
 	return (
 		<div>
-            <h1 className={style.header}> <em>Placeholder</em> </h1>
+            <h1 className={style.header}> {currentUserTwo} </h1>
 			<main className={style.mainChat}>
 				{messages.map((msg, index) => (
 					<ChatMessage key={index} message={msg} />
