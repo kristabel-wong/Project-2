@@ -15,22 +15,8 @@ button {
 	width: 100%;
 }
 
-.useContainer {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	position: fixed;
-	margin: 20px;
-	width: 30%;
-}
 .chatbox {
-	position: fixed;
-	height: 79vh;
-	width: 600px;
-	right: 5%;
-	margin-bottom: 30px;
 	border-radius: 8px;
-	overflow-y: scroll;
 }
 .Chat {
 	text-align: center;
@@ -39,19 +25,14 @@ button {
 }
 
 .header {
-	background-color: #d1d1d1;
+	background-color: #e1e1e1;
 	height: 10vh;
+    line-height: 10vh;
 	min-height: 50px;
 	color: rgb(0, 0, 0);
-	position: fixed;
-	width: 600px;
-	max-width: 728px;
-	top: 1; /* was 0 before */
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	width: 100%;
 	z-index: 99;
-	padding: 10px;
+	padding-left: 20px;
 }
 
 .Chat section {
@@ -64,14 +45,14 @@ button {
 
 .mainChat {
 	padding: 10px;
-	height: 80vh;
 	margin: 0;
-	/* overflow-y: scroll; */
-	display: flex;
+    overflow-y: scroll;
+    height: 70vh;
 	flex-direction: column;
 	justify-content: flex-end;
 	width: 100%;
-	border-left: 1px solid grey;
+    word-break: break-all;
+    white-space: normal;
 }
 
 .mainChat::-webkit-scrollbar {
@@ -88,14 +69,11 @@ button {
 
 .messageForm {
 	height: 10vh;
-	position: fixed;
-	bottom: 0;
 	background-color: rgb(24, 23, 23);
-	width: 600px;
+	width: 100%;
 	display: flex;
 	font-size: 1.5rem;
 	border-radius: 8px;
-	margin-bottom: 5px;
 }
 
 .button {
@@ -194,4 +172,20 @@ li {
 
 .form-label {
 	font-size: 40px;
+}
+
+.messageListCont {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    margin: 20px auto;
+    max-width: 70vw;
+    min-width: 500px;
+}
+
+.messageComponent {
+    border: 3px solid #e1e1e1;
+    border-radius: 8px;
+    display: grid;
+    grid-template-rows: 1fr 6fr 1fr;
+    max-height: 90vh;
 }

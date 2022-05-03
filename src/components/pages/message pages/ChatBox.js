@@ -13,8 +13,8 @@ import style from './message.module.css';
 
 function ChatBox({ user1, user2 }) {
 	const [messages, setMessages] = useState([]);
-
 	const [formValue, setFormValue] = useState("");
+
 	const dummy = useRef();
 	const currentUserOne = user1;
 	const currentUserTwo = user2;
@@ -65,29 +65,34 @@ function ChatBox({ user1, user2 }) {
 
 
 	return (
-		<div>
-            <h1 className={style.header}> <em>placeholder</em> </h1>
-			<main className={style.mainChat}>
-				{messages.map((msg, index) => (
-					<ChatMessage key={index} message={msg} />
-				))}
-				<span ref={dummy}></span> {/* scroll to bottom feature */}
-			</main>
-
-			<form className={style.messageForm} onSubmit={sendMessage}>
-				{" "}
-				{/* form to submit message - writing value to firestore */}
-				<input
-					value={formValue}
-					onChange={(e) => setFormValue(e.target.value)}
-					placeholder="Type Message ..."
-                    className={style.messageInput}
-				/>{" "}
-				{/* binding state to form input */}
-				<button type="submit" disabled={!formValue} className={style.button}>
-					🕊️
-				</button>
-			</form>
+		<div className={style.messageComponent}>
+            <div className={style.header}>
+                <h1> <em>placeholder</em> </h1>
+            </div>
+            <div>
+                <main className={style.mainChat}>
+                    {messages.map((msg, index) => (
+                        <ChatMessage key={index} message={msg} />
+                    ))}
+                    <span ref={dummy}></span> {/* scroll to bottom feature */}
+                </main>
+            </div>
+            <div>
+                <form className={style.messageForm} onSubmit={sendMessage}>
+                    {" "}
+                    {/* form to submit message - writing value to firestore */}
+                    <input
+                        value={formValue}
+                        onChange={(e) => setFormValue(e.target.value)}
+                        placeholder="Type Message ..."
+                        className={style.messageInput}
+                    />{" "}
+                    {/* binding state to form input */}
+                    <button type="submit" disabled={!formValue} className={style.button}>
+                        🕊️
+                    </button>
+                </form>
+            </div>
 		</div>
 	);
 }

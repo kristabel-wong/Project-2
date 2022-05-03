@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import MessagesList from "./MessagesList";
-import style from './message.module.css';
-
+import style from "./message.module.css";
 class Message extends Component {
 	render() {
 		return (
