@@ -22,7 +22,7 @@ function Pages() {
       <Route path="/user/:id" element={<UserShow />} />
       <Route path="/user/edit/:id" element={<UserEdit />} />
       <Route path="/message" element={<Message />} />
-      <Route path="/newpet" element={<Petnew />} />
+      <Route path="/newpet" element={<PetNew />} />
       <Route path="/pet/edit/:type" element={<PetEdit />} />
       <Route path="/pet/:type" element={<PetShow />} />
       <Route path="/pet/index" element={<PetIndex />} />
