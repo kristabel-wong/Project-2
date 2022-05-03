@@ -9,14 +9,11 @@ const StyledCard = styled(motion.div)`
 export const Card = ({ children, style, onVote, id, ...props }) => {
 	// motion stuff
 	const cardElem = useRef(null);
-
 	const x = useMotionValue(0);
 	const controls = useAnimation();
 
 	const [constrained, setConstrained] = useState(true);
-
 	const [direction, setDirection] = useState();
-
 	const [velocity, setVelocity] = useState();
 
 	const getVote = (childNode, parentNode) => {
