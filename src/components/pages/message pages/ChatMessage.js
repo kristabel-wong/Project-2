@@ -6,7 +6,8 @@ import style from './message.module.css';
 function ChatMessage(props) {
 	const { text, from, photoURL } = props.message;
 
-	const messageClass = from === auth.currentUser.uid ? style.sent : style.received;
+	const messageClass =
+		from === auth.currentUser.uid ? style.sent : style.received;
 
 	return (
 		<>

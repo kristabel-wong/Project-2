@@ -45,19 +45,14 @@ function PetShow() {
                    {/* Only the owner of the pet can edit and delete the profile */}
                    {petInfo.user_uid === auth.currentUser.uid ? 
                     <div>
-                       <NavLink to={`/pet/edit/${params.type}`} >
-                          <button>Edit</button>
-                       </NavLink>
-                       <NavLink to={`/pet/index`} >
-                       <button>Delete</button>
-                       </NavLink>
+                       <NavLink to={`/pet/edit/${params.type}`} >Edit</NavLink>
+                       
+                       <NavLink to={`/pet/index`} onClick={deletePet}>Delete</NavLink>
+                       
                     </div>
                      : ''
                    } 
                 </div> }
-               
-               
-                
             </div>
         )
 }
