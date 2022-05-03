@@ -19,6 +19,7 @@ function ChatBox({ user1, user2 }) {
 	const currentUserOne = user1;
 	const currentUserTwo = user2;
 
+
 	const getMessages = async function () {
 		const id =
 			currentUserOne > currentUserTwo
@@ -54,13 +55,18 @@ function ChatBox({ user1, user2 }) {
 
 		dummy.current.scrollIntoView({ behavior: "smooth" }); // ensure we always scroll to the bottom when message appears
 	};
+
 	// useeffect here is ensuring we update messages based on who is clicked in the left
 	useEffect(() => {
 		getMessages();
 	}, [messages]);
+
+
+
+
 	return (
 		<div>
-            <h1 className={style.header}> {currentUserTwo} </h1>
+            <h1 className={style.header}> <em>placeholder</em> </h1>
 			<main className={style.mainChat}>
 				{messages.map((msg, index) => (
 					<ChatMessage key={index} message={msg} />

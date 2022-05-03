@@ -53,7 +53,7 @@ function PetShow() {
                           <button>Edit</button>
                        </NavLink>
                        <NavLink to={`/pet/index`} >
-                       <button onCilck={deletePet()}>Delete</button>
+                       <button>Delete</button>
                        </NavLink>
                     </div>
                      : ''

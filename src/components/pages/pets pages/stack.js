@@ -50,13 +50,16 @@ export const Stack = ({ onVote, children, ...props }) => {
     const petUserData = await getUserData(item.props["data-value"])
     const petUser = item.props["data-value"]
 
+    // adding the pet into the favourites array of the user
     if ( currentUserData.favArr.includes(petUser)) {
         console.log('included')
     } else {
         const updateFavArr = doc(db, "users", auth.currentUser.uid)
         await updateDoc(updateFavArr, {favArr: [...currentUserData.favArr, petUser]})
     }
-    if( petUserData.favArr.includes(currentUserData.uid)){
+
+    // adding the user who liked the pet into the favourites array of the pet user
+    if ( petUserData.favArr.includes(currentUserData.uid)) {
       console.log ('the vote is true', item.props["data-value"], item.key.slice(2));
     } else {
       const updatePetUserfavArr = doc(db, 'users', petUser)
