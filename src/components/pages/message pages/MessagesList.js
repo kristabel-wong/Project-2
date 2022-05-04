@@ -32,23 +32,21 @@ function MessagesList() {
 		return favArr;
 	};
 
-	// const getPetsChatLog = async function () {
-	// 	const user = auth.currentUser.uid;
-	// 	const documentId = user > user2 ? user + user2 : user2 + user;
-	// 	console.log(documentId);
-	// 	const favRef = collection(
-	// 		db,
-	// 		"favourites",
-	// 		documentId,
-	// 		"9sYo60KFi2k52JJcZwpZ"
-	// 	);
-	// 	const docSnap = await getDocs(favRef);
+	// const getPetsChatLog = async function(){
+	// 	const documentId =
+	// 		auth.currentUser.uid > user2
+	// 			? `${auth.currentUser.uid + user2}`
+	// 			: `${user2 + auth.currentUser.uid}`;
+
+	// 	const favRef = collection(db, 'favourites', documentId, 'messages')
+	// 	const docSnap = await getDocs(favRef)
 	// 	// const data = docSnap.data()
 	// 	docSnap.forEach((doc) => {
-	// 		// console.log(doc.data());
-	// 	});
-	// };
-	// getPetsChatLog();
+	// 		console.log(doc.data())
+
+	// 	})
+	// }
+	// getPetsChatLog()
 
 	// gets the log of messages and updates automatically
 	const getChatLog = async function (user) {

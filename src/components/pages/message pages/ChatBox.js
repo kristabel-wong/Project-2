@@ -37,6 +37,14 @@ function ChatBox({ user1, user2, petID }) {
 		});
         
 	};
+    
+	let data;
+	const getDoc = async function (){
+		const data= await getDoc(db, "users",currentUserTwo)
+		console.log(data);
+	}
+
+
 
 	const sendMessage = async (e) => {
 		e.preventDefault();

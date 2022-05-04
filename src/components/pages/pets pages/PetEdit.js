@@ -1,11 +1,12 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useCallback } from "react";
 import { db, storage, auth } from "../../../firebase-config";
-import { getDoc, updateDoc, doc, deleteDoc } from "firebase/firestore";
+import { getDoc, updateDoc,arrayUnion, doc} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { NavLink, useParams } from "react-router-dom";
 import { v4 } from "uuid"; // generate uniq image name
 import style from "../../PetCreateForm.module.css";
+import {useDropzone} from "react-dropzone";
 import Typewriter from "typewriter-effect"; // give the typing text effect
 
 function PetEdit() {
@@ -33,18 +34,36 @@ function PetEdit() {
 		setPetInfo(data);
 	};
 
-	const onFileChange = async () => {
-		if (updateUrl == null) return;
-		const uniqImageName = v4() + updateUrl.name;
-		const imageRef = ref(storage, `images/${uniqImageName}`);
+	const [selectedImages, setSelectedImages] = useState([]);
 
-		await uploadBytes(imageRef, updateUrl).then(() => {
-			alert("File upload");
-		});
-		getDownloadURL(imageRef).then((url) => {
-			setNewUrl(url);
-		});
-	};
+
+    
+    const onDrop = useCallback(acceptedFiles => {
+        const arr = acceptedFiles.map((file)=> file)
+
+        const newImages = arr.map(file=>
+            Object.assign(file,{
+               preview:URL.createObjectURL(file)
+            })
+        );
+         setSelectedImages(selectedImages.concat(newImages));  
+    }, [])
+
+    const deleteImage = (file) =>{
+        const newFiles = [...selectedImages];         // make a var for the new array
+        newFiles.splice(newFiles.indexOf(file), 1);   // remove the file from the array
+        setSelectedImages(newFiles);
+    }
+
+
+    // Whole different on change function that sets the state for selectedImages. 
+    const {getRootProps, getInputProps} = useDropzone({onDrop})
+    const selected_images = selectedImages?.map((file,i)=>(
+        <div>
+            <img src={file.preview} style={{width:"200px"}}/>
+            <button onClick={()=>deleteImage(file)}>delete</button>
+        </div>
+    ))  
 
 	//if nothing changed, store  existing data into the update variables
 	if (petInfo !== null) {
@@ -82,11 +101,23 @@ function PetEdit() {
 			age: updateAge,
 			dob: updateDOB,
 			type: updateType,
-			imageUrl: updateUrl,
 			gender: updateGender,
 			location: updateLocation,
 			description: updateDescription,
 		});
+        await Promise.all(
+            selectedImages.map(image=>{
+                const imageRef = ref(storage, `images/pets/${v4()+image.path}`);
+                console.log("url is", `images/pets/${v4()+image.path}`);
+                console.log('image ref:', imageRef);
+                uploadBytes(imageRef, image, "data_url").then(async()=>{
+                    const downloadUrl = await getDownloadURL(imageRef)
+                    await updateDoc(doc(db, "pets",params.type),{
+                        imagesUrl: arrayUnion(downloadUrl)
+                    })
+                })     
+            })
+        )  
 	};
 
 	useEffect(() => {
@@ -164,22 +195,15 @@ function PetEdit() {
 						}}
 					/>
 
-					<label className={style.form_label}>Photos:</label>
-					<input
-						className={style.form_field}
-						type="file"
-						onChange={(event) => {
-							setNewUrl(event.target.files[0]);
-						}}
-					/>
-					<button
-						className={style.upload_button}
-						onClick={onFileChange}
-						value="Upload"
-					>
-						{" "}
-						Upload Image{" "}
-					</button>
+                    <div className={style.drop_image_box}>
+                        <div>
+                            <div {...getRootProps()} className={style.drop_box}>
+                                <input {...getInputProps()} />
+                                <p>Adding more images ...</p>
+                            </div>
+                            {selected_images}
+                        </div>
+                    </div>
 
 					<label className={style.form_label}>Description:</label>
 					<textarea
