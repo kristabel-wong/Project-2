@@ -12,6 +12,7 @@ const Frame = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  border-radius: 50px;
 `
 
 export const Stack = ({ onVote, children, ...props }) => {
@@ -31,12 +32,13 @@ export const Stack = ({ onVote, children, ...props }) => {
     
     // run function from onVote prop, passing the current item and value of vote
     onVote(item, vote)
-
+    const petUser = item.props["data-value"]
     if (vote === true ) {
       handleFav(item)
         
     } else {
         console.log('rejected')
+        console.log('pet user', petUser, ' user', auth.currentUser.uid );
     }    
   }
   const getUserData = async function(user){
@@ -56,6 +58,7 @@ export const Stack = ({ onVote, children, ...props }) => {
     } else {
         const updateFavArr = doc(db, "users", auth.currentUser.uid)
         await updateDoc(updateFavArr, {favArr: [...currentUserData.favArr, petUser]})
+        
     }
 
     // adding the user who liked the pet into the favourites array of the pet user

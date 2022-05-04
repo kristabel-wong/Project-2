@@ -40,7 +40,7 @@ function PetShow() {
                    <h1>Type:{petInfo.type}</h1>
                    <h1>Gender:{petInfo.gender}</h1>
                    <h1>Location:{petInfo.location}</h1>
-                   <h1>Description:{petInfo.description}</h1>git 
+                   <h1>Description:{petInfo.description}</h1> 
                    <img src={petInfo.imageUrl} />
                    {/* Only the owner of the pet can edit and delete the profile */}
                    {petInfo.user_uid === auth.currentUser.uid ? 

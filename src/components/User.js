@@ -4,8 +4,8 @@ import React from "react";
 function User({ user, selectUser }) {
 	return (
 		<div className="user-wrapper" onClick={() => selectUser(user)} >
-            <h1 style={{margin: '10px', textAlign: 'center'}} >Users</h1>
-			<div className="user-info" style={{display: 'grid', gridTemplateColumns: '60px 150px'}}>
+            
+			<div className="user-info" style={{display: 'grid', gridTemplateColumns: '60px 150px', marginBottom: '10px'}}>
 				<img style={{width: '50px'}} className="userIcon"
 					src={
 						// user.img ||

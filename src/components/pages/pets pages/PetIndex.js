@@ -20,9 +20,10 @@ function PetIndex() {
 		getPets()
 	}, [pets]);
 
+    
         return(
             <div className={style.container}>
-			{pets.map((pet) => {
+			{pets.filter(pet => pet.user_uid != auth.currentUser.uid).map((pet) => {
 				return (
 					<NavLink
 						to={`/pet/${pet.id}`}
@@ -36,6 +37,8 @@ function PetIndex() {
 							<h4>Age:{pet.age}</h4>
 							<h4>DOB:{pet.dob}</h4>
 							<h4>Description:{pet.description}</h4>
+                            <h4>Description:{pet.user_uid}</h4>
+                            <h4>Description:{auth.currentUser.uid}</h4>
 							<img src={pet.imagesUrl[0]} />
 						</div>
 					</NavLink>
