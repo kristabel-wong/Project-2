@@ -1,16 +1,19 @@
 import React from "react";
 import { useState, useEffect,useCallback } from "react";
 import { db, storage, auth } from "../../../firebase-config";
-import { getDoc, updateDoc,arrayUnion, doc} from "firebase/firestore";
+import { getDoc, updateDoc,arrayUnion, doc,arrayRemove} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams,useNavigate } from "react-router-dom";
 import { v4 } from "uuid"; // generate uniq image name
 import style from "../../PetCreateForm.module.css";
 import {useDropzone} from "react-dropzone";
 import Typewriter from "typewriter-effect"; // give the typing text effect
+import { async } from "@firebase/util";
+import { reload } from "firebase/auth";
 
 function PetEdit() {
 	let params = useParams();
+	let navigate = useNavigate();
 
 	const [petInfo, setPetInfo] = useState(null);
 
@@ -25,7 +28,7 @@ function PetEdit() {
 	const [updateDescription, setNewDescription] = useState(null);
 
 	let data;
-
+    const [selectedImages, setSelectedImages] = useState([]);
 	// get the current pet data
 	const getPet = async (uid) => {
 		const petDocRef = doc(db, "pets", uid);
@@ -34,12 +37,9 @@ function PetEdit() {
 		setPetInfo(data);
 	};
 
-	const [selectedImages, setSelectedImages] = useState([]);
-
-
-    
+	
     const onDrop = useCallback(acceptedFiles => {
-        const arr = acceptedFiles.map((file)=> file)
+        const arr = acceptedFiles.map((file)=> file);
 
         const newImages = arr.map(file=>
             Object.assign(file,{
@@ -54,7 +54,12 @@ function PetEdit() {
         newFiles.splice(newFiles.indexOf(file), 1);   // remove the file from the array
         setSelectedImages(newFiles);
     }
-
+    
+	const deleteExImg = async (img) =>{
+			await updateDoc(doc(db, "pets",params.type),{
+				  imagesUrl: arrayRemove(img)
+			})
+	}
 
     // Whole different on change function that sets the state for selectedImages. 
     const {getRootProps, getInputProps} = useDropzone({onDrop})
@@ -77,7 +82,7 @@ function PetEdit() {
 			setNewDOB(`${petInfo.dob}`);
 		}
 		if (updateUrl == null) {
-			setNewUrl(`${petInfo.imageUrl}`);
+			setNewUrl(`${petInfo.imagesUrl}`);
 		}
 		if (updateLocation == null) {
 			setNewLocation(`${petInfo.location}`);
@@ -96,7 +101,7 @@ function PetEdit() {
 	// update pet info
 	const updatePet = async () => {
 		const petDoc = doc(db, "pets", params.type);
-		updateDoc(petDoc, {
+		await updateDoc(petDoc, {
 			name: updateName,
 			age: updateAge,
 			dob: updateDOB,
@@ -117,11 +122,12 @@ function PetEdit() {
                     })
                 })     
             })
-        )  
+        )
+		navigate(`/pet/${params.type}`);  
 	};
 
 	useEffect(() => {
-		if (petInfo === null) {
+		if(petInfo === null){
 			getPet(params.type);
 		}
 	}, []);
@@ -201,6 +207,12 @@ function PetEdit() {
                                 <input {...getInputProps()} />
                                 <p>Adding more images ...</p>
                             </div>
+							{petInfo.imagesUrl.map((img)=>{
+								return <div>
+								          <img src={img} style={{width:"200px"}} />
+								          <button onClick={()=>deleteExImg(img)}>delete</button> 
+									   </div>	  
+							})}
                             {selected_images}
                         </div>
                     </div>
@@ -214,7 +226,7 @@ function PetEdit() {
 							setNewDescription(event.target.value);
 						}}
 					/>
-					<NavLink to={`/pet/${params.type}`}>
+					
 						<button
 							className={style.upload_button}
 							onClick={updatePet}
@@ -222,7 +234,7 @@ function PetEdit() {
 							{" "}
 							Update Profile{" "}
 						</button>
-					</NavLink>
+					
 					<div className={style.animation_dog}>
 						<div className={style.dog}>
 							<div className={style.body}></div>

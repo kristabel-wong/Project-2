@@ -8,6 +8,7 @@
     padding-right:30px;
     padding-left: 30px;
     position: relative;
+    background-color: white;
 
 }
 
@@ -32,6 +33,7 @@
 
 .form_textarea {
     width: 100%;
+    margin-bottom: 40px;
 }
 
 .drop_image_box{
@@ -79,7 +81,7 @@
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-    font-size: 20px;
+    font-size: 15px;  
 }
 
 
