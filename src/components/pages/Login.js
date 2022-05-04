@@ -45,7 +45,7 @@ function Login() {
 				email: user.email,
 				uid: uid,
 				favRef: [],
-				favPets: [],
+				petArr: [],
 				location: "",
 				description: "",
 				imageUrl: user.photoURL,

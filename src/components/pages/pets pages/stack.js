@@ -51,16 +51,20 @@ export const Stack = ({ onVote, children, ...props }) => {
 
 		// adding the pet into the favourites array of the user
 		if (currentUserData.favArr.includes(petUser)) {
-			const updateFile = doc(db, "users", auth.currentUser.uid);
-			await updateFile(updateFile, {
-				petArr: [...currentUserData.favArr, item.key.slice(2)],
-			});
-			console.log("included");
+			if (currentUserData.petArr.includes(item.key.slice(2))) {
+				console.log("included");
+				return;
+			} else {
+				const updateFile = doc(db, "users", auth.currentUser.uid);
+				await updateDoc(updateFile, {
+					petArr: [...currentUserData.petArr, item.key.slice(2)],
+				});
+			}
 		} else {
 			const updateFile = doc(db, "users", auth.currentUser.uid);
 			await updateDoc(updateFile, {
 				favArr: [...currentUserData.favArr, petUser],
-				petArr: [...currentUserData.favArr, item.key.slice(2)],
+				petArr: [item.key.slice(2), ...currentUserData.petArr],
 			});
 		}
 
