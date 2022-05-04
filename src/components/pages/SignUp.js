@@ -73,9 +73,9 @@ function SignUp() {
           setRegisterPassword(event.target.value);
         }}
       />
-      <NavLink to={"/"}>
+      
         <Button onClick={register} classnames="btn" content="Register" />
-      </NavLink>
+     
     </div>
   );
 }

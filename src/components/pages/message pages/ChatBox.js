@@ -18,6 +18,7 @@ function ChatBox({ user1, user2 }) {
 	const dummy = useRef();
 	const currentUserOne = user1;
 	const currentUserTwo = user2;
+	
 
 
 	const getMessages = async function () {
@@ -35,6 +36,14 @@ function ChatBox({ user1, user2 }) {
 			setMessages(msgs);
 		});
 	};
+    
+	let data;
+	const getDoc = async function (){
+		const data= await getDoc(db, "users",currentUserTwo)
+		console.log(data);
+	}
+
+
 
 	const sendMessage = async (e) => {
 		e.preventDefault();
