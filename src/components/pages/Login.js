@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
@@ -15,6 +15,7 @@ function Login() {
 	const [loginEmail, setLoginEmail] = useState("");
 	const [loginPassword, setLoginPassword] = useState("");
 	const [user, setUser] = useState({});
+	let navigate = useNavigate();
 
 	onAuthStateChanged(auth, (currentUser) => {
 		setUser(currentUser);
@@ -27,6 +28,7 @@ function Login() {
 				loginEmail,
 				loginPassword
 			);
+			navigate("/");
 		} catch (error) {
 			console.log(error.message);
 		}
@@ -58,6 +60,7 @@ function Login() {
 		signInWithPopup(auth, provider)
 			.then((result) => {
 				createUser(result);
+				navigate("/");
 			})
 			.catch((error) => {
 				console.log(error);
