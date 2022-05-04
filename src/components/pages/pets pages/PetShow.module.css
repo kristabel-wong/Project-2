@@ -1,0 +1,18 @@
+.center_div{
+    max-width: 800px;
+    margin: 50px auto;
+    border: 3px dashed #99C4C8;
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 20px 20px 0 #68A7AD;
+}
+
+.title{
+    color: #68A7AD;
+    line-height: 40px;
+}
+
+.des{
+    line-height: 30px;
+}
