@@ -38,35 +38,14 @@ function User() {
     const userDocSnap = await getDoc(userDocRef);
     const data = userDocSnap.data();
     const petIdArr = data.petArr;
-    let petArray = [];
     const q = query(collection(db, "pets"), where("__name__", "in", petIdArr));
     const petDoc = await getDocs(q);
-    console.log(petDoc);
+    let petArray = [];
     petDoc.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+      petArray.push({ id: doc.id, ...doc.data() });
     });
-
-    // for (let i = 1; i < data.petArr.length; i++) {
-    //   const ref = collection(db, "pets");
-    //   const doc = await getDoc(ref, data.petArr[i]);
-    //   petArray.push(doc);
-
-    //   // const q = query(
-    //   //   collection(db, "pets"),
-    //   //   where("uid", "==", data.petArr[i])
-    //   // );
-    //   // const petDoc = await getDoc(q);
-    //   debugger;
-    //   // petArray.push(petDoc);s
-    //   // const userDocSnap = await getDoc(userDocRef);
-    // }
-    // console.log(petArray);
-
-    // const q = query(petsRef, where("user_uid", "==", uid));
-    // const petsData = await getDocs(q);
-    // // get pet id to set the key when rendering
-    // setUserFavPets(petsData.docs.map((pet) => ({ ...pet.data(), id: pet.id })));
+    setUserFavPets(petArray);
   };
 
   useEffect(() => {
@@ -109,13 +88,12 @@ function User() {
           </div>
         )}
       </div>
-
       <div>
         {userPets.length < 1 ? (
           ""
         ) : (
           <div>
-            <h2>My pets</h2>
+            <h1>My pets</h1>
             {userPets.map((pet) => {
               return (
                 <NavLink to={`/pet/${pet.id}`} key={pet.id}>
@@ -135,7 +113,28 @@ function User() {
         )}
       </div>
       <div>
-        <div>My Fav pets</div>
+        {userFavPets.length < 1 ? (
+          ""
+        ) : (
+          <div>
+            <h1> My Fav pets </h1>
+            {userFavPets.map((pet) => {
+              return (
+                <NavLink to={`/pet/${pet.id}`} key={pet.id}>
+                  <div key={pet.id}>
+                    <h2>Name:{pet.name}</h2>
+                    <h4>Location:{pet.location}</h4>
+                    <h4>Gender:{pet.gender}</h4>
+                    <h4>Age:{pet.age}</h4>
+                    <h4>DOB:{pet.dob}</h4>
+                    <h4>Description:{pet.description}</h4>
+                    <img src={pet.imageUrl} />
+                  </div>
+                </NavLink>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

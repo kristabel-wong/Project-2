@@ -49,41 +49,24 @@ export const Stack = ({ onVote, children, ...props }) => {
     const petUserData = await getUserData(item.props["data-value"]);
     const petUser = item.props["data-value"];
 
-<<<<<<< HEAD
     // adding the pet into the favourites array of the user
     if (currentUserData.favArr.includes(petUser)) {
-      const updateFile = doc(db, "users", auth.currentUser.uid);
-      await updateFile(updateFile, {
-        petArr: [...currentUserData.favArr, item.key.slice(2)],
-      });
-      console.log("included");
+      if (currentUserData.petArr.includes(item.key.slice(2))) {
+        console.log("included");
+        return;
+      } else {
+        const updateFile = doc(db, "users", auth.currentUser.uid);
+        await updateDoc(updateFile, {
+          petArr: [...currentUserData.petArr, item.key.slice(2)],
+        });
+      }
     } else {
       const updateFile = doc(db, "users", auth.currentUser.uid);
       await updateDoc(updateFile, {
         favArr: [...currentUserData.favArr, petUser],
-        petArr: [...currentUserData.favArr, item.key.slice(2)],
+        petArr: [item.key.slice(2), ...currentUserData.petArr],
       });
     }
-=======
-		// adding the pet into the favourites array of the user
-		if (currentUserData.favArr.includes(petUser)) {
-			if (currentUserData.petArr.includes(item.key.slice(2))) {
-				console.log("included");
-				return;
-			} else {
-				const updateFile = doc(db, "users", auth.currentUser.uid);
-				await updateDoc(updateFile, {
-					petArr: [...currentUserData.petArr, item.key.slice(2)],
-				});
-			}
-		} else {
-			const updateFile = doc(db, "users", auth.currentUser.uid);
-			await updateDoc(updateFile, {
-				favArr: [...currentUserData.favArr, petUser],
-				petArr: [item.key.slice(2), ...currentUserData.petArr],
-			});
-		}
->>>>>>> bfe1f47f85a2b451cd614605ac6c989f9f792e93
 
     // NEED TO ADD LIKED PETS ARRAY FOR USAGE
     // adding the user who liked the pet into the favourites array of the pet user
