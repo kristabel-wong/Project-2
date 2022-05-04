@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 function App() {
 	const Wrapper = styled(Stack)`
 		background: #ffffff;
+        border-radius: 50px;
 	`;
 
 	const Item = styled.div`
@@ -65,6 +66,23 @@ function App() {
     // truncate description ( for long descriptions - don't fit on cards)
     const truncate = (input) => input?.length > 100 ? `${input.substring(0,90)}...` : input;
 
+    const getAge = function (dob) {
+        if (dob !== null) {
+          let formattedDob =
+            dob.split("-").reverse().splice(0, 2).reverse().join("/") +
+            "/" +
+            dob.split("-").reverse().splice(2).join();
+          let today = new Date(); // MM/DD/YYYY format, and formattedDob changes data from YYYY/MM/DD to this format
+          let birthDate = new Date(formattedDob);
+          let age = today.getFullYear() - birthDate.getFullYear();
+          let m = today.getMonth() - birthDate.getMonth();
+          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+          }
+          return age;
+        }
+      };
+      
 	return (
         <div>
             
@@ -93,7 +111,7 @@ function App() {
                                     ></div>
                                     <div>
                                         <h2 className={styles.petName}>
-                                            {pet.name}, {pet.age}
+                                            {pet.name}, {pet.age == 0 ? getAge(pet.dob) : pet.age}
                                         </h2>
                                         <p className={styles.petDetails}>
                                             {pet.location}
