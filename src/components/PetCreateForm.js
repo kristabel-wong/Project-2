@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useState, useEffect,useCallback} from "react";
+import { useState, useEffect, useCallback} from "react";
 import { NavLink } from "react-router-dom"; 
 import {useDropzone} from "react-dropzone";
 import { db, storage, auth } from "../firebase-config";
@@ -9,11 +9,7 @@ import {v4} from "uuid"; // generate uniq image name
 import style from "./PetCreateForm.module.css";
 import Typewriter from "typewriter-effect"; // give the typing text effect
 
-
-
 function PetCreateForm() {
-  
-    
     // store all new info of a pet into seperate states
     const [newName, setNewName] = useState("");
     const [newAge, setNewAge] = useState(0);
@@ -24,25 +20,38 @@ function PetCreateForm() {
     const [newDescription, setNewDescription] = useState("");
     const [newUserID, setNewUserID] = useState("");
   
-   
+
     const [selectedImages, setSelectedImages] = useState([]);
+
+    
     const onDrop = useCallback(acceptedFiles => {
-        const arr = acceptedFiles.map((file)=> file, ...selectedImages)
-        setSelectedImages(arr.map(file=>
+        const arr = acceptedFiles.map((file)=> file)
+
+        const newImages = arr.map(file=>
             Object.assign(file,{
                preview:URL.createObjectURL(file)
             })
-            ))
+        );
+         setSelectedImages(selectedImages.concat(newImages));  
     }, [])
+
+
+    // Whole different on change function that sets the state for selectedImages. 
     const {getRootProps, getInputProps} = useDropzone({onDrop})
     const selected_images = selectedImages?.map(file=>(
-        <div>
+        <div className={style.preview_div}>
             <img src={file.preview} style={{width:"200px"}}/>
+            <button onClick={()=>deleteImage(file)}>delete</button>
         </div>
-    ))  
+    )) 
+    
+    const deleteImage = (file) =>{
+        const newFiles = [...selectedImages];         // make a var for the new array
+        newFiles.splice(newFiles.indexOf(file), 1);   // remove the file from the array
+        setSelectedImages(newFiles);
+    }
 
-
-
+    // get the current user's info from db
     const fetchUser = async () =>{
         if(newUserID ==""){
           const uid = await auth.currentUser.uid;
@@ -51,11 +60,14 @@ function PetCreateForm() {
             return
         }
     }
-
     if(newUserID ==""){
         fetchUser();
-    }
-    
+    };
+
+
+
+
+    // create a pet into db first and then add selected images to this pet
     const createPet = async () => { 
         const petNewRef = collection(db, "pets");  
         console.log("this is the pet new ref" + JSON.stringify(petNewRef));
@@ -78,16 +90,12 @@ function PetCreateForm() {
                     console.log('image ref:', imageRef);
                     uploadBytes(imageRef, image, "data_url").then(async()=>{
                         const downloadUrl = await getDownloadURL(imageRef)
-                        console.log(JSON.stringify)
                         await updateDoc(doc(db, "pets",petRef.id ),{
                             imagesUrl: arrayUnion(downloadUrl)
                         })
-                        console.log(downloadUrl)
-                    })
-                   
+                    })     
                 })
-            )
-        
+            )   
     }
 
    
@@ -117,7 +125,7 @@ function PetCreateForm() {
                 <input className={style.form_field} required onChange={(event)=>{setNewLocation(event.target.value)}}/>
                 <div className={style.drop_image_box}>
                     <div>
-                        <div {...getRootProps()}>
+                        <div {...getRootProps()}  className={style.drop_box}>
                             <input {...getInputProps()} />
                             <p>Drop the files here ...</p>
                         </div>
@@ -125,8 +133,6 @@ function PetCreateForm() {
                     </div>
                 </div>
                    
-                
-
                 <label className={style.form_label}>Description:</label>
                 <textarea className={style.form_textarea} required rows="10" onChange={(event)=>{setNewDescription(event.target.value)}}/>
                
