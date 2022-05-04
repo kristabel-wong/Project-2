@@ -6,9 +6,9 @@ function User({ user, selectUser }) {
 		<div className="user-wrapper" onClick={() => selectUser(user)} >
             
 			<div className="user-info" style={{display: 'grid', gridTemplateColumns: '60px 150px', marginBottom: '10px'}}>
-				<img style={{width: '50px'}} className="userIcon"
+				<img style={{width: '50px', borderRadius: '50px'}} className="userIcon"
 					src={
-						// user.img ||
+						user.imageUrl ||
 						"https://cdn-icons-png.flaticon.com/512/141/141783.png"
 					}
 				/>

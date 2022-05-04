@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { NavLink } from "react-router-dom";
 // import { Firestore, firebase } from "firebase/firestore";
+import style from "./UserShow.module.css";
 
 function User() {
   let params = useParams();
@@ -56,29 +57,56 @@ function User() {
     }
   }, []);
 
+  const truncate = (input) =>
+    input?.length > 30 ? `${input.substring(0, 25)}...` : input;
+
+  const getAge = function (dob) {
+    if (dob !== null) {
+      let formattedDob =
+        dob.split("-").reverse().splice(0, 2).reverse().join("/") +
+        "/" +
+        dob.split("-").reverse().splice(2).join();
+      let today = new Date(); // MM/DD/YYYY format, and formattedDob changes data from YYYY/MM/DD to this format
+      let birthDate = new Date(formattedDob);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      let m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
+    }
+  };
+
   return (
-    <div>
-      <div>
+    <div className={style.container}>
+      <div className={style.profile}>
         {userInfo === null ? (
           ""
         ) : (
-          <div>
-            <h3>First Name: {userInfo.firstName}</h3>
-            <h3>Last Name: {userInfo.lastName}</h3>
-            <h4> Email: {userInfo.email} </h4>
-            <h4> Location: {userInfo.location} </h4>
-            <h4> Description: {userInfo.description} </h4>
-            <img
-              src={
-                userInfo.imageUrl ||
-                "https://firebasestorage.googleapis.com/v0/b/project-2-5825e.appspot.com/o/user%2Fdefault_user.png?alt=media&token=ec9fe5f4-8348-41e3-8bef-abe7849e5d46"
-              }
-            />
+          <div className={style.profileInfo}>
+            <div className={style.profileImage}>
+              <img
+                src={
+                  userInfo.imageUrl ||
+                  "https://firebasestorage.googleapis.com/v0/b/project-2-5825e.appspot.com/o/user%2Fdefault_user.png?alt=media&token=ec9fe5f4-8348-41e3-8bef-abe7849e5d46"
+                }
+              />
+            </div>
+            <h3>First Name:</h3>
+            <p>{userInfo.firstName}</p>
+            <h3>Last Name:</h3>
+            <p>{userInfo.lastName}</p>
+            <h3>Email:</h3>
+            <p>{userInfo.email}</p>
+            <h3>Location:</h3>
+            <p>{userInfo.location}</p>
+            <h3>Description:</h3>
+            <p>{userInfo.description}</p>
             <div>
               {params.id === auth.currentUser.uid ? (
-                <div>
+                <div className={style.edit}>
                   <NavLink to={`/user/edit/${params.id}`}>
-                    <button>Edit</button>
+                    <button className={style.button74}>Edit</button>
                   </NavLink>
                 </div>
               ) : (
@@ -88,53 +116,76 @@ function User() {
           </div>
         )}
       </div>
-      <div>
-        {userPets.length < 1 ? (
-          ""
-        ) : (
-          <div>
-            <h1>My pets</h1>
-            {userPets.map((pet) => {
-              return (
-                <NavLink to={`/pet/${pet.id}`} key={pet.id}>
-                  <div key={pet.id}>
-                    <h2>Name:{pet.name}</h2>
-                    <h4>Location:{pet.location}</h4>
-                    <h4>Gender:{pet.gender}</h4>
-                    <h4>Age:{pet.age}</h4>
-                    <h4>DOB:{pet.dob}</h4>
-                    <h4>Description:{pet.description}</h4>
-                    <img src={pet.imageUrl} />
-                  </div>
-                </NavLink>
-              );
-            })}
-          </div>
-        )}
-      </div>
-      <div>
-        {userFavPets.length < 1 ? (
-          ""
-        ) : (
-          <div>
-            <h1> My Fav pets </h1>
-            {userFavPets.map((pet) => {
-              return (
-                <NavLink to={`/pet/${pet.id}`} key={pet.id}>
-                  <div key={pet.id}>
-                    <h2>Name:{pet.name}</h2>
-                    <h4>Location:{pet.location}</h4>
-                    <h4>Gender:{pet.gender}</h4>
-                    <h4>Age:{pet.age}</h4>
-                    <h4>DOB:{pet.dob}</h4>
-                    <h4>Description:{pet.description}</h4>
-                    <img src={pet.imageUrl} />
-                  </div>
-                </NavLink>
-              );
-            })}
-          </div>
-        )}
+
+      <div className={style.petContainer}>
+        <div>
+          {userPets.length < 1 ? (
+            ""
+          ) : (
+            <div>
+              <h1>My Pets</h1>
+              <div className={style.pets}>
+                {userPets.map((pet) => {
+                  return (
+                    <NavLink to={`/pet/${pet.id}`} key={pet.id}>
+                      <div key={pet.id} className={style.petTile}>
+                        <div
+                          className={style.image}
+                          style={{
+                            backgroundImage: `url(${pet.imagesUrl[0]})`,
+                          }}
+                        ></div>
+                        <h2>
+                          {pet.name}, {pet.age == 0 ? getAge(pet.dob) : pet.age}
+                        </h2>
+                        <h4 className={style.capital}>{pet.location}</h4>
+                        <h4 className={style.capital}>{pet.gender}</h4>
+                        <h5>
+                          {" "}
+                          <em>{truncate(pet.description)}</em>
+                        </h5>
+                      </div>
+                    </NavLink>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div>
+          {userFavPets.length < 1 ? (
+            ""
+          ) : (
+            <div>
+              <h1>Liked Pets</h1>
+              <div className={style.pets}>
+                {userFavPets.map((pet) => {
+                  return (
+                    <NavLink to={`/pet/${pet.id}`} key={pet.id}>
+                      <div key={pet.id} className={style.petTile}>
+                        <div
+                          className={style.image}
+                          style={{
+                            backgroundImage: `url(${pet.imagesUrl[0]})`,
+                          }}
+                        ></div>
+                        <h2>
+                          {pet.name}, {pet.age == 0 ? getAge(pet.dob) : pet.age}
+                        </h2>
+                        <h4 className={style.capital}> {`${pet.location}`}</h4>
+                        <h4 className={style.capital}>{pet.gender}</h4>
+                        <h5>
+                          <em>"{truncate(pet.description)}"</em>
+                        </h5>
+                      </div>
+                    </NavLink>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

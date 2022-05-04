@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 function App() {
 	const Wrapper = styled(Stack)`
 		background: #ffffff;
+        border-radius: 50px;
 	`;
 
 	const Item = styled.div`
@@ -18,8 +19,8 @@ function App() {
 		height: 550px;
 		text-shadow: 0 10px 10px #d1d5db;
 		box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-		border-radius: 8px;
-		padding: 10px;
+		border-radius: 10px;
+		padding: 15px;
 		transform: ${() => {
 			let rotation = Math.random() * (5 - -5) + -5;
 			return `rotate(${rotation}deg)`;
@@ -65,6 +66,23 @@ function App() {
     // truncate description ( for long descriptions - don't fit on cards)
     const truncate = (input) => input?.length > 100 ? `${input.substring(0,90)}...` : input;
 
+    const getAge = function (dob) {
+        if (dob !== null) {
+          let formattedDob =
+            dob.split("-").reverse().splice(0, 2).reverse().join("/") +
+            "/" +
+            dob.split("-").reverse().splice(2).join();
+          let today = new Date(); // MM/DD/YYYY format, and formattedDob changes data from YYYY/MM/DD to this format
+          let birthDate = new Date(formattedDob);
+          let age = today.getFullYear() - birthDate.getFullYear();
+          let m = today.getMonth() - birthDate.getMonth();
+          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+          }
+          return age;
+        }
+      };
+
 	return (
         <div>
             
@@ -93,7 +111,7 @@ function App() {
                                     ></div>
                                     <div>
                                         <h2 className={styles.petName}>
-                                            {pet.name}, {pet.age}
+                                            {pet.name}, {pet.age == 0 ? getAge(pet.dob) : pet.age}
                                         </h2>
                                         <p className={styles.petDetails}>
                                             {pet.location}
@@ -102,7 +120,7 @@ function App() {
                                             {pet.gender}
                                         </p>
                                         <p className={styles.petDetails}>
-                                            {truncate(`${pet.description}`)}
+                                            <em>"{truncate(`${pet.description}`)}"</em>
                                         </p>
                                         {/* <p className={styles.petDetails}>
                                             {auth.currentUser.uid}
