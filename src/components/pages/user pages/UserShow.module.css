@@ -25,6 +25,7 @@
   padding: 20px 30px;
   position: sticky;
   top: 20px;
+  background-color: white;
 }
 
 .profileInfo p {
@@ -60,6 +61,7 @@
   border-radius: 10px;
   color: black;
   position: relative;
+  background-color: white;
 }
 
 .pets {

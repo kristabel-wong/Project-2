@@ -75,7 +75,7 @@ function ChatBox({ user1, user2, petID }) {
 	return (
 		<div className={style.messageComponent}>
 			<div className={style.header}>
-                <img style={{width: '60px', margin: '10px'}}
+                <img style={{width: '60px', marginTop: '20px'}}
                         src={
                             user2.imageUrl ||
                             "https://cdn-icons-png.flaticon.com/512/141/141783.png"
