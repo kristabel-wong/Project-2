@@ -19,8 +19,8 @@ function App() {
 		height: 550px;
 		text-shadow: 0 10px 10px #d1d5db;
 		box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-		border-radius: 8px;
-		padding: 10px;
+		border-radius: 10px;
+		padding: 15px;
 		transform: ${() => {
 			let rotation = Math.random() * (5 - -5) + -5;
 			return `rotate(${rotation}deg)`;
@@ -120,7 +120,7 @@ function App() {
                                             {pet.gender}
                                         </p>
                                         <p className={styles.petDetails}>
-                                            {truncate(`${pet.description}`)}
+                                            <em>"{truncate(`${pet.description}`)}"</em>
                                         </p>
                                         {/* <p className={styles.petDetails}>
                                             {auth.currentUser.uid}

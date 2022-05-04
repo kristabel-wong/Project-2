@@ -33,6 +33,7 @@
     height: 400px;
     background-size: cover;
     background-position: center;
+    border-radius: 10px;
 }
 
 .petName {
