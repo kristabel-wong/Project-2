@@ -1,47 +1,15 @@
 // index all favourited pets for a user
-import React from "react";
-import { useState, useEffect } from "react";
-import { db, storage, auth } from "../../../firebase-config";
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import { NavLink } from "react-router-dom";
-import style from "./PetProfileList.module.css";
+import React, {Component, useState, useEffect} from "react";
+import PetProfileList from "./PetProfileList";
 
 function PetIndex() {
 
     const [pets, setPets] = useState([]);
-    const getPets = async () => {
-		const petsCollectionRef = collection(db, "pets");
-		const data = await getDocs(petsCollectionRef);
-		setPets(data.docs.map((pet) => ({ ...pet.data(), id: pet.id })));
-	};
-	
-	useEffect(() => {
-		
-		getPets()
-	}, [pets]);
 
         return(
-            <div className={style.container}>
-			{pets.map((pet) => {
-				return (
-					<NavLink
-						to={`/pet/${pet.id}`}
-						key={pet.id}
-						className={style.pet_index_card}
-					>
-						<div key={pet.id}>
-							<h2>Name:{pet.name}</h2>
-							<h4>Location:{pet.location}</h4>
-							<h4>Gender:{pet.gender}</h4>
-							<h4>Age:{pet.age}</h4>
-							<h4>DOB:{pet.dob}</h4>
-							<h4>Description:{pet.description}</h4>
-							<img src={pet.imagesUrl[0]} />
-						</div>
-					</NavLink>
-				);
-			})}
-		</div>
+            <div>
+                <PetProfileList />
+            </div>
         )
 }
 

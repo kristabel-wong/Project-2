@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { db, storage, auth } from "../firebase-config";
+import { db, storage, auth } from "../../../firebase-config";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { NavLink } from "react-router-dom";
 import style from "./PetProfileList.module.css";

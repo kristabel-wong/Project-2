@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Press+Start+2P&display=swap');
 
 .container {
-    width:600px;
+    width:800px;
     margin:100px auto;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
     padding-right:30px;
     padding-left: 30px;
+    position: relative;
 
 }
 
@@ -35,6 +36,20 @@
 
 .drop_image_box{
     position: relative;
+}
+
+.preview_div{
+    width: 30%;
+    margin: 1%;
+}
+
+.drop_box{
+    margin-top:20px;
+    height: 150px;
+    border: 2px dashed #FFD32D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .photo_label{
@@ -267,8 +282,8 @@ input{
 }
 
 .animation_dog {
-    position: fixed;
-    top: 400px;
-    right: 20%;
+    position: absolute;
+    top: 200px;
+    right: 220px;
 }
 
