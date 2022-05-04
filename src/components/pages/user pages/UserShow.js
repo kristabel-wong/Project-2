@@ -1,4 +1,4 @@
-import { link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../../../firebase-config";
 import {
@@ -9,19 +9,19 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-// import { async } from "@firebase/util";
 import { NavLink } from "react-router-dom";
+// import { Firestore, firebase } from "firebase/firestore";
 
 function User() {
   let params = useParams();
   const [userInfo, setUserInfo] = useState(null);
   const [userPets, setUserPets] = useState([]);
+  const [userFavPets, setUserFavPets] = useState([]);
 
   const getUser = async (uid) => {
     const userDocRef = doc(db, "users", uid);
     const userDocSnap = await getDoc(userDocRef);
     const data = userDocSnap.data();
-
     setUserInfo(data);
   };
 
@@ -33,10 +33,47 @@ function User() {
     setUserPets(petsData.docs.map((pet) => ({ ...pet.data(), id: pet.id })));
   };
 
+  const getUserFavPets = async (uid) => {
+    const userDocRef = doc(db, "users", uid);
+    const userDocSnap = await getDoc(userDocRef);
+    const data = userDocSnap.data();
+    const petIdArr = data.petArr;
+    let petArray = [];
+    const q = query(collection(db, "pets"), where("__name__", "in", petIdArr));
+    const petDoc = await getDocs(q);
+    console.log(petDoc);
+    petDoc.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+
+    // for (let i = 1; i < data.petArr.length; i++) {
+    //   const ref = collection(db, "pets");
+    //   const doc = await getDoc(ref, data.petArr[i]);
+    //   petArray.push(doc);
+
+    //   // const q = query(
+    //   //   collection(db, "pets"),
+    //   //   where("uid", "==", data.petArr[i])
+    //   // );
+    //   // const petDoc = await getDoc(q);
+    //   debugger;
+    //   // petArray.push(petDoc);s
+    //   // const userDocSnap = await getDoc(userDocRef);
+    // }
+    // console.log(petArray);
+
+    // const q = query(petsRef, where("user_uid", "==", uid));
+    // const petsData = await getDocs(q);
+    // // get pet id to set the key when rendering
+    // setUserFavPets(petsData.docs.map((pet) => ({ ...pet.data(), id: pet.id })));
+  };
+
   useEffect(() => {
     if (userInfo === null) {
       getUser(params.id);
       getUserPets(params.id);
+      getUserFavPets(params.id);
     }
   }, []);
 
@@ -96,6 +133,9 @@ function User() {
             })}
           </div>
         )}
+      </div>
+      <div>
+        <div>My Fav pets</div>
       </div>
     </div>
   );
