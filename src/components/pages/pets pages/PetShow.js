@@ -5,58 +5,82 @@ import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { NavLink, useParams } from "react-router-dom";
 
 function PetShow() {
-	// get the pet id(the file name)
-	let params = useParams();
-	console.log(params.type);
-	const [petInfo, setPetInfo] = useState(null);
-	let data;
+  // get the pet id(the file name)
+  let params = useParams();
+  console.log(params.type);
+  const [petInfo, setPetInfo] = useState(null);
+  let data;
 
-	const getPet = async (uid) => {
-		const petDocRef = doc(db, "pets", uid);
-		const petDocSnap = await getDoc(petDocRef);
-		data = petDocSnap.data();
-		setPetInfo(data);
-		console.log(data);
-	};
+  const getPet = async (uid) => {
+    const petDocRef = doc(db, "pets", uid);
+    const petDocSnap = await getDoc(petDocRef);
+    data = petDocSnap.data();
+    setPetInfo(data);
+    console.log(data);
+  };
 
-	const deletePet = async () => {
-		const petDoc = doc(db, "pets", params.type);
-		await deleteDoc(petDoc);
-	};
+  const deletePet = async () => {
+    const petDoc = doc(db, "pets", params.type);
+    await deleteDoc(petDoc);
+  };
 
-	useEffect(() => {
-		if (petInfo === null) {
-			getPet(params.type);
-		}
-	}, []);
+  useEffect(() => {
+    if (petInfo === null) {
+      getPet(params.type);
+    }
+  }, []);
 
-        return(
+  return (
+    <div>
+      {petInfo === null ? (
+        ""
+      ) : (
+        <div>
+          <h1>Name:{petInfo.name}</h1>
+          <h1>Age:{petInfo.age}</h1>
+          <h1>DOB:{petInfo.dob}</h1>
+          <h1>Type:{petInfo.type}</h1>
+          <h1>Gender:{petInfo.gender}</h1>
+          <h1>Location:{petInfo.location}</h1>
+          <h1>Description:{petInfo.description}</h1>
+          <img src={petInfo.imageUrl} />
+          {/* Only the owner of the pet can edit and delete the profile */}
+          {petInfo.user_uid === auth.currentUser.uid ? (
             <div>
-              {petInfo === null ? '' : 
+              {petInfo === null ? (
+                ""
+              ) : (
                 <div>
-                   <h1>Name:{petInfo.name}</h1>
-                   <h1>Age:{petInfo.age}</h1>
-                   <h1>DOB:{petInfo.dob}</h1>
-                   <h1>Type:{petInfo.type}</h1>
-                   <h1>Gender:{petInfo.gender}</h1>
-                   <h1>Location:{petInfo.location}</h1>
-                   <h1>Description:{petInfo.description}</h1>
-                   <img src={petInfo.imageUrl} />
-                   {/* Only the owner of the pet can edit and delete the profile */}
-                   {petInfo.user_uid === auth.currentUser.uid ? 
+                  <h1>Name:{petInfo.name}</h1>
+                  <h1>Age:{petInfo.age}</h1>
+                  <h1>DOB:{petInfo.dob}</h1>
+                  <h1>Type:{petInfo.type}</h1>
+                  <h1>Gender:{petInfo.gender}</h1>
+                  <h1>Location:{petInfo.location}</h1>
+                  <h1>Description:{petInfo.description}</h1>
+                  <img src={petInfo.imageUrl} />
+                  {/* Only the owner of the pet can edit and delete the profile */}
+                  {petInfo.user_uid === auth.currentUser.uid ? (
                     <div>
-                       <NavLink to={`/pet/edit/${params.type}`} >Edit</NavLink>
-                       
-                       <NavLink to={`/pet/index`} onClick={deletePet}>Delete</NavLink>
-                       
+                      <NavLink to={`/pet/edit/${params.type}`}>Edit</NavLink>
+
+                      <NavLink to={`/pet/index`} onClick={deletePet}>
+                        Delete
+                      </NavLink>
                     </div>
-                     : 
-                    <div>
-                    </div> 
-                   } 
-                </div> }
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
+              )}
             </div>
-        )
+          ) : (
+            ""
+          )}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default PetShow;
