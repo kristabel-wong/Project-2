@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db, auth } from "../../../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
-import style from './message.module.css';
+import style from "./message.module.css";
 
 import {
 	collection,
@@ -10,7 +10,7 @@ import {
 	onSnapshot,
 	doc,
 	getDoc,
-	getDocs
+	getDocs,
 } from "firebase/firestore";
 import ChatBox from "./ChatBox";
 import User from "../../User";
@@ -31,21 +31,21 @@ function MessagesList() {
 		return favArr;
 	};
 
-	const getPetsChatLog = async function(){
-		const documentId =
-			auth.currentUser.uid > user2
-				? `${auth.currentUser.uid + user2}`
-				: `${user2 + auth.currentUser.uid}`;
+	// const getPetsChatLog = async function(){
+	// 	const documentId =
+	// 		auth.currentUser.uid > user2
+	// 			? `${auth.currentUser.uid + user2}`
+	// 			: `${user2 + auth.currentUser.uid}`;
 
-		const favRef = collection(db, 'favourites', documentId, 'messages')
-		const docSnap = await getDocs(favRef)
-		// const data = docSnap.data()
-		docSnap.forEach((doc) => {
-			console.log(doc.data())
-			
-		})
-	}
-    getPetsChatLog()
+	// 	const favRef = collection(db, 'favourites', documentId, 'messages')
+	// 	const docSnap = await getDocs(favRef)
+	// 	// const data = docSnap.data()
+	// 	docSnap.forEach((doc) => {
+	// 		console.log(doc.data())
+
+	// 	})
+	// }
+	// getPetsChatLog()
 
 	const getChatLog = async function (user) {
 		const user1 = user.uid;
