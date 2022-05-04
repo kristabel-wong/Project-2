@@ -6,6 +6,7 @@ import { Stack } from "./stack";
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 
+
 function App() {
 	const Wrapper = styled(Stack)`
 		background: #ffffff;
@@ -35,49 +36,89 @@ function App() {
 	};
 
 	useEffect(() => {
-		getPets();
+        if (pets !== []) {
+            getPets();
+        }  
 	}, []);
 
+
+    // filter out users own pets 
+    // let filterPets = function () { pets.filter(pet => {
+    //     pet.user_uid != auth.currentUser.uid;
+    //     !pet.id.includes(auth.currentUser.petArr) 
+    // })}
+    let filterPets = pets.filter(pet => pet.user_uid != auth.currentUser.uid);
+
+    // shuffle pets
+    function shuffle (array) {
+        let currentIndex = array.length, tempValue, randomIndex;
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            tempValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = tempValue;
+        }
+        return array
+    }
+    
+    // truncate description ( for long descriptions - don't fit on cards)
+    const truncate = (input) => input?.length > 100 ? `${input.substring(0,90)}...` : input;
+
 	return (
-		<div className={styles.showPage}>
-			<div className={styles.deck}>
-				<Wrapper onVote={(item, vote) => console.log(item.props, vote)}>
-					{pets.map((pet) => {
-						return (
-							<Item
-								data-value={pet.user_uid}
-								whileTap={{ scale: 1.15 }}
-								key={pet.id}
-							>
-								<div
-									className={styles.imageContainer}
-									style={{
-										backgroundImage: `url(${pet.imageUrl})`,
-									}}
-								></div>
-								<div>
-									<h3 className={styles.petName}>
-										{pet.name}, {pet.age}
-									</h3>
-									<p className={styles.petDetails}>
-										{pet.location}
-									</p>
-									<p className={styles.petDetails}>
-										{pet.description}
-									</p>
-									<p className={styles.petDetails}>
-										{auth.currentUser.uid}
-									</p>
-									<p className={styles.petDetails}>
-										{pet.user_uid}
-									</p>
-								</div>
-							</Item>
-						);
-					})}
-				</Wrapper>
-			</div>
-		</div>
+        <div>
+            
+                <h1 className={styles.heading} >
+                    <NavLink to={"/pet/index"} className={styles.link}>
+                        <span>🐶</span> List View <span>🐰</span>
+                    </NavLink>
+                </h1>
+
+            <div className={styles.showPage}>
+                <div className={styles.dislike}> </div>
+                <div className={styles.deck}>
+                    <Wrapper onVote={(item, vote) => console.log(item.props, vote)}>
+                        {shuffle(filterPets).map((pet) => { 
+                            return (
+                                <Item
+                                    data-value={pet.user_uid}
+                                    whileTap={{ scale: 1.15 }}
+                                    key={pet.id}
+                                >
+                                    <div
+                                        className={styles.imageContainer}
+                                        style={{
+                                            backgroundImage: `url(${pet.imagesUrl[0]})`,
+                                        }}
+                                    ></div>
+                                    <div>
+                                        <h2 className={styles.petName}>
+                                            {pet.name}, {pet.age}
+                                        </h2>
+                                        <p className={styles.petDetails}>
+                                            {pet.location}
+                                        </p>
+                                        <p className={styles.petDetails}>
+                                            {pet.gender}
+                                        </p>
+                                        <p className={styles.petDetails}>
+                                            {truncate(`${pet.description}`)}
+                                        </p>
+                                        {/* <p className={styles.petDetails}>
+                                            {auth.currentUser.uid}
+                                        </p>
+                                        <p className={styles.petDetails}>
+                                            {pet.user_uid}
+                                        </p> */}
+                                    </div>
+                                </Item>
+                            );
+                        })}
+                    </Wrapper>
+                </div>
+                <div className={styles.like}></div>
+            </div>
+        </div>
 	);
 
     //                     <div>
