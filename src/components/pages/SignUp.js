@@ -7,6 +7,7 @@ import {
 import { auth } from "../../firebase-config";
 import { db } from "../../firebase-config";
 import { doc, setDoc } from "firebase/firestore";
+import style from "./SignUp.module.css";
 
 import Button from "../Button";
 
@@ -46,36 +47,50 @@ function SignUp() {
     }
   };
   return (
-    <div>
-      <h3>Register User</h3>
-      <input
-        placeholder="First Name..."
-        onChange={(event) => {
-          setFirstName(event.target.value);
-        }}
-      />
-      <input
-        placeholder="Last Name..."
-        onChange={(event) => {
-          setLastName(event.target.value);
-        }}
-      />
-      <input
-        placeholder="Email..."
-        onChange={(event) => {
-          setRegisterEmail(event.target.value);
-        }}
-      />
-      <input
-        placeholder="Password..."
-        type="password"
-        onChange={(event) => {
-          setRegisterPassword(event.target.value);
-        }}
-      />
-      <NavLink to={"/"}>
-        <Button onClick={register} classnames="btn" content="Register" />
-      </NavLink>
+    <div className={style.background}>
+      <div className={style.container}>
+        <h3 className={style.hover}>Register User</h3>
+        <input
+          className={style.input}
+          placeholder="First Name..."
+          required
+          onChange={(event) => {
+            setFirstName(event.target.value);
+          }}
+        />
+        <input
+          className={style.input}
+          placeholder="Last Name..."
+          required
+          onChange={(event) => {
+            setLastName(event.target.value);
+          }}
+        />
+        <input
+          className={style.input}
+          placeholder="Email..."
+          required
+          onChange={(event) => {
+            setRegisterEmail(event.target.value);
+          }}
+        />
+        <input
+          className={style.input}
+          placeholder="Password..."
+          required
+          type="password"
+          onChange={(event) => {
+            setRegisterPassword(event.target.value);
+          }}
+        />
+        <NavLink to={"/"}>
+          <Button
+            onClick={register}
+            classnames={style.button74}
+            content="Register"
+          />
+        </NavLink>
+      </div>
     </div>
   );
 }
