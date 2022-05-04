@@ -26,6 +26,7 @@ function SignUp() {
       email: registerEmail,
       uid: uid,
       favArr: [],
+      favPets: [],
       location: "",
       description: "",
       imageUrl: "",
