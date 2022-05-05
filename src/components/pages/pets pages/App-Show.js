@@ -88,9 +88,15 @@ function App() {
             
                 <h1 className={styles.heading} >
                     <NavLink to={"/pet/index"} className={styles.link}>
+                        <button className={styles.button74}>
                         <span>🐶</span> List View <span>🐰</span>
+                        </button>
                     </NavLink>
                 </h1>
+
+                <h5 className={styles.alternative}>
+                    <em>(If you prefer to view in list form over swipe)</em>
+                </h5>
 
             <div className={styles.showPage}>
                 <div className={styles.dislike}> </div>

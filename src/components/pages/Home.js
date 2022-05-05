@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Dogs from "../Dogs";
+import Cats from "../Cats";
 
 function Home() {
-	return <div>hello team</div>;
+	return (
+		<div>
+			<Dogs />
+			<Cats />
+		</div>
+	);
 }
 
 export default Home;
