@@ -6,7 +6,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { NavLink, useParams } from "react-router-dom";
 import { v4 } from "uuid"; // generate uniq image name
 import style from "../../PetCreateForm.module.css";
-import Typewriter from "typewriter-effect"; // give the typing text effect
+
 
 function UserEdit() {
   let params = useParams();
@@ -87,45 +87,50 @@ function UserEdit() {
       {userInfo === null ? (
         ""
       ) : (
-        <div>
-          <h1> Update your profile </h1>
-          <label>First Name:</label>
+        <div className={style.container}>
+          <h1 className={style.form_title}> Update your profile </h1>
+          <label className={style.form_label}>First Name:</label>
           <input
             defaultValue={userInfo.firstName}
+            className={style.form_field}
             onChange={(event) => {
               setNewFirstName(event.target.value);
             }}
           />
-          <label>Last Name:</label>
+          <label className={style.form_label}>Last Name:</label>
           <input
             defaultValue={userInfo.lastName}
+            className={style.form_field}
             onChange={(event) => {
               setNewLastName(event.target.value);
             }}
           />
-          <label>Location:</label>
+          <label className={style.form_label}>Location:</label>
           <input
             defaultValue={userInfo.location}
+            className={style.form_field}
             placeholder="Melbourne"
             onChange={(event) => {
               setNewLocation(event.target.value);
             }}
           />
-          <label>Image:</label>
+          <label className={style.form_label}>Image:</label>
           <input
             type="file"
+            className={style.form_field}
             onChange={(event) => {
               setNewUrl(event.target.files[0]);
             }}
           />
-          <button onClick={onFileChange} value="Upload">
+          <button onClick={onFileChange} value="Upload"  className={style.button74}>
             {" "}
             Upload Image{" "}
           </button>
           <div>
-            <label>Description:</label>
+            <label className={style.form_label}>Description:</label>
             <textarea
               defaultValue={userInfo.description}
+              className={style.form_textarea}
               rows="10"
               placeholder="Describe about yourself..."
               onChange={(event) => {
@@ -136,7 +141,9 @@ function UserEdit() {
 
           <div>
             <NavLink to={`/user/${params.id}`}>
-              <button onClick={updateUser}> Update Profile </button>
+              <div className={style.text_align}>
+                <button className={style.button74} onClick={updateUser}> Update Profile </button>
+              </div>
             </NavLink>
           </div>
         </div>

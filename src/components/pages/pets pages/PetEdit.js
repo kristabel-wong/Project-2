@@ -3,17 +3,17 @@ import { useState, useEffect,useCallback } from "react";
 import { db, storage, auth } from "../../../firebase-config";
 import { getDoc, updateDoc,arrayUnion, doc,arrayRemove} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { NavLink, useParams,useNavigate } from "react-router-dom";
+import { NavLink, useParams,useNavigate} from "react-router-dom";
 import { v4 } from "uuid"; // generate uniq image name
 import style from "../../PetCreateForm.module.css";
 import {useDropzone} from "react-dropzone";
 import Typewriter from "typewriter-effect"; // give the typing text effect
-import { async } from "@firebase/util";
-import { reload } from "firebase/auth";
+import { ClassNames } from "@emotion/react";
+
 
 function PetEdit() {
 	let params = useParams();
-	let navigate = useNavigate();
+	const navigate = useNavigate()
 
 	const [petInfo, setPetInfo] = useState(null);
 
@@ -40,18 +40,17 @@ function PetEdit() {
 	
     const onDrop = useCallback(acceptedFiles => {
         const arr = acceptedFiles.map((file)=> file);
-
         const newImages = arr.map(file=>
             Object.assign(file,{
                preview:URL.createObjectURL(file)
             })
         );
-         setSelectedImages(selectedImages.concat(newImages));  
-    }, [])
+         setSelectedImages(newImages);  
+    }, [selectedImages])
 
     const deleteImage = (file) =>{
-        const newFiles = [...selectedImages];         // make a var for the new array
-        newFiles.splice(newFiles.indexOf(file), 1);   // remove the file from the array
+        const newFiles = [...selectedImages];         
+        newFiles.splice(newFiles.indexOf(file), 1);   
         setSelectedImages(newFiles);
     }
     
@@ -59,14 +58,15 @@ function PetEdit() {
 			await updateDoc(doc(db, "pets",params.type),{
 				  imagesUrl: arrayRemove(img)
 			})
+			window.location.reload(false);
 	}
 
     // Whole different on change function that sets the state for selectedImages. 
     const {getRootProps, getInputProps} = useDropzone({onDrop})
     const selected_images = selectedImages?.map((file,i)=>(
-        <div>
-            <img src={file.preview} style={{width:"200px"}}/>
-            <button onClick={()=>deleteImage(file)}>delete</button>
+        <div className={style.preview_div} >
+            <img src={file.preview} style={{width:"100%",height:"150px", display:"block", objectFit:"cover"}}/>
+            <button className={style.upload_button} onClick={()=>deleteImage(file)}>Delete</button>
         </div>
     ))  
 
@@ -82,7 +82,7 @@ function PetEdit() {
 			setNewDOB(`${petInfo.dob}`);
 		}
 		if (updateUrl == null) {
-			setNewUrl(`${petInfo.imagesUrl}`);
+			setNewUrl(`${petInfo.imageUrl}`);
 		}
 		if (updateLocation == null) {
 			setNewLocation(`${petInfo.location}`);
@@ -98,10 +98,23 @@ function PetEdit() {
 		}
 	}
 
+	const upload = () =>{
+		selectedImages.map(image=>{
+			const imageRef = ref(storage, `images/pets/${v4()+image.path}`);
+			uploadBytes(imageRef, image, "data_url").then(async()=>{
+				const downloadUrl = await getDownloadURL(imageRef)
+					updateDoc(doc(db, "pets", params.type),{
+					imagesUrl: arrayUnion(downloadUrl)
+				})
+				alert("upload successful")   
+			}) 			 
+		})
+	}
+
 	// update pet info
 	const updatePet = async () => {
 		const petDoc = doc(db, "pets", params.type);
-		await updateDoc(petDoc, {
+		updateDoc(petDoc, {
 			name: updateName,
 			age: updateAge,
 			dob: updateDOB,
@@ -109,25 +122,11 @@ function PetEdit() {
 			gender: updateGender,
 			location: updateLocation,
 			description: updateDescription,
-		});
-        await Promise.all(
-            selectedImages.map(image=>{
-                const imageRef = ref(storage, `images/pets/${v4()+image.path}`);
-                console.log("url is", `images/pets/${v4()+image.path}`);
-                console.log('image ref:', imageRef);
-                uploadBytes(imageRef, image, "data_url").then(async()=>{
-                    const downloadUrl = await getDownloadURL(imageRef)
-                    await updateDoc(doc(db, "pets",params.type),{
-                        imagesUrl: arrayUnion(downloadUrl)
-                    })
-                })     
-            })
-        )
-		navigate(`/pet/${params.type}`);  
+		});		
 	};
 
 	useEffect(() => {
-		if(petInfo === null){
+		if (petInfo === null) {
 			getPet(params.type);
 		}
 	}, []);
@@ -207,13 +206,18 @@ function PetEdit() {
                                 <input {...getInputProps()} />
                                 <p>Adding more images ...</p>
                             </div>
+							<div className={style.flex_box}>
 							{petInfo.imagesUrl.map((img)=>{
-								return <div>
-								          <img src={img} style={{width:"200px"}} />
-								          <button onClick={()=>deleteExImg(img)}>delete</button> 
+								return <div className={style.preview_div}>
+								          <img src={img} style={{width:"100%",height:"150px", display:"block", objectFit:"cover"}} />
+								          <button className={style.upload_button} onClick={()=>deleteExImg(img)}>Delete</button> 
 									   </div>	  
 							})}
                             {selected_images}
+							</div>
+							<div className={style.text_align}>
+							<button className={style.button74} onClick={upload}>Upload Image</button>
+							</div>
                         </div>
                     </div>
 
@@ -227,14 +231,18 @@ function PetEdit() {
 						}}
 					/>
 					
+					<NavLink to={`/pet/${params.type}`} >
+						<div className={style.text_align}>
 						<button
-							className={style.upload_button}
+							className={style.button74}
 							onClick={updatePet}
 						>
 							{" "}
 							Update Profile{" "}
 						</button>
-					
+						</div>
+					</NavLink>	
+				
 					<div className={style.animation_dog}>
 						<div className={style.dog}>
 							<div className={style.body}></div>

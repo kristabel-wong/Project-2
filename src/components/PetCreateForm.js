@@ -40,8 +40,8 @@ function PetCreateForm() {
     const {getRootProps, getInputProps} = useDropzone({onDrop})
     const selected_images = selectedImages?.map(file=>(
         <div className={style.preview_div}>
-            <img src={file.preview} style={{height:"200px"}}/>
-            <button onClick={()=>deleteImage(file)}>delete</button>
+            <img src={file.preview} style={{width:"100%",height:"150px", display:"block", objectFit:"cover"}}/>
+            <button className={style.upload_button} onClick={()=>deleteImage(file)}>Delete</button>
         </div>
     )) 
     
@@ -113,9 +113,9 @@ function PetCreateForm() {
 
                 <label className={style.form_label}>Type:</label>
                 <select className={style.form_field} required onChange={(event)=>{setNewType(event.target.value)}}>
-                    <option value="cat">Cat</option>
-                    <option value="dog">Dog</option>
-                    <option value="otherPet">Other pets</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Dog">Dog</option>
+                    <option value="OtherPet">Other pets</option>
                 </select>
 
                 <label className={style.form_label}>Gender:</label>
@@ -136,7 +136,9 @@ function PetCreateForm() {
                 <label className={style.form_label}>Description:</label>
                 <textarea className={style.form_textarea} required rows="10" onChange={(event)=>{setNewDescription(event.target.value)}}/>
                
-                <NavLink to={`/pet/index`} className={style.upload_button} onClick={createPet}> Submit Form </NavLink>
+                <NavLink to={`/pet/index`}onClick={createPet}> 
+                <div className={style.text_align}><button className={style.button74}> Submit Form </button></div>
+                </NavLink>
                 
                 <div className={style.animation_dog}>
                     <div className={style.dog}>
