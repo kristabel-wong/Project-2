@@ -21,6 +21,7 @@ function PetCreateForm() {
     const [newLocation, setNewLocation] = useState("");
     const [newDescription, setNewDescription] = useState("");
     const [newUserID, setNewUserID] = useState("");
+    
   
 
     const [selectedImages, setSelectedImages] = useState([]);
@@ -83,6 +84,8 @@ function PetCreateForm() {
                 description: newDescription,
                 user_uid: newUserID,
                 imagesUrl: [],
+                interested: [],
+                adoptedBy: "",
             })
 
             await Promise.all(
@@ -95,10 +98,11 @@ function PetCreateForm() {
                         await updateDoc(doc(db, "pets",petRef.id ),{
                             imagesUrl: arrayUnion(downloadUrl)
                         })
-                        navigate("/pet/index")
+                        
                     })     
                 })
-            )   
+            )
+            navigate("/pet/index")   
     }
 
    

@@ -32,15 +32,10 @@ function NavBar() {
               onClick={logout}
             >Sign Out</button>
           </NavLink>
-          <NavLink to={"/newpet"}>
-            <button className={style.button51} >New Pet</button>
-          </NavLink>
           <NavLink to={"/message"}>
             <button className={style.button51}>Messages</button>
           </NavLink>
-          <NavLink to={"/show"}>
-              <button className={style.button51}>AppShow</button>
-          </NavLink>
+    
         </>
       ) : (
         <>

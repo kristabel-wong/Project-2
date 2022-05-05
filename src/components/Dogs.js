@@ -29,7 +29,7 @@ function Dogs() {
 		<div>
 			<Wrapper className={style.container_dog}>
 			    <div className={style.div}>
-                   <h1 className={style.home_title}> 🐕 Some of our available Dog! 🐕</h1>
+                   <h1 className={style.home_title}> 🐕 Doggos! 🐕</h1>
                 </div>
 				<Splide
 					options={{

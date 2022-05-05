@@ -50,32 +50,10 @@ function Home() {
 		setPets(data.docs.map((pet) => ({ ...pet.data(), id: pet.id })));
 	};
 
-	useEffect(() => {
-		if (pets !== []) {
-			getPets();
-		}
-	}, []);
-
 	// filter out users own pets
-	// let filterPets = function () { pets.filter(pet => {
-	//     pet.user_uid != auth.currentUser.uid;
-	//     !pet.id.includes(auth.currentUser.petArr)
-	// })}
-	let filterPets = pets.filter((pet) => pet.user_uid != auth.currentUser.uid);
-
-	// shuffle pets
-	function shuffle(array) {
-		let currentIndex = array.length,
-			tempValue,
-			randomIndex;
-		while (0 !== currentIndex) {
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex -= 1;
-			tempValue = array[currentIndex];
-			array[currentIndex] = array[randomIndex];
-			array[randomIndex] = tempValue;
-		}
-		return array;
+	let filterPets;
+	if (user !== null) {
+		filterPets = pets.filter((pet) => pet.user_uid != auth.currentUser.uid);
 	}
 
 	// truncate description ( for long descriptions - don't fit on cards)
@@ -99,6 +77,27 @@ function Home() {
 		}
 	};
 
+	// shuffle pets
+	function shuffle(array) {
+		let currentIndex = array.length,
+			tempValue,
+			randomIndex;
+		while (0 !== currentIndex) {
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+			tempValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = tempValue;
+		}
+		return array;
+	}
+
+	useEffect(() => {
+		if (pets !== []) {
+			getPets();
+		}
+	}, []);
+
 	return (
 		<motion.div
 			initial={{ opacity: 0 }}
@@ -108,30 +107,34 @@ function Home() {
 			<div>
 				{!user ? (
 					<>
-						<div className={style.container}>
-							<div className={style.centerDiv}>
-								<h1 className={style.title}>
-									Adopt the perfect pet
-								</h1>
-								<p className={style.des}>
-									Our mission is to help the pets in need of
-									rescue and rehabilitation and help them find
-									a loving home. Open your doors and hearts to
-									pets in needs of a home.
-								</p>
-								<div style={{ textAlign: "center" }}>
-									<h3 className={style.sub_title}>
-										{" "}
-										Pest available for adoption nearby
-									</h3>
-									<NavLink
-										to={"/signup"}
-										className={style.button87}
-									>
-										Start your search
-									</NavLink>
+						<div>
+							<div className={style.container}>
+								<div className={style.centerDiv}>
+									<h1 className={style.title}>
+										Adopt the perfect pet
+									</h1>
+									<p className={style.des}>
+										Our mission is to help the pets in need
+										of rescue and rehabilitation and help
+										them find a loving home. Open your doors
+										and hearts to pets in needs of a home.
+									</p>
+									<div style={{ textAlign: "center" }}>
+										<h3 className={style.sub_title}>
+											{" "}
+											Pets available for adoption nearby
+										</h3>
+										<NavLink
+											to={"/signup"}
+											className={style.button87}
+										>
+											Start your search
+										</NavLink>
+									</div>
 								</div>
 							</div>
+							<Dogs />
+							<Cats />
 						</div>
 					</>
 				) : (
@@ -233,8 +236,6 @@ function Home() {
 								</div>
 								<div className={styles.like}></div>
 							</div>
-							<Dogs />
-							<Cats />
 						</div>
 					</>
 				)}

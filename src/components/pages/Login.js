@@ -57,6 +57,7 @@ function Login() {
 				location: "",
 				description: "",
 				imageUrl: user.photoURL,
+				adoptedPets:[],   
 			});
 		}
 	};

@@ -30,7 +30,7 @@ function Cats() {
 		<div>
 			<Wrapper className={style.container_cat}>
 			    <div className={style.div}>
-                   <h1 className={style.home_title}> 🐈  Some of our available cats! 🐈</h1>
+                   <h1 className={style.home_title}> 🐈  Kitties! 🐈</h1>
                 </div>
 		
 				<Splide

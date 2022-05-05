@@ -34,6 +34,7 @@ function PetShow() {
 	console.log(params.type);
 	const [petInfo, setPetInfo] = useState(null);
 	let data;
+	let filterPets;
 
 	const getPet = async (uid) => {
 		const petDocRef = doc(db, "pets", uid);
@@ -102,18 +103,27 @@ function PetShow() {
 						</Carousel>
 						<div className={style.center_div}>
 							<h1 className={style.title}>Name:{petInfo.name}</h1>
-							<p className={style.des}> 🍃 Age:{petInfo.age}</p>
-							<p className={style.des}> 🧁 DOB:{petInfo.dob}</p>
-							<p className={style.des}> 🐼 Type:{petInfo.type}</p>
 							<p className={style.des}>
 								{" "}
-								🤯 Gender:{petInfo.gender}
+								:leaves: Age:{petInfo.age}
 							</p>
 							<p className={style.des}>
 								{" "}
-								🏡 Location:{petInfo.location}
+								:cupcake: DOB:{petInfo.dob}
 							</p>
-							<p className={style.des}> 🐶 Description:</p>
+							<p className={style.des}>
+								{" "}
+								:panda_face: Type:{petInfo.type}
+							</p>
+							<p className={style.des}>
+								{" "}
+								:exploding_head: Gender:{petInfo.gender}
+							</p>
+							<p className={style.des}>
+								{" "}
+								:house_with_garden: Location:{petInfo.location}
+							</p>
+							<p className={style.des}> :dog: Description:</p>
 							<p> {petInfo.description}</p>
 						</div>
 						{/* Only the owner of the pet can edit and delete the profile */}
