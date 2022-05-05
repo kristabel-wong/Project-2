@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
 	onAuthStateChanged,
@@ -16,7 +16,9 @@ function Login() {
 	const [loginEmail, setLoginEmail] = useState("");
 	const [loginPassword, setLoginPassword] = useState("");
 	const [user, setUser] = useState({});
+	const [errorDisplay, setErrorDisplay] = useState("");
 	let navigate = useNavigate();
+	let logInFailed = false;
 
 	onAuthStateChanged(auth, (currentUser) => {
 		setUser(currentUser);
@@ -24,14 +26,16 @@ function Login() {
 
 	const login = async () => {
 		try {
-			const user = await signInWithEmailAndPassword(
-				auth,
-				loginEmail,
-				loginPassword
-			);
+			await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+			logInFailed = false;
 			navigate("/");
 		} catch (error) {
+			logInFailed = true;
+			setErrorDisplay(error.message);
 			console.log(error.message);
+			setLoginEmail("");
+			setLoginPassword("");
+			return;
 		}
 	};
 
@@ -61,16 +65,28 @@ function Login() {
 		signInWithPopup(auth, provider)
 			.then((result) => {
 				createUser(result);
+				logInFailed = false;
 				navigate("/");
 			})
 			.catch((error) => {
+				logInFailed = true;
+				setErrorDisplay(error.message);
 				console.log(error);
 			});
 	};
+	const displayError = function () {
+		if (logInFailed) {
+			errorDisplay.map((error) => <message>error</message>);
+		}
+	};
 
+	useEffect(() => {
+		displayError();
+	}, [logInFailed]);
 	return (
 		<div className={style.background}>
 			<div className={style.container}>
+				{errorDisplay}
 				<h3 className={style.hover}>Login</h3>
 				<input
 					placeholder="Email..."
@@ -91,20 +107,22 @@ function Login() {
 						setLoginPassword(event.target.value);
 					}}
 				/>
-				<Button onClick={login} classnames={style.button74} content="Login" />
-				<h4 style={{margin:"20px"}}> User Logged In:</h4>
-			    <h4>{user?.email}</h4>
+				<Button
+					onClick={login}
+					classnames={style.button74}
+					content="Login"
+				/>
+				<h4 style={{ margin: "20px" }}> User Logged In:</h4>
+				<h4>{user?.email}</h4>
 
-     			<div>
-     				<Button
-     					onClick={signInWithGoogle}
+				<div>
+					<Button
+						onClick={signInWithGoogle}
 						classnames={style.button74}
-     					content="Sign in with google"
-     				/>
-     			</div>
+						content="Sign in with google"
+					/>
+				</div>
 			</div>
-
-			
 		</div>
 	);
 }

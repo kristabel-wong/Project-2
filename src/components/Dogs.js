@@ -6,6 +6,7 @@ import styled from "styled-components";
 import "@splidejs/react-splide/css";
 import style from "./Cats.module.css";
 
+// carousel for landing page dogs wheel
 function Dogs() {
 	const [dogs, setDogs] = useState([]);
 

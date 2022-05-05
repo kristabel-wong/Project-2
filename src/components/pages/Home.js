@@ -3,7 +3,6 @@ import Dogs from "../Dogs";
 import Cats from "../Cats";
 import { db,auth } from "../../firebase-config";
 import { NavLink } from "react-router-dom";
-import Button from "../Button";
 import { AuthContext } from "../../context/auth";
 import style from "./Home.module.css";
 

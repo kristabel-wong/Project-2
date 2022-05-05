@@ -7,7 +7,8 @@ import "@splidejs/react-splide/css";
 import style from "./Cats.module.css";
 
 
-function Dogs() {
+// carousel for landing page cats wheel
+function Cats() {
 	const [dogs, setDogs] = useState([]);
 
 	const getPets = async function (pet) {
@@ -42,14 +43,14 @@ function Dogs() {
 					}}
 					style={{width:"80%", margin:"auto"}}
 				>
-					{dogs.map((dog) => {
+					{dogs.map((cat) => {
 						return (
-							<SplideSlide key={dog.petID}>
+							<SplideSlide key={cat.petID}>
 								<Card>
-									<p>{dog.name}</p>
+									<p>{cat.name}</p>
 									<img
-										src={dog.imagesUrl[0]}
-										alt={dog.name}
+										src={cat.imagesUrl[0]}
+										alt={cat.name}
 									/>
 									<Gradient />
 								</Card>
@@ -106,4 +107,4 @@ const Gradient = styled.div`
 	border-radius: 1rem;
 `;
 
-export default Dogs;
+export default Cats;
