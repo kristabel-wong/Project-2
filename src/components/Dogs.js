@@ -61,7 +61,7 @@ function Dogs() {
 }
 
 const Wrapper = styled.div`
-	margin: 4rem 0rem;
+ 	margin: 50px auto;
 `;
 const Card = styled.div`
 	height: 15rem;

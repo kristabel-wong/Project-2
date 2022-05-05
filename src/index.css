@@ -25,6 +25,10 @@ code {
     monospace;
 }
 
+p{
+  white-space: pre-line;
+}
+
 .span-moving{
         letter-spacing: 0;
         padding: .25em 0 .325em;
