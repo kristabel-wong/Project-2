@@ -5,6 +5,7 @@ import { collection, query, where, limit, getDocs } from "firebase/firestore";
 import styled from "styled-components";
 import "@splidejs/react-splide/css";
 
+// carousel for landing page dogs wheel
 function Dogs() {
 	const [dogs, setDogs] = useState([]);
 

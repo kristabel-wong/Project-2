@@ -6,8 +6,8 @@ import {
 	orderBy,
 	addDoc,
 	setDoc,
-    doc,
-    getDoc,
+	doc,
+	getDoc,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase-config";
 import ChatMessage from "./ChatMessage";
@@ -17,10 +17,10 @@ import style from "./message.module.css";
 function ChatBox({ user1, user2, petID }) {
 	const [messages, setMessages] = useState([]);
 	const [formValue, setFormValue] = useState("");
-
 	const dummy = useRef();
 	const currentUserOne = user1; // current user logged in
 	const currentUserTwo = user2.uid; // recipient user
+
 	const getMessages = async function () {
 		const id =
 			currentUserOne > currentUserTwo
@@ -35,16 +35,14 @@ function ChatBox({ user1, user2, petID }) {
 			});
 			setMessages(msgs);
 		});
-        
 	};
-    
+
+	// this needs to refactored may not be required
 	let data;
-	const getDoc = async function (){
-		const data= await getDoc(db, "users",currentUserTwo)
+	const getDoc = async function () {
+		const data = await getDoc(db, "users", currentUserTwo);
 		console.log(data);
-	}
-
-
+	};
 
 	const sendMessage = async (e) => {
 		e.preventDefault();
@@ -63,28 +61,26 @@ function ChatBox({ user1, user2, petID }) {
 		});
 		setFormValue("");
 
-		dummy.current.scrollIntoView({ behavior: "smooth" }); // ensure we always scroll to the bottom when message appears
+		dummy.current.scrollIntoView({ behavior: "smooth" });
+		// ensure we always scroll to the bottom when message appears
 	};
 
 	// useeffect here is ensuring we update messages based on who is clicked in the left
 	useEffect(() => {
 		getMessages();
-
 	}, [messages]);
 
 	return (
 		<div className={style.messageComponent}>
 			<div className={style.header}>
-                <img style={{width: '60px', marginTop: '20px'}}
-                        src={
-                            user2.imageUrl ||
-                            "https://cdn-icons-png.flaticon.com/512/141/141783.png"
-                        }
-                    />
-				<h1>
-					{" "}
-					{user2.firstName}{" "}
-				</h1>
+				<img
+					style={{ width: "60px", marginTop: "20px" }}
+					src={
+						user2.imageUrl ||
+						"https://cdn-icons-png.flaticon.com/512/141/141783.png"
+					}
+				/>
+				<h1> {user2.firstName} </h1>
 			</div>
 			<div>
 				<main className={style.mainChat}>
@@ -96,15 +92,12 @@ function ChatBox({ user1, user2, petID }) {
 			</div>
 			<div>
 				<form className={style.messageForm} onSubmit={sendMessage}>
-					{" "}
-					{/* form to submit message - writing value to firestore */}
 					<input
 						value={formValue}
 						onChange={(e) => setFormValue(e.target.value)}
 						placeholder="Type Message ..."
 						className={style.messageInput}
 					/>{" "}
-					{/* binding state to form input */}
 					<button
 						type="submit"
 						disabled={!formValue}
