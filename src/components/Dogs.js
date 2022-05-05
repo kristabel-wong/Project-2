@@ -4,6 +4,7 @@ import { db } from "../firebase-config";
 import { collection, query, where, limit, getDocs } from "firebase/firestore";
 import styled from "styled-components";
 import "@splidejs/react-splide/css";
+import style from "./Cats.module.css";
 
 // carousel for landing page dogs wheel
 function Dogs() {
@@ -26,8 +27,10 @@ function Dogs() {
 	}, []);
 	return (
 		<div>
-			<Wrapper>
-				<h3>Some of our available dogs!</h3>
+			<Wrapper className={style.container_dog}>
+			    <div className={style.div}>
+                   <h1 className={style.home_title}> 🐕 Some of our available Dog! 🐕</h1>
+                </div>
 				<Splide
 					options={{
 						perPage: 4,
@@ -36,6 +39,7 @@ function Dogs() {
 						drag: "free",
 						gap: "0.5rem",
 					}}
+					style={{width:"80%", margin:"auto"}}
 				>
 					{dogs.map((dog) => {
 						return (

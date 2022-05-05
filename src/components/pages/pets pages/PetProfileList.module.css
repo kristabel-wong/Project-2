@@ -1,14 +1,14 @@
- .pet_index_card{
-     width: 30%;
-     margin: 1.5% 1.5%;
-     padding: 20px;
-     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-     border-radius: 10px;
-     color: black;
-     position: relative;
-     padding-bottom: 100px;
-     background-color:white;
+.container{
+    width: 80%;
+    margin: 100px auto;
+    display: flex;
+    flex-wrap: wrap; 
+    
  }
+
+ .text_align{
+  text-align: center;
+}
 
 .pet_index_card {
   width: 30%;
@@ -19,6 +19,7 @@
   border-radius: 10px;
   position: relative;
   padding-bottom: 100px;
+  background-color: white;
 }
 
 .pet_index_card:hover {

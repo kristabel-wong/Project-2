@@ -10,6 +10,7 @@ import { auth } from "../../firebase-config";
 import { db } from "../../firebase-config";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import Button from "../Button";
+import style from "./SignUp.module.css";
 
 function Login() {
 	const [loginEmail, setLoginEmail] = useState("");
@@ -83,14 +84,15 @@ function Login() {
 		displayError();
 	}, [logInFailed]);
 	return (
-		<div>
-			<div>
+		<div className={style.background}>
+			<div className={style.container}>
 				{errorDisplay}
-				<h3>Login</h3>
+				<h3 className={style.hover}>Login</h3>
 				<input
 					placeholder="Email..."
 					name="loginEmail"
 					value={loginEmail}
+					className={style.input}
 					onChange={(event) => {
 						setLoginEmail(event.target.value);
 					}}
@@ -100,22 +102,26 @@ function Login() {
 					name="loginPassword"
 					value={loginPassword}
 					type="password"
+					className={style.input}
 					onChange={(event) => {
 						setLoginPassword(event.target.value);
 					}}
 				/>
-				<Button onClick={login} classnames="btn" content="Login" />
-			</div>
-
-			<h4> User Logged In:</h4>
-			<h4>{user?.email}</h4>
-
-			<div>
 				<Button
-					onClick={signInWithGoogle}
-					content="Sign in with google"
-					classnames="btn"
+					onClick={login}
+					classnames={style.button74}
+					content="Login"
 				/>
+				<h4 style={{ margin: "20px" }}> User Logged In:</h4>
+				<h4>{user?.email}</h4>
+
+				<div>
+					<Button
+						onClick={signInWithGoogle}
+						classnames={style.button74}
+						content="Sign in with google"
+					/>
+				</div>
 			</div>
 		</div>
 	);
