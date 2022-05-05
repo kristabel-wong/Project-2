@@ -19,7 +19,6 @@ function Dogs() {
 			petDataArray.push({ petID: pet.id, ...pet.data() });
 		});
 		setDogs(petDataArray);
-		console.log(petDataArray);
 	};
 
 	useEffect(() => {
@@ -28,9 +27,9 @@ function Dogs() {
 	return (
 		<div>
 			<Wrapper className={style.container_dog}>
-			    <div className={style.div}>
-                   <h1 className={style.home_title}> 🐕 Doggos! 🐕</h1>
-                </div>
+				<div className={style.div}>
+					<h1 className={style.home_title}> 🐕 Doggos! 🐕</h1>
+				</div>
 				<Splide
 					options={{
 						perPage: 4,
@@ -39,7 +38,7 @@ function Dogs() {
 						drag: "free",
 						gap: "0.5rem",
 					}}
-					style={{width:"80%", margin:"auto"}}
+					style={{ width: "80%", margin: "auto" }}
 				>
 					{dogs.map((dog) => {
 						return (
@@ -62,7 +61,7 @@ function Dogs() {
 }
 
 const Wrapper = styled.div`
- 	margin: 50px auto;
+	margin: 50px auto;
 `;
 const Card = styled.div`
 	height: 15rem;
