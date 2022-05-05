@@ -1,6 +1,4 @@
-import React from "react";
-
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import Dogs from "../Dogs";
 import Cats from "../Cats";
 
