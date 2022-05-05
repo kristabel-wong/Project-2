@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { db } from "../../firebase-config";
+import { motion } from "framer-motion";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import Button from "../Button";
 import style from "./SignUp.module.css";
@@ -85,46 +86,52 @@ function Login() {
 		displayError();
 	}, [logInFailed]);
 	return (
-		<div className={style.background}>
-			<div className={style.container}>
-				{errorDisplay}
-				<h3 className={style.hover}>Login</h3>
-				<input
-					placeholder="Email..."
-					name="loginEmail"
-					value={loginEmail}
-					className={style.input}
-					onChange={(event) => {
-						setLoginEmail(event.target.value);
-					}}
-				/>
-				<input
-					placeholder="Password..."
-					name="loginPassword"
-					value={loginPassword}
-					type="password"
-					className={style.input}
-					onChange={(event) => {
-						setLoginPassword(event.target.value);
-					}}
-				/>
-				<Button
-					onClick={login}
-					classnames={style.button74}
-					content="Login"
-				/>
-				<h4 style={{ margin: "20px" }}> User Logged In:</h4>
-				<h4>{user?.email}</h4>
-
-				<div>
-					<Button
-						onClick={signInWithGoogle}
-						classnames={style.button74}
-						content="Sign in with google"
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+		>
+			<div className={style.background}>
+				<div className={style.container}>
+					{errorDisplay}
+					<h3 className={style.hover}>Login</h3>
+					<input
+						placeholder="Email..."
+						name="loginEmail"
+						value={loginEmail}
+						className={style.input}
+						onChange={(event) => {
+							setLoginEmail(event.target.value);
+						}}
 					/>
+					<input
+						placeholder="Password..."
+						name="loginPassword"
+						value={loginPassword}
+						type="password"
+						className={style.input}
+						onChange={(event) => {
+							setLoginPassword(event.target.value);
+						}}
+					/>
+					<Button
+						onClick={login}
+						classnames={style.button74}
+						content="Login"
+					/>
+					<h4 style={{ margin: "20px" }}> User Logged In:</h4>
+					<h4>{user?.email}</h4>
+
+					<div>
+						<Button
+							onClick={signInWithGoogle}
+							classnames={style.button74}
+							content="Sign in with google"
+						/>
+					</div>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 }
 
