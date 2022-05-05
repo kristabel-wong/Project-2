@@ -1,18 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Koulen&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Koulen&display=swap");
 
 .nav_container {
-    display: flex;
-    align-items: space-between;
-    justify-content: space-around;
-  }
+  display: flex;
+  align-items: space-around;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
 /* CSS */
 .button51 {
   background-color: transparent;
-  border: 1px solid #266DB6;
+  border: 1px solid #266db6;
   box-sizing: border-box;
-  color: #00132C;
-  font-family: 'Gloria Hallelujah', cursive;
+  color: #00132c;
+  font-family: "Gloria Hallelujah", cursive;
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;

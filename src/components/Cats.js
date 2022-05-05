@@ -6,7 +6,6 @@ import styled from "styled-components";
 import "@splidejs/react-splide/css";
 import style from "./Cats.module.css";
 
-
 // carousel for landing page cats wheel
 function Cats() {
 	const [dogs, setDogs] = useState([]);
@@ -20,7 +19,6 @@ function Cats() {
 			petDataArray.push({ petID: pet.id, ...pet.data() });
 		});
 		setDogs(petDataArray);
-		console.log(petDataArray);
 	};
 
 	useEffect(() => {
@@ -29,10 +27,10 @@ function Cats() {
 	return (
 		<div>
 			<Wrapper className={style.container_cat}>
-			    <div className={style.div}>
-                   <h1 className={style.home_title}> 🐈  Kitties! 🐈</h1>
-                </div>
-		
+				<div className={style.div}>
+					<h1 className={style.home_title}> 🐈 Kitties! 🐈</h1>
+				</div>
+
 				<Splide
 					options={{
 						perPage: 4,
@@ -41,7 +39,7 @@ function Cats() {
 						drag: "free",
 						gap: "0.5rem",
 					}}
-					style={{width:"80%", margin:"auto"}}
+					style={{ width: "80%", margin: "auto" }}
 				>
 					{dogs.map((cat) => {
 						return (

@@ -21,13 +21,13 @@ import styled from "@emotion/styled";
 
 function Home() {
   const { user } = useContext(AuthContext);
-  const logout = async () => {
-    await auth.signOut();
-  };
-  let uid;
-  if (user !== null) {
-    uid = user.uid;
-  }
+  // const logout = async () => {
+  //   await auth.signOut();
+  // };
+  // let uid;
+  // if (user !== null) {
+  // 	uid = user.uid;
+  // }
 
   const Wrapper = styled(Stack)`
     background: #ffffff;
