@@ -15,18 +15,27 @@
   padding-bottom: 100px;
 }
 
+.profileHeading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 .petContainer {
   width: 70%;
 }
 
 .profileInfo {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
-  padding: 20px 30px;
-  position: sticky;
-  top: 20px;
-  background-color: white;
+    position: sticky;
+    top: 30px;
 }
+
+.sticky {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 20px 30px;
+    background-color: white;
+}
+
 
 .profileInfo p {
   margin-bottom: 10px;
@@ -94,6 +103,8 @@
   text-align: center;
   margin-top: 20px;
   margin-bottom: 5px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .button74 {
@@ -129,4 +140,24 @@
     min-width: 120px;
     padding: 0 25px;
   }
+}
+
+
+.liked {
+
+    text-align: center;
+}
+
+.liked .button74 {
+    margin-top: 10px;
+}
+
+.select {
+    width: 250px;
+    margin: 20px auto;
+}
+
+.btnContainer {
+    margin: 10px;
+    text-align: center;
 }

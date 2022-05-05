@@ -11,6 +11,7 @@ import PetShow from "./pets pages/PetShow";
 import PetIndex from "./pets pages/PetIndex";
 import PetEdit from "./pets pages/PetEdit";
 import App from "./pets pages/App-Show";
+import Adopt from "./user pages/Adopt";
 
 function Pages() {
   const location = useLocation();
@@ -27,6 +28,7 @@ function Pages() {
       <Route path="/pet/:type" element={<PetShow />} />
       <Route path="/pet/index" element={<PetIndex />} />
       <Route path="/show" element={<App />} />
+      <Route path="/adoptionForm/:id" element={<Adopt/>} /> 
     </Routes>
   );
 }

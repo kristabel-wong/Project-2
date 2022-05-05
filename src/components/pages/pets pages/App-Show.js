@@ -48,7 +48,7 @@ function App() {
     //     pet.user_uid != auth.currentUser.uid;
     //     !pet.id.includes(auth.currentUser.petArr) 
     // })}
-    let filterPets = pets.filter(pet => pet.user_uid != auth.currentUser.uid);
+    let filterPets = pets.filter(pet => pet.user_uid != auth.currentUser.uid && pet.isAdopted === false);
 
     // shuffle pets
     function shuffle (array) {
@@ -86,17 +86,17 @@ function App() {
 	return (
         <div>
             
-                <h1 className={styles.heading} >
-                    <NavLink to={"/pet/index"} className={styles.link}>
-                        <button className={styles.button74}>
-                        <span>🐶</span> List View <span>🐰</span>
-                        </button>
-                    </NavLink>
-                </h1>
+            <h1 className={styles.heading}>
+                <NavLink to={"/pet/index"} className={styles.link}>
+                    <button className={styles.button74}>
+                    <span>🐶</span> List View <span>🐰</span>
+                    </button>
+                </NavLink>
+            </h1>
 
-                <h5 className={styles.alternative}>
-                    <em>(If you prefer to view in list form over swipe)</em>
-                </h5>
+            <h5 className={styles.alternative}>
+                <em>(If you prefer to view in list form over swipe)</em>
+            </h5>
 
             <div className={styles.showPage}>
                 <div className={styles.dislike}> </div>
@@ -145,50 +145,6 @@ function App() {
         </div>
 	);
 
-    //                     <div>
-    //                         <NavLink to="/message">
-    //                             <button>
-    //                                 <h3 className={styles.petName}>{pet.name}, {pet.age}</h3>
-    //                             </button>
-    //                         </NavLink>
-    //                         <p className={styles.petDetails}>{pet.location}</p>
-    //                         <p className={styles.petDetails}>{pet.description}</p>
-    //                         <p className={styles.petDetails}>{auth.currentUser.uid}</p>
-    //                         <p className={styles.petDetails}>{pet.id}</p>
-    //                         <p className={styles.petDetails}>{pet.user_uid}</p>
-
-	// //                         <div>
-	// //                             <h3 className={styles.petName}>Pits</h3>
-	// //                             <p className={styles.petDetails}>Brisbane</p>
-	// //                             <p className={styles.petDetails}>I'm a bit shy</p>
-	// //                         </div>
-	// //                     </Item>
-	//                     <Item data-value="pancakes" whileTap={{ scale: 1.15 }}>
-	//                         <div className={styles.imageContainer} style={{ backgroundImage: `url("https://scontent.fsyd4-1.fna.fbcdn.net/v/t39.30808-6/278106878_5059554534127820_4134914145649592563_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=a26aad&_nc_ohc=tDxhsLeqIToAX8HUsSj&tn=fyRfHEuqm-0XJYUQ&_nc_ht=scontent.fsyd4-1.fna&oh=00_AT_KPRBT_MimVtD9rVVWtIaMwyNXgkF-dP2TiZ_w2KUHLw&oe=6273B7A2")`}}>
-	//                         </div>
-
-	//                         <div>
-	//                             <h3 className={styles.petName}>Captain Blep</h3>
-	//                             <p className={styles.petDetails}>Sydney</p>
-	//                             <p className={styles.petDetails}>Smol boy with a big heart (and tongue)</p>
-	//                         </div>
-	//                     </Item>
-	//                     <Item data-value="goldie" whileTap={{ scale: 1.15 }}>
-	//                         <div className={styles.imageContainer} style={{ backgroundImage: `url("https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=662&q=80")`}}>
-	//                         </div>
-
-	//                         <div>
-	//                             <h3 className={styles.petName}>Goldie</h3>
-	//                             <p className={styles.petDetails}>Sydney</p>
-	//                             <p className={styles.petDetails}>I'll be the goodest boy</p>
-	//                         </div>
-
-	//                     </Item>
-	//                 </Wrapper>
-	//             </div>
-	//         </div>
-
-	//   );
 }
 
 export default App;
