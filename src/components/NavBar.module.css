@@ -4,8 +4,8 @@
   display: flex;
   align-items: space-around;
   justify-content: space-between;
-  padding-left: 30px;
-  padding-right: 30px;
+  width: 50vw;
+  margin: 0 auto;
 }
 
 /* CSS */
@@ -15,7 +15,7 @@
   box-sizing: border-box;
   color: #00132c;
   font-family: "Gloria Hallelujah", cursive;
-  font-size: 16px;
+  font-size: 25px;
   font-weight: 700;
   line-height: 20px;
   padding: 0.5vh 1vw;

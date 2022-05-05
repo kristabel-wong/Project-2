@@ -106,7 +106,7 @@ function Home() {
 
   // truncate description ( for long descriptions - don't fit on cards)
   const truncate = (input) =>
-    input?.length > 100 ? `${input.substring(0, 90)}...` : input;
+    input?.length > 50 ? `${input.substring(0, 45)}...` : input;
 
   const getAge = function (dob) {
     if (dob !== null) {
@@ -197,12 +197,6 @@ function Home() {
                             <p className={styles.petDetails}>
                               <em>"{truncate(`${pet.description}`)}"</em>
                             </p>
-                            {/* <p className={styles.petDetails}>
-                                                      {auth.currentUser.uid}
-                                                  </p>
-                                                  <p className={styles.petDetails}>
-                                                      {pet.user_uid}
-                                                  </p> */}
                           </div>
                         </Item>
                       );
