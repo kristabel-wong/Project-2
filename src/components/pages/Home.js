@@ -20,7 +20,7 @@ function Home() {
       ></img>
       <h3> Pest available for adoption nearby</h3>
       <NavLink to={"/signup"}>
-        <Button content="Find out more" />
+        <Button content="Start your search" />
       </NavLink>
       <Dogs />
       <Cats />
