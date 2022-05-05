@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
 import style from "./Home.module.css";
 import { motion } from "framer-motion";
+import { onAuthStateChanged } from "firebase/auth";
 
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import styles from "./pets pages/styles.module.css";
@@ -59,10 +60,20 @@ function Home() {
 	};
 
 	useEffect(() => {
-		if (userInfo === null) {
-			getUser(auth.currentUser.uid);
-		}
+		onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				if (userInfo === null) {
+					getUser(auth.currentUser.uid);
+				}
+			}
+		});
 	}, []);
+
+	// useEffect(() => {
+	// 	if (userInfo === null) {
+	// 		getUser(auth.currentUser.uid);
+	// 	}
+	// }, []);
 
 	useEffect(() => {
 		if (pets !== []) {
