@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { useState, useEffect, useCallback} from "react";
-import { NavLink } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; 
 import {useDropzone} from "react-dropzone";
 import { db, storage, auth } from "../firebase-config";
 import { addDoc, arrayUnion, collection, doc, updateDoc } from "firebase/firestore";
@@ -10,6 +10,8 @@ import style from "./PetCreateForm.module.css";
 import Typewriter from "typewriter-effect"; // give the typing text effect
 
 function PetCreateForm() {
+
+    let navigate = useNavigate();
     // store all new info of a pet into seperate states
     const [newName, setNewName] = useState("");
     const [newAge, setNewAge] = useState(0);
@@ -93,6 +95,7 @@ function PetCreateForm() {
                         await updateDoc(doc(db, "pets",petRef.id ),{
                             imagesUrl: arrayUnion(downloadUrl)
                         })
+                        navigate("/pet/index")
                     })     
                 })
             )   
@@ -136,9 +139,9 @@ function PetCreateForm() {
                 <label className={style.form_label}>Description:</label>
                 <textarea className={style.form_textarea} required rows="10" onChange={(event)=>{setNewDescription(event.target.value)}}/>
                
-                <NavLink to={`/pet/index`}onClick={createPet}> 
-                <div className={style.text_align}><button className={style.button74}> Submit Form </button></div>
-                </NavLink>
+         
+                <div className={style.text_align}><button className={style.button74} onClick={createPet}> Submit Form </button></div>
+             
                 
                 <div className={style.animation_dog}>
                     <div className={style.dog}>

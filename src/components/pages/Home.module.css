@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Gloria+Hallelujah&family=Koulen&family=Oleo+Script+Swash+Caps:wght@700&display=swap');
+
+.container{
+    background-image: url("https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2896&q=80");
+    height: 87vh;
+    background-size: cover;
+}
+
+.centerDiv{
+    width: 40%;
+    position: absolute;
+    right: 10%;
+    bottom: 20%;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.title{
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-size: 50px;
+    color:#F8B400;
+    text-align: center;
+}
+
+.des{
+   font-size: 20px;
+   font-weight: bold;
+   margin-bottom: 20px;
+}
+
+.sub_title{
+    font-family: 'Oleo Script Swash Caps', cursive;
+    font-size: 30px;
+    color:#F8B400;
+    margin-bottom: 20px;
+}
+
+
+/* CSS */
+.button87 {
+  margin: 10px;
+  padding: 15px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button87:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.button87:active {
+  transform: scale(0.95);
+}

@@ -113,19 +113,24 @@ function PetShow() {
 								{" "}
 								🏡 Location:{petInfo.location}
 							</p>
-							<p className={style.des}>
-								{" "}
-								🐶 Description:{petInfo.description}
-							</p>
+							<p className={style.des}> 🐶 Description:</p>
+							<p> {petInfo.description}</p>
 						</div>
 						{/* Only the owner of the pet can edit and delete the profile */}
 						{petInfo.user_uid === auth.currentUser.uid ? (
-							<div>
-								<NavLink to={`/pet/edit/${params.type}`}>
+							<div className={style.text_align}>
+								<NavLink
+									to={`/pet/edit/${params.type}`}
+									className={style.button74}
+								>
 									Edit
 								</NavLink>
 
-								<NavLink to={`/pet/index`} onClick={deletePet}>
+								<NavLink
+									to={`/pet/index`}
+									onClick={deletePet}
+									className={style.button74}
+								>
 									Delete
 								</NavLink>
 							</div>
