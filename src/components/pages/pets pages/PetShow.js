@@ -37,14 +37,13 @@ function PetShow() {
   console.log(params.type);
   const [petInfo, setPetInfo] = useState(null);
   let data;
+  let filterPets;
 
-	const getPet = async (uid) => {
-      
+	const getPet = async (uid) => {    
 		const petDocRef = doc(db, "pets", uid);
 		const petDocSnap = await getDoc(petDocRef);
 		data = petDocSnap.data();
 		setPetInfo(data);
-	
 	};
 
   const deletePet = async () => {
@@ -53,6 +52,7 @@ function PetShow() {
   };
 
    const classes = useStyles();
+   
 
 	useEffect(() => {
 		if (petInfo === null) {
@@ -96,19 +96,18 @@ function PetShow() {
                         <p className={style.des}> 🐼 Type:{petInfo.type}</p>
                         <p className={style.des}> 🤯 Gender:{petInfo.gender}</p>
                         <p className={style.des}> 🏡 Location:{petInfo.location}</p>
-                        <p className={style.des}> 🐶 Description:{petInfo.description}</p>
+                        <p className={style.des}> 🐶 Description:</p>
+                        <p >  {petInfo.description}</p>
                      </div>
                    {/* Only the owner of the pet can edit and delete the profile */}
                    {petInfo.user_uid === auth.currentUser.uid ? 
-                    <div>
-                      <NavLink to={`/pet/edit/${params.type}`}>Edit</NavLink>
+                    <div className={style.text_align}>
+                      <NavLink to={`/pet/edit/${params.type}`} className={style.button74}>Edit</NavLink>
 
-                      <NavLink to={`/pet/index`} onClick={deletePet}>
+                      <NavLink to={`/pet/index`} onClick={deletePet} className={style.button74}>
                         Delete
                       </NavLink>
-                    </div>
-                 
-                 
+                    </div>         
           : 
             ""
           }

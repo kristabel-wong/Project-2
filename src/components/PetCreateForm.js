@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { useState, useEffect, useCallback} from "react";
-import { NavLink } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; 
 import {useDropzone} from "react-dropzone";
 import { db, storage, auth } from "../firebase-config";
 import { addDoc, arrayUnion, collection, doc, updateDoc } from "firebase/firestore";
@@ -10,6 +10,8 @@ import style from "./PetCreateForm.module.css";
 import Typewriter from "typewriter-effect"; // give the typing text effect
 
 function PetCreateForm() {
+
+    let navigate = useNavigate();
     // store all new info of a pet into seperate states
     const [newName, setNewName] = useState("");
     const [newAge, setNewAge] = useState(0);
@@ -19,6 +21,7 @@ function PetCreateForm() {
     const [newLocation, setNewLocation] = useState("");
     const [newDescription, setNewDescription] = useState("");
     const [newUserID, setNewUserID] = useState("");
+    
   
 
     const [selectedImages, setSelectedImages] = useState([]);
@@ -40,8 +43,8 @@ function PetCreateForm() {
     const {getRootProps, getInputProps} = useDropzone({onDrop})
     const selected_images = selectedImages?.map(file=>(
         <div className={style.preview_div}>
-            <img src={file.preview} style={{height:"200px"}}/>
-            <button onClick={()=>deleteImage(file)}>delete</button>
+            <img src={file.preview} style={{width:"100%",height:"150px", display:"block", objectFit:"cover"}}/>
+            <button className={style.upload_button} onClick={()=>deleteImage(file)}>Delete</button>
         </div>
     )) 
     
@@ -81,6 +84,8 @@ function PetCreateForm() {
                 description: newDescription,
                 user_uid: newUserID,
                 imagesUrl: [],
+                interested: [],
+                adoptedBy: "",
             })
 
             await Promise.all(
@@ -93,9 +98,11 @@ function PetCreateForm() {
                         await updateDoc(doc(db, "pets",petRef.id ),{
                             imagesUrl: arrayUnion(downloadUrl)
                         })
+                        
                     })     
                 })
-            )   
+            )
+            navigate("/pet/index")   
     }
 
    
@@ -113,9 +120,9 @@ function PetCreateForm() {
 
                 <label className={style.form_label}>Type:</label>
                 <select className={style.form_field} required onChange={(event)=>{setNewType(event.target.value)}}>
-                    <option value="cat">Cat</option>
-                    <option value="dog">Dog</option>
-                    <option value="otherPet">Other pets</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Dog">Dog</option>
+                    <option value="OtherPet">Other pets</option>
                 </select>
 
                 <label className={style.form_label}>Gender:</label>
@@ -136,7 +143,9 @@ function PetCreateForm() {
                 <label className={style.form_label}>Description:</label>
                 <textarea className={style.form_textarea} required rows="10" onChange={(event)=>{setNewDescription(event.target.value)}}/>
                
-                <NavLink to={`/pet/index`} className={style.upload_button} onClick={createPet}> Submit Form </NavLink>
+         
+                <div className={style.text_align}><button className={style.button74} onClick={createPet}> Submit Form </button></div>
+             
                 
                 <div className={style.animation_dog}>
                     <div className={style.dog}>

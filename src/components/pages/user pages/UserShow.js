@@ -44,14 +44,16 @@ function User() {
     const userDocSnap = await getDoc(userDocRef);
     const data = userDocSnap.data();
     const petIdArr = data.petArr;
-    const q = query(collection(db, "pets"), where("__name__", "in", petIdArr));
-    const petDoc = await getDocs(q);
-    let petArray = [];
-    petDoc.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      petArray.push({ id: doc.id, ...doc.data() });
-    });
-    setUserFavPets(petArray);
+    if(petIdArr.length > 0){
+      const q = query(collection(db, "pets"), where("__name__", "in", petIdArr));
+      const petDoc = await getDocs(q);
+      let petArray = [];
+      petDoc.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        petArray.push({ id: doc.id, ...doc.data() });
+      });
+      setUserFavPets(petArray);
+    }
   };
 
   const getLikedUsers = async (uid) => {

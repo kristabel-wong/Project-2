@@ -30,6 +30,7 @@ function SignUp() {
       location: "",
       description: "",
       imageUrl: "",
+      adoptedPets:[],
     });
   };
 

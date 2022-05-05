@@ -1,0 +1,54 @@
+.div{
+    text-align: center;
+}
+
+.container_dog{
+    background-color:white; 
+    width:80%;
+    padding:20px;
+    border-radius:20px;
+    margin:50px auto;
+    border: 3px dashed #db9233;
+    box-shadow: 40px 20px 0 #db9233;
+}
+
+.container_cat{
+    background-color:white; 
+    width:80%;
+    padding:20px;
+    border-radius:20px;
+    margin:0 auto 50px auto;
+    border: 3px dashed #c99cc8;
+    box-shadow: -40px 20px 0 #c99cc8;
+}
+
+
+.home_title {
+      color: #fff;
+      font-size: 40px;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-family: "Josefin Sans", sans-serif;
+      background: linear-gradient(to right,#97539c 10%, #e97f9a 50%, #db9233 60%, #cdd167 80%);
+      background-size: auto auto;
+      background-clip: border-box;
+      background-size: 200% auto;
+      color: #fff;
+      background-clip: text;
+      text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textclip 1.5s linear infinite;
+      display: inline-block;
+      margin-bottom: 20px;
+      border-bottom:2px dotted black;
+      padding: 10px;
+    }
+
+  
+  @keyframes textclip {
+    to {
+      background-position: 200% center;
+    }
+  }
+

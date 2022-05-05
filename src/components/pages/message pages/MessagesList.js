@@ -32,22 +32,6 @@ function MessagesList() {
 		return favArr;
 	};
 
-	// const getPetsChatLog = async function(){
-	// 	const documentId =
-	// 		auth.currentUser.uid > user2
-	// 			? `${auth.currentUser.uid + user2}`
-	// 			: `${user2 + auth.currentUser.uid}`;
-
-	// 	const favRef = collection(db, 'favourites', documentId, 'messages')
-	// 	const docSnap = await getDocs(favRef)
-	// 	// const data = docSnap.data()
-	// 	docSnap.forEach((doc) => {
-	// 		console.log(doc.data())
-
-	// 	})
-	// }
-	// getPetsChatLog()
-
 	// gets the log of messages and updates automatically
 	const getChatLog = async function (user) {
 		const user1 = user.uid;
@@ -72,8 +56,6 @@ function MessagesList() {
 	useEffect(() => {
 		onAuthStateChanged(auth, async (user) => {
 			if (user) {
-				// console.log(user);
-
 				getChatLog(user);
 			}
 		});

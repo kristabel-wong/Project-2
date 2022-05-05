@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { auth } from "../firebase-config";
 import { AuthContext } from "../context/auth";
-
+import style from "./NavBar.module.css";
 import Button from "./Button";
 
 function NavBar() {
@@ -16,40 +16,34 @@ function NavBar() {
   }
 
   return (
-    <div className="nav-container">
+    <div className={style.nav_container}>
       <NavLink to={"/"}>
-        <Button classnames="nav-btn btn" content="Home" />
+        <button className={style.button51} >Home </button>
       </NavLink>
 
       {user ? (
         <>
           <NavLink to={`/user/${uid}`}>
-            <Button classnames="nav-btn btn" content="My Profile" />
+            <button className={style.button51}>My Profile </button>
           </NavLink>
           <NavLink to={"/"}>
-            <Button
-              classnames="nav-btn btn"
+            <button
+              className={style.button51}
               onClick={logout}
-              content="Sign Out"
-            />
-          </NavLink>
-          <NavLink to={"/newpet"}>
-            <Button classnames="nav-btn btn" content="New pet" />
+            >Sign Out</button>
           </NavLink>
           <NavLink to={"/message"}>
-            <button className="nav-btn btn">Messages</button>
+            <button className={style.button51}>Messages</button>
           </NavLink>
-          <NavLink to={"/show"}>
-              <button className="nav-btn btn">AppShow</button>
-          </NavLink>
+    
         </>
       ) : (
         <>
           <NavLink to={"/login"}>
-            <Button classnames="nav-btn btn" content="Login" />
+            <button className={style.button51} >Login</button>
           </NavLink>
           <NavLink to={"/signup"}>
-            <Button classnames="nav-btn btn" content="Sign Up" />
+            <button className={style.button51} >Sign up</button>
           </NavLink>
         </>
       )}
