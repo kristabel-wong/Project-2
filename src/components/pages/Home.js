@@ -69,12 +69,6 @@ function Home() {
 		});
 	}, []);
 
-	// useEffect(() => {
-	// 	if (userInfo === null) {
-	// 		getUser(auth.currentUser.uid);
-	// 	}
-	// }, []);
-
 	useEffect(() => {
 		if (pets !== []) {
 			getPets();
