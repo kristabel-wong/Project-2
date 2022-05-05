@@ -33,7 +33,7 @@
 
 .form_textarea {
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .drop_image_box{
@@ -88,10 +88,10 @@
     background-color: #F8CB2E;
     border-radius: 10px;
     padding: 10px;
+    margin-top:10px;
     margin-bottom: 10px;
     font-size: 15px;  
-    position: relative;
-    top: -25px;
+   
 }
 
 
