@@ -154,6 +154,20 @@ function User() {
     }
   }, []);
 
+  //   const editInterest = async function (user, petId) {
+  //     const petDoc = doc(db, "pets", petId);
+  //     const petDocSnap = await getDoc(petDoc);
+  //     const petData = petDocSnap.data();
+  //     const index = petData.interested.indexOf(user);
+  //     console.log(index);
+  //     petData.interested.splice(index, 1);
+
+  // await updateDoc(petDoc, {
+  //   interested: petData.interested.splice(index, 1),
+  // });
+  // window.location.reload();
+  //};
+
   return (
     <div className={style.container}>
       <div className={style.profile}>
@@ -310,17 +324,25 @@ function User() {
                         </div>
                       </NavLink>
 
-                      {pet.interested.includes(`${params.id}`) ? (
-                        <NavLink to={`/adoptionForm/${pet.id}`}>
-                          <button
-                            onClick={() =>
-                              adopt(pet.name, pet.id, pet.isAdopted)
-                            }
-                            className={style.button74}
-                          >
-                            Request Sent
-                          </button>
-                        </NavLink>
+                      {pet.adoptedBy.value !== userInfo.uid ? (
+                        <div>
+                          {pet.interested.includes(`${params.id}`) ? (
+                            <button className={style.button74}>
+                              Request Sent
+                            </button>
+                          ) : (
+                            <NavLink to={`/adoptionForm/${pet.id}`}>
+                              <button
+                                onClick={() =>
+                                  adopt(pet.name, pet.id, pet.isAdopted)
+                                }
+                                className={style.button74}
+                              >
+                                Send Adoption Request
+                              </button>
+                            </NavLink>
+                          )}
+                        </div>
                       ) : (
                         <NavLink to={`/adoptionForm/${pet.id}`}>
                           <button
@@ -329,7 +351,7 @@ function User() {
                             }
                             className={style.button74}
                           >
-                            Send Adoption Request
+                            ADOPTION APPROVED 😁
                           </button>
                         </NavLink>
                       )}
