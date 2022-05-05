@@ -48,9 +48,12 @@ function PetProfileList() {
 		}
 	  }
 
-	  const test =(item) =>{
-		  console.log(item)
-	  }
+    const test =(item) =>{
+		console.log(item)
+	}
+
+	// truncate description ( for long descriptions - don't fit on cards)
+	const truncate = (input) => input?.length > 100 ? `${input.substring(0,90)}...` : input;
 
 
 
@@ -63,21 +66,22 @@ function PetProfileList() {
 							<NavLink
             					to={`/pet/${pet.id}`}
             					key={pet.id}
+								style={{color:"black"}}
             				> 
 						    {pet.imageUrl !== [] ? 
 							   <img src={pet.imagesUrl[0]} className={style.pet_image} />
 							   : " "
 			                }
 							<h2 className={style.pet_name}>💝{pet.name}💝</h2>
-							<p>Location:{pet.location}</p>
-							<p>Description:{pet.description}</p>
+							<div className={style.text_align}>
+							<p style={{fontWeight:"bold", fontSize:"20px", color:"#006E7F", marginBottom:"20px"}}>🏠 {pet.location}</p>
+							</div>
+							<p style={{fontStyle:"italic",textAlign:"center"}}>{truncate(`${pet.description}`)}</p>
 							</NavLink>
 							<div className={style.button_div} >	
           						<button className={style.button74} onClick={()=>handleFav(pet)}>Like</button>
 							</div>		
 						</div>
-							
-					
 				);
 			})}
 		</div>

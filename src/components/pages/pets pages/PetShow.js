@@ -53,6 +53,7 @@ function PetShow() {
   };
 
    const classes = useStyles();
+   
 
 	useEffect(() => {
 		if (petInfo === null) {
