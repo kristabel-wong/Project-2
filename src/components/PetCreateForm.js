@@ -40,7 +40,7 @@ function PetCreateForm() {
     const {getRootProps, getInputProps} = useDropzone({onDrop})
     const selected_images = selectedImages?.map(file=>(
         <div className={style.preview_div}>
-            <img src={file.preview} style={{width:"200px"}}/>
+            <img src={file.preview} style={{height:"200px"}}/>
             <button onClick={()=>deleteImage(file)}>delete</button>
         </div>
     )) 
