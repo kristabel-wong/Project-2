@@ -5,16 +5,10 @@ import { db, auth } from "../../firebase-config";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
 import style from "./Home.module.css";
+import { motion } from "framer-motion";
+import { onAuthStateChanged } from "firebase/auth";
 
-import {
-  doc,
-  getDoc,
-  collection,
-  query,
-  where,
-  getDocs,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import styles from "./pets pages/styles.module.css";
 import { Stack } from "./pets pages/stack";
 import styled from "@emotion/styled";
@@ -66,10 +60,20 @@ function Home() {
   };
 
   useEffect(() => {
-    if (userInfo === null) {
-      getUser(auth.currentUser.uid);
-    }
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        if (userInfo === null) {
+          getUser(auth.currentUser.uid);
+        }
+      }
+    });
   }, []);
+
+  // useEffect(() => {
+  // 	if (userInfo === null) {
+  // 		getUser(auth.currentUser.uid);
+  // 	}
+  // }, []);
 
   useEffect(() => {
     if (pets !== []) {
@@ -85,7 +89,7 @@ function Home() {
   let filterPets;
   if (user !== null) {
     filterPets = pets.filter(
-      (pet) => pet.user_uid != auth.currentUser.uid && pet.isAdopted === false
+      (pet) => pet.user_uid !== auth.currentUser.uid && pet.isAdopted === false
     );
   }
 
@@ -106,7 +110,7 @@ function Home() {
 
   // truncate description ( for long descriptions - don't fit on cards)
   const truncate = (input) =>
-    input?.length > 50 ? `${input.substring(0, 45)}...` : input;
+    input?.length > 100 ? `${input.substring(0, 90)}...` : input;
 
   const getAge = function (dob) {
     if (dob !== null) {
@@ -126,89 +130,101 @@ function Home() {
   };
 
   return (
-    <div>
-      {!user ? (
-        <>
-          <div>
-            <div className={style.container}>
-              <div className={style.centerDiv}>
-                <h1 className={style.title}>Adopt the perfect pet</h1>
-                <p className={style.des}>
-                  Our mission is to help the pets in need of rescue and
-                  rehabilitation and help them find a loving home. Open your
-                  doors and hearts to pets in needs of a home.
-                </p>
-                <div style={{ textAlign: "center" }}>
-                  <h3 className={style.sub_title}>
-                    {" "}
-                    Pets available for adoption nearby
-                  </h3>
-                  <NavLink to={"/signup"} className={style.button87}>
-                    Start your search
-                  </NavLink>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div>
+        {!user ? (
+          <>
+            <div>
+              <div className={style.container}>
+                <div className={style.centerDiv}>
+                  <h1 className={style.title}>Adopt the perfect pet</h1>
+                  <p className={style.des}>
+                    Our mission is to help the pets in need of rescue and
+                    rehabilitation and help them find a loving home. Open your
+                    doors and hearts to pets in needs of a home.
+                  </p>
+                  <div style={{ textAlign: "center" }}>
+                    <h3 className={style.sub_title}>
+                      {" "}
+                      Pets available for adoption nearby
+                    </h3>
+                    <NavLink to={"/signup"} className={style.button87}>
+                      Start your search
+                    </NavLink>
+                  </div>
                 </div>
               </div>
+              <Dogs />
+              <Cats />
             </div>
-            <Dogs />
-            <Cats />
-          </div>
-        </>
-      ) : (
-        <>
-          <div>
-            <h1 className={styles.heading}>
-              <NavLink to={"/pet/index"} className={styles.link}>
-                <button className={styles.button74}>
-                  <span>🐶</span> List View <span>🐰</span>
-                </button>
-              </NavLink>
-            </h1>
+          </>
+        ) : (
+          <>
+            <div>
+              <h1 className={styles.heading}>
+                <NavLink to={"/pet/index"} className={styles.link}>
+                  <button className={styles.button74}>
+                    <span>🐶</span> List View <span>🐰</span>
+                  </button>
+                </NavLink>
+              </h1>
 
-            <h5 className={styles.alternative}>
-              <em>(If you prefer to view in list form over swipe)</em>
-            </h5>
+              <h5 className={styles.alternative}>
+                <em>(If you prefer to view in list form over swipe)</em>
+              </h5>
 
-            <div className={styles.showPage}>
-              <div className={styles.dislike}> </div>
-              <div className={styles.deck}>
-                <Wrapper onVote={(item, vote) => console.log(item.props, vote)}>
-                  {shuffle(filterPets)
-                    .filter((pet) => !userInfo.petArr.includes(pet.id))
-                    .map((pet) => {
-                      return (
-                        <Item
-                          data-value={pet.user_uid}
-                          whileTap={{ scale: 1.15 }}
-                          key={pet.id}
-                        >
-                          <div
-                            className={styles.imageContainer}
-                            style={{
-                              backgroundImage: `url(${pet.imagesUrl[0]})`,
+              <div className={styles.showPage}>
+                <div className={styles.dislike}> </div>
+                <div className={styles.deck}>
+                  <Wrapper
+                    onVote={(item, vote) => console.log(item.props, vote)}
+                  >
+                    {shuffle(filterPets)
+                      .filter((pet) => !userInfo.petArr.includes(pet.id))
+                      .map((pet) => {
+                        return (
+                          <Item
+                            data-value={pet.user_uid}
+                            whileTap={{
+                              scale: 1.15,
                             }}
-                          ></div>
-                          <div>
-                            <h2 className={styles.petName}>
-                              {pet.name},{" "}
-                              {pet.age == 0 ? getAge(pet.dob) : pet.age}
-                            </h2>
-                            <p className={styles.petDetails}>{pet.location}</p>
-                            <p className={styles.petDetails}>{pet.gender}</p>
-                            <p className={styles.petDetails}>
-                              <em>"{truncate(`${pet.description}`)}"</em>
-                            </p>
-                          </div>
-                        </Item>
-                      );
-                    })}
-                </Wrapper>
+                            key={pet.id}
+                          >
+                            <div
+                              className={styles.imageContainer}
+                              style={{
+                                backgroundImage: `url(${pet.imagesUrl[0]})`,
+                              }}
+                            ></div>
+                            <div>
+                              <h2 className={styles.petName}>
+                                {pet.name},{" "}
+                                {pet.age === 0 ? getAge(pet.dob) : pet.age}
+                              </h2>
+                              <p className={styles.petDetails}>
+                                {pet.location}
+                              </p>
+                              <p className={styles.petDetails}>{pet.gender}</p>
+                              <p className={styles.petDetails}>
+                                <em>"{truncate(`${pet.description}`)}"</em>
+                              </p>
+                            </div>
+                          </Item>
+                        );
+                      })}
+                  </Wrapper>
+                </div>
+                <div className={styles.like}></div>
               </div>
-              <div className={styles.like}></div>
             </div>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
+    </motion.div>
   );
 }
 
