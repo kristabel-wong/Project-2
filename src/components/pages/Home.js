@@ -62,7 +62,10 @@ useEffect(() => {
   //     pet.user_uid != auth.currentUser.uid;
   //     !pet.id.includes(auth.currentUser.petArr) 
   // })}
-  let filterPets = pets.filter(pet => pet.user_uid != auth.currentUser.uid);
+  let filterPets;
+  if(user !== null){
+     filterPets = pets.filter(pet => pet.user_uid != auth.currentUser.uid);
+  }
 
   // shuffle pets
   function shuffle (array) {
@@ -101,22 +104,26 @@ useEffect(() => {
     <div>
      {!user ? (
                <>
-                 <div className={style.container}>   
-                    <div className={style.centerDiv}>
-                        <h1 className={style.title}>Adopt the perfect pet</h1>
-                        <p className={style.des}>
-                          Our mission is to help the pets in need of rescue and rehabilitation and
-                          help them find a loving home. Open your doors and hearts to pets in
-                          needs of a home.
-                        </p>
-                        <div style={{textAlign:"center"}}>
-                           <h3 className={style.sub_title}> Pest available for adoption nearby</h3>
-                           <NavLink to={"/signup"} className={style.button87}>
-                              Start your search
-                           </NavLink>
-                        </div>
+                  <div>
+                    <div className={style.container}>   
+                       <div className={style.centerDiv}>
+                           <h1 className={style.title}>Adopt the perfect pet</h1>
+                           <p className={style.des}>
+                             Our mission is to help the pets in need of rescue and rehabilitation and
+                             help them find a loving home. Open your doors and hearts to pets in
+                             needs of a home.
+                           </p>
+                           <div style={{textAlign:"center"}}>
+                              <h3 className={style.sub_title}> Pets available for adoption nearby</h3>
+                              <NavLink to={"/signup"} className={style.button87}>
+                                 Start your search
+                              </NavLink>
+                           </div>
+                       </div>
                     </div>
-                 </div> 
+                    <Dogs />
+                    <Cats />
+                  </div>   
                </>
             ) : (
                <>   
@@ -177,8 +184,6 @@ useEffect(() => {
                           </div>
                           <div className={styles.like}></div>
                       </div>
-                    <Dogs />
-                    <Cats />
                  </div>
                </>
             )

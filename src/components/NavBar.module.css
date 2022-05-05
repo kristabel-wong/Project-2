@@ -2,8 +2,8 @@
 
 .nav_container {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: space-between;
+    justify-content: space-around;
   }
 
 /* CSS */
@@ -15,14 +15,14 @@
   font-family: 'Gloria Hallelujah', cursive;
   font-size: 16px;
   font-weight: 700;
-  line-height: 24px;
-  padding: 16px 23px;
+  line-height: 20px;
+  padding: 0.5vh 1vw;
   position: relative;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin: 30px;
+  margin: 20px 0.5vw;
 }
 
 .button51:hover,

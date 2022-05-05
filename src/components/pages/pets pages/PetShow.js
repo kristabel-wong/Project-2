@@ -37,14 +37,13 @@ function PetShow() {
   console.log(params.type);
   const [petInfo, setPetInfo] = useState(null);
   let data;
+  let filterPets;
 
-	const getPet = async (uid) => {
-      
+	const getPet = async (uid) => {    
 		const petDocRef = doc(db, "pets", uid);
 		const petDocSnap = await getDoc(petDocRef);
 		data = petDocSnap.data();
 		setPetInfo(data);
-	
 	};
 
   const deletePet = async () => {
@@ -108,9 +107,7 @@ function PetShow() {
                       <NavLink to={`/pet/index`} onClick={deletePet} className={style.button74}>
                         Delete
                       </NavLink>
-                    </div>
-                 
-                 
+                    </div>         
           : 
             ""
           }

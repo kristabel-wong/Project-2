@@ -2,15 +2,15 @@
 
 .container{
     background-image: url("https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2896&q=80");
-    height: 87vh;
+    height: 50vh;
     background-size: cover;
 }
 
 .centerDiv{
-    width: 40%;
+    width: 600px;
     position: absolute;
     right: 10%;
-    bottom: 20%;
+    top: 20%;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 30px;
     border-radius: 20px;
@@ -18,8 +18,8 @@
 
 .title{
     font-family: 'Oleo Script Swash Caps', cursive;
-    font-size: 50px;
-    color:#F8B400;
+    font-size: 55px;
+    color:#23506a;
     text-align: center;
 }
 
@@ -32,7 +32,7 @@
 .sub_title{
     font-family: 'Oleo Script Swash Caps', cursive;
     font-size: 30px;
-    color:#F8B400;
+    color:black;
     margin-bottom: 20px;
 }
 
