@@ -1,60 +1,61 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Koulen&display=swap");
 
 .nav_container {
-  display: flex;
-  align-items: space-around;
-  justify-content: space-between;
-  width: 50vw;
-  margin: 0 auto;
+	display: flex;
+	align-items: space-around;
+	justify-content: center;
+	width: 50vw;
+	margin: 0 auto;
 }
 
 /* CSS */
 .button51 {
-  background-color: transparent;
-  border: 1px solid #266db6;
-  box-sizing: border-box;
-  color: #00132c;
-  font-family: "Gloria Hallelujah", cursive;
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 20px;
-  padding: 0.5vh 1vw;
-  position: relative;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  margin: 20px 0.5vw;
+	background-color: transparent;
+	border: 1px solid #266db6;
+	box-sizing: border-box;
+	color: #00132c;
+	font-family: "Gloria Hallelujah", cursive;
+	font-size: 18px;
+	width: 21vw;
+	font-weight: 700;
+	line-height: 20px;
+	padding: 0.5vh 1vw;
+	position: relative;
+	text-decoration: none;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	margin: 20px 0.5vw;
 }
 
 .button51:hover,
 .button51:active {
-  outline: 0;
+	outline: 0;
 }
 
 .button51:hover {
-  background-color: transparent;
-  cursor: pointer;
+	background-color: transparent;
+	cursor: pointer;
 }
 
 .button51:before {
-  background-color: #f5ebc6;
-  content: "";
-  height: calc(100% + 3px);
-  position: absolute;
-  right: -7px;
-  top: -9px;
-  transition: background-color 300ms ease-in;
-  width: 100%;
-  z-index: -1;
+	background-color: #f5ebc6;
+	content: "";
+	height: calc(100% + 3px);
+	position: absolute;
+	right: -7px;
+	top: -9px;
+	transition: background-color 300ms ease-in;
+	width: 100%;
+	z-index: -1;
 }
 
 .button51:hover:before {
-  background-color: #fdb44e;
+	background-color: #fdb44e;
 }
 
 @media (min-width: 768px) {
-  .button51 {
-    padding: 16px 32px;
-  }
+	.button51 {
+		padding: 16px 32px;
+	}
 }

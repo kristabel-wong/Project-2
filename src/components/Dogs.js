@@ -6,9 +6,27 @@ import styled from "styled-components";
 import "@splidejs/react-splide/css";
 import style from "./Cats.module.css";
 
+// helper function for window width adjustments
+function useWindowWidth() {
+	const [size, setSize] = useState([window.innerHeight, window.innerWidth]);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setSize([window.innerHeight, window.innerWidth]);
+		};
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
+	return size;
+}
+
 // carousel for landing page dogs wheel
 function Dogs() {
 	const [dogs, setDogs] = useState([]);
+	const [height, width] = useWindowWidth();
 
 	const getPets = async function (pet) {
 		const petsRef = collection(db, "pets");
@@ -19,6 +37,11 @@ function Dogs() {
 			petDataArray.push({ petID: pet.id, ...pet.data() });
 		});
 		setDogs(petDataArray);
+	};
+	const carouselWidth = function () {
+		if (width < 800 || (width > 800 && height > width * 2)) {
+			return 2;
+		} else return 4;
 	};
 
 	useEffect(() => {
@@ -32,7 +55,7 @@ function Dogs() {
 				</div>
 				<Splide
 					options={{
-						perPage: 4,
+						perPage: carouselWidth(),
 						arrows: false,
 						pagination: false,
 						drag: "free",
