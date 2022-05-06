@@ -44,29 +44,13 @@ function Home() {
 		setPets(data.docs.map((pet) => ({ ...pet.data(), id: pet.id })));
 	};
 
-	const [userInfo, setUserInfo] = useState(null);
+	const [userInfo, setUserInfo] = useState({});
 	const getUser = async (uid) => {
 		const userDocRef = doc(db, "users", uid);
 		const userDocSnap = await getDoc(userDocRef);
 		const data = userDocSnap.data();
 		setUserInfo(data);
 	};
-
-	useEffect(() => {
-		onAuthStateChanged(auth, async (user) => {
-			if (user) {
-				if (userInfo === null) {
-					getUser(auth.currentUser.uid);
-				}
-			}
-		});
-	}, []);
-
-	useEffect(() => {
-		if (pets !== []) {
-			getPets();
-		}
-	}, []);
 
 	// filter out users own pets
 	// let filterPets = function () { pets.filter(pet => {
@@ -115,6 +99,18 @@ function Home() {
 	// truncate description ( for long descriptions - don't fit on cards)
 	const truncate = (input) =>
 		input?.length > 50 ? `${input.substring(0, 45)}...` : input;
+
+	useEffect(() => {
+		onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				getUser(auth.currentUser.uid);
+			}
+		});
+	}, []);
+
+	useEffect(() => {
+		getPets();
+	}, []);
 
 	return (
 		<motion.div
@@ -186,12 +182,12 @@ function Home() {
 										}
 									>
 										{shuffle(filterPets)
-											.filter(
-												(pet) =>
-													!userInfo.petArr.includes(
-														pet.id
-													)
-											)
+											// .filter(
+											// 	(pet) =>
+											// 		!userInfo.petArr.includes(
+											// 			pet.id
+											// 		)
+											// )
 											.map((pet) => {
 												return (
 													<Item
