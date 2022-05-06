@@ -109,19 +109,27 @@ function PetProfileList() {
 							) : (
 								" "
 							)}
-							<h2 className={style.pet_name}>💝{pet.name}💝</h2>
+							<h2 className={style.pet_name}>{pet.name}</h2>{" "}
+							{/* 💝*/}
 							<div className={style.text_align}>
 								<p
 									style={{
 										fontWeight: "bold",
 										fontSize: "20px",
 										color: "#006E7F",
-										marginBottom: "20px",
+										marginBottom: "10px",
 									}}
 								>
 									🏠 {pet.location}
 								</p>
 							</div>
+							<p
+								style={{
+									textAlign: "center",
+								}}
+							>
+								{pet.gender}
+							</p>
 							<p
 								style={{
 									fontStyle: "italic",
