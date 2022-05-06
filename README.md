@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# Purfect - Adopt a Pet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Purfect is a web application that brings a Tinder-like feel to adopting pets. This can be for any user or organisation to list animals for adoption. This idea came about from wanting a centralised platform for all adoption offers, rather than only on specific sites. We want to increase reach for those whom are looking for a new companion and looking for a new home.
 
-## Available Scripts
+<br/>
+This is the third project (group) for General Assembly Software Engineering Immersive Course. We were tasked to create a CRUD system using everything we had learnt in the last 9 weeks about front and back end web development. We were given about a week to create a functioning application complete with Models (at least 3) and site deployment (firebase).
 
-In the project directory, you can run:
+<br/>
 
-### `npm start`
+### Collaborators:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- JJ
+- Dhaya
+- Mandy
+- Kristabel
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Logins
 
-### `npm test`
+Normal users:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<pre>
+Email: janedoe@ga.co 
+Password: chicken
 
-### `npm run build`
+Email: johnsmith@ga.co 
+Password: chicken
+</pre>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Object Model Associations
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![screenshot-model-association]()
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Sign in/Sign out
+2. Create users profile
 
-### `npm run eject`
+   - Add a profile picture or a default icon will be provided
+   - Edit your personal details
+   - Image upload
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   <br/>
+   Pets:
+   <br/>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   - Create your pets link
+   - View and edit the details of your pets
+   - View your liked Pets
+   - Choose someone to adopt your pet
+   - Send Adoption Request
+   - Change the person selected for adoption
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   <br/>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Home Page/List View:
 
-## Learn More
+- Displays the pets in a tinder style profile cards
+- Swipe right on the pets you would consider adopting
+- Swipe left on the pets which you don't want to know more about
+- List view offers an alternative view to view all the pets
+- User can like the pets on the list view
+- User can click on the pets to learn more about them
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Messages:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- User to User messaging
+- Instant messaging
 
-### Code Splitting
+5. Create Pets/edit
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- upload multiple images
+- Create pet info
 
-### Analyzing the Bundle Size
+6. Pet view
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Use carousel sliders to show multiple images
 
-### Making a Progressive Web App
+7. Adopt view
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Need to read the doc from Petrescue before you choose to adopt a pet
 
-### Advanced Configuration
+## Bugs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. It takes long to upload images to firebase storage, need to add a loading animation to make it more clearly for users to see what is happening.
+2. Max of 10 likes
+3. Need to wait for the image upload to be successful before updating profiles
+4. Unsuccessful login and sign up attempt causes the respective page to be unresponsive. A reload is required to continue loggin in or signing up successfully.
 
-### Deployment
+## To Do
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Button to unmatch/unlike
+2. Remove adoption request
+3. Need to change the style after clicking like button
