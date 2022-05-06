@@ -73,13 +73,24 @@ function ChatBox({ user1, user2, petID }) {
   return (
     <div className={style.messageComponent}>
       <div className={style.header}>
-        <img
-          style={{ width: "60px", marginTop: "10px" }}
-          src={
-            user2.imageUrl ||
-            "https://cdn-icons-png.flaticon.com/512/141/141783.png"
-          }
-        />
+        <div>
+          {user2.imageUrl === "" ? (
+            <div
+              className={style.userIcon}
+              style={{
+                backgroundImage:
+                  "url(https://cdn-icons-png.flaticon.com/512/141/141783.png)",
+              }}
+            ></div>
+          ) : (
+            <div
+              className={style.userIcon}
+              style={{
+                backgroundImage: `url(${user2.imageUrl})`,
+              }}
+            ></div>
+          )}
+        </div>
         <h1> {user2.firstName} </h1>
       </div>
       <div>

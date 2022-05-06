@@ -194,3 +194,12 @@ button:disabled {
 .header h1 {
   margin-left: 10px;
 }
+
+.userIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  background-position: center;
+  background-size: cover;
+  margin-top: 10px;
+}
