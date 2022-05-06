@@ -1,161 +1,165 @@
 .container {
-	display: flex;
-	flex-wrap: wrap;
-	width: 80%;
-	margin: 50px auto;
-	justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 50px auto;
+  justify-content: space-around;
 }
 
 .profile {
-	flex-wrap: wrap;
-	width: 25%;
-	min-width: 350px;
-	padding: 20px;
-	color: black;
-	padding-bottom: 100px;
+  flex-wrap: wrap;
+  width: 25%;
+  min-width: 350px;
+  padding: 20px;
+  color: black;
+  padding-bottom: 100px;
 }
 
 .profileHeading {
-	text-align: center;
-	margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .petContainer {
-	width: 70%;
+  width: 70%;
 }
 
 .profileInfo {
-	position: sticky;
-	top: 30px;
+  position: sticky;
+  top: 30px;
 }
 
 .sticky {
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-	border-radius: 20px;
-	padding: 20px 30px;
-	background-color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 20px 30px;
+  background-color: white;
 }
 
 .profileInfo p {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .profileImage {
-	text-align: center;
-	margin: 10px;
+  text-align: center;
+  margin: 10px auto 20px auto;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  border-radius: 100px;
 }
 
 .profileImage img {
-	height: 100px;
-	border-radius: 100px;
+  height: 200px;
+  border-radius: 100px;
 }
 
 .image {
-	margin-bottom: 10px;
-	height: 50%;
-	min-height: 350px;
-	background-position: center;
-	background-size: cover;
-	border-radius: 10px;
+  margin-bottom: 10px;
+  height: 50%;
+  min-height: 350px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
 }
 
 .petTile {
-	width: 28%;
-	min-width: 330px;
-	margin: 10px;
-	height: 495px;
-	padding: 20px;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-	border-radius: 10px;
-	color: black;
-	position: relative;
-	background-color: white;
+  width: 28%;
+  min-width: 330px;
+  margin: 10px;
+  height: 495px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  color: black;
+  position: relative;
+  background-color: white;
 }
 
 .pets {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .petContainer h1 {
-	margin: 20px;
+  margin: 20px;
 }
 
 .pets h2 {
-	text-align: center;
-	text-transform: capitalize;
-	margin-bottom: 5px;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 5px;
 }
 
 .capital {
-	text-align: center;
-	text-transform: capitalize;
-	margin: 5px 0;
+  text-align: center;
+  text-transform: capitalize;
+  margin: 5px 0;
 }
 
 .pets h5 {
-	text-align: center;
-	margin: 5px 0;
+  text-align: center;
+  margin: 5px 0;
 }
 
 .edit {
-	text-align: center;
-	margin-top: 20px;
-	margin-bottom: 5px;
-	display: flex;
-	justify-content: space-around;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .button74 {
-	background-color: #fbeee0;
-	border: 2px solid #422800;
-	border-radius: 30px;
-	box-shadow: #422800 4px 4px 0 0;
-	color: #422800;
-	cursor: pointer;
-	display: inline-block;
-	font-weight: 600;
-	font-size: 18px;
-	padding: 0 18px;
-	line-height: 50px;
-	text-align: center;
-	text-decoration: none;
-	user-select: none;
-	-webkit-user-select: none;
-	touch-action: manipulation;
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .button74:hover {
-	background-color: #fff;
+  background-color: #fff;
 }
 
 .button74:active {
-	box-shadow: #422800 2px 2px 0 0;
-	transform: translate(2px, 2px);
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
 }
 
 @media (min-width: 768px) {
-	.button74 {
-		min-width: 120px;
-		padding: 0 25px;
-	}
+  .button74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
 }
 
 .liked {
-	text-align: center;
+  text-align: center;
 }
 
 .liked .button74 {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 .select {
-	width: 250px;
-	margin: 20px auto;
+  width: 250px;
+  margin: 20px auto;
 }
 
 .btnContainer {
-	margin: 10px;
-	text-align: center;
+  margin: 10px;
+  text-align: center;
 }

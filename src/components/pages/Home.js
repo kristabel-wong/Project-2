@@ -15,13 +15,6 @@ import styled from "@emotion/styled";
 
 function Home() {
 	const { user } = useContext(AuthContext);
-	// const logout = async () => {
-	//   await auth.signOut();
-	// };
-	// let uid;
-	// if (user !== null) {
-	// 	uid = user.uid;
-	// }
 
 	const Wrapper = styled(Stack)`
 		background: #ffffff;
@@ -103,10 +96,6 @@ function Home() {
 		return array;
 	}
 
-	// truncate description ( for long descriptions - don't fit on cards)
-	const truncate = (input) =>
-		input?.length > 100 ? `${input.substring(0, 90)}...` : input;
-
 	const getAge = function (dob) {
 		if (dob !== null) {
 			let formattedDob =
@@ -123,6 +112,9 @@ function Home() {
 			return age;
 		}
 	};
+	// truncate description ( for long descriptions - don't fit on cards)
+	const truncate = (input) =>
+		input?.length > 50 ? `${input.substring(0, 45)}...` : input;
 
 	return (
 		<motion.div
