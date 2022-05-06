@@ -1,338 +1,335 @@
-@import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pangolin&family=Press+Start+2P&display=swap");
 
 .container {
-    width:800px;
-    margin:100px auto;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    padding-right:30px;
-    padding-left: 30px;
-    position: relative;
-    background-color: white;
-
+  width: 800px;
+  margin: 100px auto;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding-right: 30px;
+  padding-left: 30px;
+  position: relative;
+  background-color: white;
 }
 
 .form_title {
-    text-align: center;
-    padding-top: 20px;
-    margin-bottom: 20px;
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 20px;
 }
 
 .form_label {
-    font-size: 20px;
-    display:block;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    color:#647a8d;
+  font-size: 20px;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #647a8d;
 }
 
 .form_field {
-    background-color: #F3E9DD;
-    border-radius: 5px;;
+  background-color: #f3e9dd;
+  border-radius: 5px;
 }
 
 .form_textarea {
-    width: 100%;
-    margin-bottom: 30px;
+  width: 100%;
+  margin: 5px auto;
+  padding: 5px;
 }
 
-.drop_image_box{
-    position: relative;
+.drop_image_box {
+  position: relative;
 }
 
-.preview_div{
-    width: 30%;
-    margin: 1.5%;
-    text-align: center;
+.preview_div {
+  width: 30%;
+  margin: 1.5%;
+  text-align: center;
 }
 
-.flex_box{
-    display: flex;
-    flex-wrap: wrap;
+.flex_box {
+  display: flex;
+  flex-wrap: wrap;
 }
-.text_align{
-    text-align: center;
-}
-
-.drop_box{
-    margin-top:20px;
-    height: 150px;
-    border: 2px dashed #FFD32D;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.text_align {
+  text-align: center;
 }
 
-.photo_label{
-    display: flex;
-    height: 300px;
-    border: #ccc 2px dashed;
-    margin: 20px;
-    align-items: center;
-    justify-content: center;
-    
+.text_align div {
+  color: grey;
+  font-size: smaller;
 }
 
-.visually_hidden{
-    position: absolute ;
-    height:200px;
-    width:100%;
-    background-color: aqua;
-    padding: 0;
-    top:0;
-    opacity:0;
-    cursor: pointer;
+.drop_box {
+  margin-top: 20px;
+  height: 150px;
+  border: 2px dashed #ffd32d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.upload_button{
-    background-color: #F8CB2E;
-    border-radius: 10px;
-    padding: 10px;
-    margin-top:10px;
-    margin-bottom: 10px;
-    font-size: 15px;  
-   
+.photo_label {
+  display: flex;
+  height: 300px;
+  border: #ccc 2px dashed;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
+.visually_hidden {
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  background-color: aqua;
+  padding: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+}
 
+.upload_button {
+  background-color: #f8cb2e;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
 
-input{
-    font-size: 20px;
+input {
+  font-size: 20px;
+  padding: 5px;
 }
 
 /*   animation dog */
 
 .dog {
-    position: relative;
-    height:75px;
-    width: 120px;
-    background-color: #fdb44e;
-    border-radius: 10px 30px 0 120px;
+  position: relative;
+  height: 75px;
+  width: 120px;
+  background-color: #fdb44e;
+  border-radius: 10px 30px 0 120px;
 }
 
 .body {
-    height:90px;
-    width: 150px;
-    background-color: #fdb44e;
-    border-radius: 0 10px 10px 30px;
-    position: absolute;
-    top:80px;
-    left: 80px;
+  height: 90px;
+  width: 150px;
+  background-color: #fdb44e;
+  border-radius: 0 10px 10px 30px;
+  position: absolute;
+  top: 80px;
+  left: 80px;
 }
 
 .neck {
-    position: absolute;
-    height: 5px;
-    width: 40px;
-    top:75px;
-    left:80px ;
-    background-color: black;
+  position: absolute;
+  height: 5px;
+  width: 40px;
+  top: 75px;
+  left: 80px;
+  background-color: black;
 }
 
 .leg1 {
-    position: absolute;
-    background-color: #fdb44e;
-    height: 50px;
-    width: 15px;
-    border-radius: 0 0 10px 10px;
-    top: 170px;
-    left: 105px;
+  position: absolute;
+  background-color: #fdb44e;
+  height: 50px;
+  width: 15px;
+  border-radius: 0 0 10px 10px;
+  top: 170px;
+  left: 105px;
 }
 
 .leg2 {
-    position: absolute;
-    background-color: #fdb44e;
-    height: 50px;
-    width: 15px;
-    border-radius: 0 0 10px 10px;
-    top: 170px;
-    left: 130px;
+  position: absolute;
+  background-color: #fdb44e;
+  height: 50px;
+  width: 15px;
+  border-radius: 0 0 10px 10px;
+  top: 170px;
+  left: 130px;
 }
-    
-
 
 .leg3 {
-    position: absolute;
-    background-color: #b09670;
-    height: 50px;
-    width: 15px;
-    border-radius: 0 0 10px 10px;
-    top: 170px;
-    left: 180px;
+  position: absolute;
+  background-color: #b09670;
+  height: 50px;
+  width: 15px;
+  border-radius: 0 0 10px 10px;
+  top: 170px;
+  left: 180px;
 }
 
 .leg4 {
-    position: absolute;
-    background-color: #fdb44e;
-    height: 50px;
-    width: 15px;
-    border-radius: 0 0 10px 10px;
-    top: 170px;
-    left: 205px;
+  position: absolute;
+  background-color: #fdb44e;
+  height: 50px;
+  width: 15px;
+  border-radius: 0 0 10px 10px;
+  top: 170px;
+  left: 205px;
 }
 
 .belly {
-    position: absolute;
-    height: 30px;
-    width: 60px;
-    border-radius: 30px 30px 0 0;
-    background-color: beige;
-    top:140px;
-    left: 145px;
+  position: absolute;
+  height: 30px;
+  width: 60px;
+  border-radius: 30px 30px 0 0;
+  background-color: beige;
+  top: 140px;
+  left: 145px;
 }
 
 .nose {
-    position: absolute;
-    height: 15px;
-    width: 15px;
-    border-radius: 15px;
-    background-color: black;
-    top: -5px;
-    left: -5px;
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-radius: 15px;
+  background-color: black;
+  top: -5px;
+  left: -5px;
 }
 
 .eye {
-    position: absolute;
-    height: 30px;
-    width: 30px;
-    border-radius: 30px;
-    background-color: white;
-    top: 10px;
-    left: 50px;
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  background-color: white;
+  top: 10px;
+  left: 50px;
 }
 
 .eyeball {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    border-radius: 30px;
-    background-color: black;
-    top: 12px;
-    left: 50px;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 30px;
+  background-color: black;
+  top: 12px;
+  left: 50px;
 }
 
 .ear1 {
-    position: absolute;
-    height: 30px;
-    width: 25px;
-    border-radius: 20px 20px 0 0;
-    background-color: #d58040;
-    top: -30px;
-    left: 80px;
+  position: absolute;
+  height: 30px;
+  width: 25px;
+  border-radius: 20px 20px 0 0;
+  background-color: #d58040;
+  top: -30px;
+  left: 80px;
 }
 
 .ear2 {
-    position: absolute;
-    height: 40px;
-    width: 25px;
-    border-radius: 20px 20px 0 0;
-    background-color: #fdb44e;
-    top: -30px;
-    left: 90px;
+  position: absolute;
+  height: 40px;
+  width: 25px;
+  border-radius: 20px 20px 0 0;
+  background-color: #fdb44e;
+  top: -30px;
+  left: 90px;
 }
 
 .tail {
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 90px solid #fdb44e;
-    position: relative;
-    bottom: -10px;
-    left: 210px;
-    transform: rotate(30deg);
-    transform-origin: bottom;
-    animation: wag 1s infinite;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 90px solid #fdb44e;
+  position: relative;
+  bottom: -10px;
+  left: 210px;
+  transform: rotate(30deg);
+  transform-origin: bottom;
+  animation: wag 1s infinite;
 }
 @keyframes wag {
-    50% {
-        transform: rotate(10deg);
-    } 
+  50% {
+    transform: rotate(10deg);
+  }
 }
 
 .tongue {
-    position: relative;
-    background-color: tomato;
-    height: 20px;
-    width: 12px;
-    top: -50px;
-    left: 13px;
-    border-radius: 10px;
-    transform: rotate(45deg);
-    z-index: -1;
-    animation: move 1s infinite;
+  position: relative;
+  background-color: tomato;
+  height: 20px;
+  width: 12px;
+  top: -50px;
+  left: 13px;
+  border-radius: 10px;
+  transform: rotate(45deg);
+  z-index: -1;
+  animation: move 1s infinite;
 }
 @keyframes move {
-    50% {
-        transform:rotate(45deg) translateY(3px);
-    } 
+  50% {
+    transform: rotate(45deg) translateY(3px);
+  }
 }
 
 .shadow {
-    position: absolute;
-    height: 50px;
-    width: 200px;
-    background-color: black;
-    opacity: 0.2;
-    border-radius: 50%;
-    z-index: -2;
-    top: 190px;
-    left: 50px;
+  position: absolute;
+  height: 50px;
+  width: 200px;
+  background-color: black;
+  opacity: 0.2;
+  border-radius: 50%;
+  z-index: -2;
+  top: 190px;
+  left: 50px;
 }
 
 .bubble {
-    font-size: 20px;
-    position: absolute;
-    top: -130px;
-    left: 40px;
-    width: 280px;
-    border: 1px solid black;
-    padding: 20px;
-    border-radius: 20px;
-    font-family: 'Pangolin', cursive;
-
+  font-size: 20px;
+  position: absolute;
+  top: -130px;
+  left: 40px;
+  width: 280px;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 20px;
+  font-family: "Pangolin", cursive;
 }
 
 .animation_dog {
-    position: absolute;
-    top: 200px;
-    right: 220px;
+  position: absolute;
+  top: 200px;
+  right: 220px;
 }
 
 .button74 {
-    background-color: #fbeee0;
-    border: 2px solid #422800;
-    border-radius: 30px;
-    box-shadow: #422800 4px 4px 0 0;
-    color: #422800;
-    cursor: pointer;
-    display: inline-block;
-    font-weight: 600;
-    font-size: 18px;
-    padding: 0 18px;
-    line-height: 50px;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    margin: 20px 10px;
-  }
-  
-  .button74:hover {
-    background-color: #fff;
-  }
-  
-  .button74:active {
-    box-shadow: #422800 2px 2px 0 0;
-    transform: translate(2px, 2px);
-  }
-  
-  @media (min-width: 768px) {
-    .button74 {
-      min-width: 120px;
-      padding: 0 25px;
-    }
-  }
-  
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 20px 10px;
+}
 
+.button74:hover {
+  background-color: #fff;
+}
+
+.button74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
