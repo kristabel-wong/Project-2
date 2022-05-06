@@ -187,15 +187,12 @@ function User() {
             <div className={style.profileInfo}>
               <h1 className={style.profileHeading}>My Profile</h1>
               <div className={style.sticky}>
-                <div className={style.profileImage}>
-                  <img
-                    src={
-                      userInfo.imageUrl ||
-                      "https://firebasestorage.googleapis.com/v0/b/project-2-5825e.appspot.com/o/user%2Fdefault_user.png?alt=media&token=ec9fe5f4-8348-41e3-8bef-abe7849e5d46"
-                    }
-                    alt={userInfo.firstName}
-                  />
-                </div>
+                <div
+                  className={style.profileImage}
+                  style={{
+                    backgroundImage: `url(${userInfo.imageUrl})`,
+                  }}
+                ></div>
                 <h3>First Name:</h3>
                 <p>{userInfo.firstName}</p>
                 <h3>Last Name:</h3>
