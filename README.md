@@ -28,9 +28,8 @@ Password: chicken
 
 ## Object Model Associations
 
-![screenshot-model-association]()
-
 1. Sign in/Sign out
+   ![screen shots](gif/signin.gif)
 2. Create users profile
 
    - Add a profile picture or a default icon will be provided
@@ -52,6 +51,8 @@ Password: chicken
 
 3. Home Page/List View:
 
+![screen shots](gif/swiping.gif)
+
 - Displays the pets in a tinder style profile cards
 - Swipe right on the pets you would consider adopting
 - Swipe left on the pets which you don't want to know more about
@@ -61,19 +62,27 @@ Password: chicken
 
 4. Messages:
 
+![screen shots](gif/message.gif)
+
 - User to User messaging
 - Instant messaging
 
 5. Create Pets/edit
+
+![screen shots](gif/drag%26drop.gif)
 
 - upload multiple images
 - Create pet info
 
 6. Pet view
 
+![screen shots](gif/profile%26pet_show.gif)
+
 - Use carousel sliders to show multiple images
 
 7. Adopt view
+
+![screen shots](gif/adopt.gif)
 
 - Need to read the doc from Petrescue before you choose to adopt a pet
 

@@ -96,7 +96,7 @@ function PetCreateForm() {
       adoptedBy: "",
       isAdopted: false,
     });
-
+    if (selectedImages.length >0){
     await Promise.all(
       selectedImages.map((image) => {
         const imageRef = ref(storage, `images/pets/${v4() + image.path}`);
@@ -105,10 +105,14 @@ function PetCreateForm() {
           await updateDoc(doc(db, "pets", petRef.id), {
             imagesUrl: arrayUnion(downloadUrl),
           });
+          alert("Upload Successful");
+          navigate(`/user/${newUserID}`);
         });
       })
-    );
-    navigate(`/user/${newUserID}`);
+    )} else{
+      navigate(`/user/${newUserID}`);
+    }
+    
   };
 
   return (
