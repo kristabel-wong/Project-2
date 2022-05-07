@@ -29,7 +29,7 @@ Password: chicken
 ## Object Model Associations
 
 1. Sign in/Sign out
-   ![screen shots](gif/signin.gif)
+   ![screen shots](gif/signin_resize.gif)
 2. Create users profile
 
    - Add a profile picture or a default icon will be provided
@@ -76,13 +76,13 @@ Password: chicken
 
 6. Pet view
 
-![screen shots](gif/profile%26pet_show.gif)
+![screen shots](gif/petshow_resize.gif)
 
 - Use carousel sliders to show multiple images
 
 7. Adopt view
 
-![screen shots](gif/adopt.gif)
+![screen shots](gif/adopt_resize.gif)
 
 - Need to read the doc from Petrescue before you choose to adopt a pet
 
