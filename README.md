@@ -6,7 +6,6 @@ Purfect is a web application that brings a Tinder-like feel to adopting pets. Th
 This is the third project (group) for General Assembly Software Engineering Immersive Course. We were tasked to create a CRUD system using everything we had learnt in the last 9 weeks about front and back end web development. We were given about a week to create a functioning application complete with Models (at least 3) and site deployment (firebase).
 
 https://project-2-5825e.web.app/
-
 <br/>
 
 ### Collaborators:
