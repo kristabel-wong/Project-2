@@ -7,6 +7,7 @@ import {
 	getDocs,
 	updateDoc,
 } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import { NavLink } from "react-router-dom";
 import style from "./PetProfileList.module.css";
 
@@ -14,6 +15,7 @@ function PetProfileList() {
 	// store all pets info as state
 	const [pets, setPets] = useState([]);
 	const [filterPets, setFilterPets] = useState([]);
+	const [userInfo, setUserInfo] = useState({});
 
 	// get all pets info from firebase
 	const getPets = async () => {
@@ -22,10 +24,19 @@ function PetProfileList() {
 		setPets(data.docs.map((pet) => ({ ...pet.data(), id: pet.id })));
 	};
 
+	const getUser = async (uid) => {
+		const userDocRef = doc(db, "users", uid);
+		const userDocSnap = await getDoc(userDocRef);
+		const data = userDocSnap.data();
+		setUserInfo(data);
+	};
+
 	const filteredPets = () => {
 		const filterPets = pets.filter(
 			(pet) =>
-				pet.user_uid !== auth.currentUser.uid && pet.isAdopted === false
+				pet.user_uid !== auth.currentUser.uid &&
+				pet.isAdopted === false &&
+				!userInfo.petArr.includes(pet.id)
 		);
 		setFilterPets(filterPets);
 	};
@@ -88,7 +99,15 @@ function PetProfileList() {
 	// useEffect for state
 	useEffect(() => {
 		filteredPets();
-	}, [pets]);
+	}, [userInfo]);
+
+	useEffect(() => {
+		onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				getUser(auth.currentUser.uid);
+			}
+		});
+	}, []);
 
 	return (
 		<div className={style.container}>

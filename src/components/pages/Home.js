@@ -36,6 +36,8 @@ function Home() {
 	`;
 
 	const [pets, setPets] = useState([]);
+	const [userInfo, setUserInfo] = useState({});
+	const [filteredPets, setFilteredPets] = useState([]);
 
 	// get all pets info from firebase
 	const getPets = async () => {
@@ -44,7 +46,6 @@ function Home() {
 		setPets(data.docs.map((pet) => ({ ...pet.data(), id: pet.id })));
 	};
 
-	const [userInfo, setUserInfo] = useState({});
 	const getUser = async (uid) => {
 		const userDocRef = doc(db, "users", uid);
 		const userDocSnap = await getDoc(userDocRef);
@@ -57,13 +58,18 @@ function Home() {
 	//     pet.user_uid != auth.currentUser.uid;
 	//     !pet.id.includes(auth.currentUser.petArr)
 	// })}
-	let filterPets;
-	if (user !== null) {
-		filterPets = pets.filter(
-			(pet) =>
-				pet.user_uid !== auth.currentUser.uid && pet.isAdopted === false
-		);
-	}
+	const getFilteredPets = function () {
+		let filterPets;
+		if (user !== null) {
+			filterPets = pets.filter(
+				(pet) =>
+					pet.user_uid !== auth.currentUser.uid &&
+					pet.isAdopted === false &&
+					!userInfo.petArr.includes(pet.id)
+			);
+			setFilteredPets(filterPets);
+		}
+	};
 
 	// shuffle pets
 	function shuffle(array) {
@@ -108,10 +114,15 @@ function Home() {
 		});
 	}, []);
 
+	// get pets on pageload
 	useEffect(() => {
 		getPets();
 	}, []);
 
+	// filter the pets only once pets has finished
+	useEffect(() => {
+		getFilteredPets();
+	}, [pets]);
 	return (
 		<motion.div
 			initial={{ opacity: 0 }}
@@ -181,76 +192,67 @@ function Home() {
 											console.log(item.props, vote)
 										}
 									>
-										{shuffle(filterPets)
-											// .filter(
-											// 	(pet) =>
-											// 		!userInfo.petArr.includes(
-											// 			pet.id
-											// 		)
-											// )
-											.map((pet) => {
-												return (
-													<Item
-														data-value={
-															pet.user_uid
+										{shuffle(filteredPets).map((pet) => {
+											return (
+												<Item
+													data-value={pet.user_uid}
+													whileTap={{
+														scale: 1.15,
+													}}
+													key={pet.id}
+												>
+													<div
+														className={
+															styles.imageContainer
 														}
-														whileTap={{
-															scale: 1.15,
+														style={{
+															backgroundImage: `url(${pet.imagesUrl[0]})`,
 														}}
-														key={pet.id}
-													>
-														<div
+													></div>
+													<div>
+														<h2
 															className={
-																styles.imageContainer
+																styles.petName
 															}
-															style={{
-																backgroundImage: `url(${pet.imagesUrl[0]})`,
-															}}
-														></div>
-														<div>
-															<h2
-																className={
-																	styles.petName
-																}
-															>
-																{pet.name},{" "}
-																{pet.age === 0
-																	? getAge(
-																			pet.dob
-																	  )
-																	: pet.age}
-															</h2>
-															<p
-																className={
-																	styles.petDetails
-																}
-															>
-																{pet.location}
-															</p>
-															<p
-																className={
-																	styles.petDetails
-																}
-															>
-																{pet.gender}
-															</p>
-															<p
-																className={
-																	styles.petDetails
-																}
-															>
-																<em>
-																	"
-																	{truncate(
-																		`${pet.description}`
-																	)}
-																	"
-																</em>
-															</p>
-														</div>
-													</Item>
-												);
-											})}
+														>
+															{pet.name},{" "}
+															{pet.age === 0
+																? getAge(
+																		pet.dob
+																  )
+																: pet.age}
+														</h2>
+														<p
+															className={
+																styles.petDetails
+															}
+														>
+															{pet.location}
+														</p>
+														<p
+															className={
+																styles.petDetails
+															}
+														>
+															{pet.gender}
+														</p>
+														<p
+															className={
+																styles.petDetails
+															}
+														>
+															<em>
+																"
+																{truncate(
+																	`${pet.description}`
+																)}
+																"
+															</em>
+														</p>
+													</div>
+												</Item>
+											);
+										})}
 									</Wrapper>
 								</div>
 								<div className={styles.like}></div>
