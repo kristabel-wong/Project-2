@@ -90,7 +90,7 @@ Password: chicken
 ## Bugs
 
 1. It takes long to upload images to firebase storage, need to add a loading animation to make it more clearly for users to see what is happening.
-2. Max of 10 likes
+2. Max of 10 likes (patched may 10th 2022 can now like as many as you like)
 3. Need to wait for the image upload to be successful before updating profiles
 4. Unsuccessful login and sign up attempt causes the respective page to be unresponsive. A reload is required to continue loggin in or signing up successfully.
 
@@ -99,3 +99,11 @@ Password: chicken
 1. Button to unmatch/unlike
 2. Remove adoption request
 3. Need to change the style after clicking like button
+
+## Updates
+
+-   may 10th 2022 -
+
+1. added further filters for pet swipes on both the swipe and list page
+2. fixed some minor console bugs
+3. fixed limit on pet likes now unlimited
