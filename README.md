@@ -20,7 +20,7 @@ https://project-2-5825e.web.app/
 Normal users:
 
 <pre>
-Email: janedoe@ga.co 
+Email: jane@ga.co 
 Password: chicken
 
 Email: johnsmith@ga.co 
